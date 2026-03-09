@@ -31,13 +31,23 @@ export function AboutPage() {
           </p>
           <p>
             <strong>LinkedIn:</strong>{" "}
-            <a className="hover:underline" href={profile.linkedin} rel="noreferrer" target="_blank">
+            <a
+              className="hover:underline"
+              href={profile.linkedin}
+              rel="noreferrer"
+              target="_blank"
+            >
               {profile.linkedin}
             </a>
           </p>
           <p>
             <strong>GitHub:</strong>{" "}
-            <a className="hover:underline" href={profile.github} rel="noreferrer" target="_blank">
+            <a
+              className="hover:underline"
+              href={profile.github}
+              rel="noreferrer"
+              target="_blank"
+            >
               {profile.github}
             </a>
           </p>

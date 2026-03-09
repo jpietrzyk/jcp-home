@@ -47,12 +47,22 @@ export function ResumePage() {
             <a className="hover:underline" href={`mailto:${profile.email}`}>
               {profile.email}
             </a>{" "}
-            | {" "}
-            <a className="hover:underline" href={profile.linkedin} rel="noreferrer" target="_blank">
+            |{" "}
+            <a
+              className="hover:underline"
+              href={profile.linkedin}
+              rel="noreferrer"
+              target="_blank"
+            >
               LinkedIn
             </a>{" "}
-            | {" "}
-            <a className="hover:underline" href={profile.github} rel="noreferrer" target="_blank">
+            |{" "}
+            <a
+              className="hover:underline"
+              href={profile.github}
+              rel="noreferrer"
+              target="_blank"
+            >
               GitHub
             </a>{" "}
             | {profile.phone}

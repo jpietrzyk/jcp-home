@@ -20,18 +20,26 @@ export function HomePage() {
           <p className="text-zinc-600">{profile.title}</p>
         </CardHeader>
         <CardContent className="space-y-6">
-          <p className="max-w-2xl text-zinc-600">
-            {profile.about}
-          </p>
+          <p className="max-w-2xl text-zinc-600">{profile.about}</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-600">
             <span>{profile.location}</span>
             <a className="hover:underline" href={`mailto:${profile.email}`}>
               {profile.email}
             </a>
-            <a className="hover:underline" href={profile.linkedin} rel="noreferrer" target="_blank">
+            <a
+              className="hover:underline"
+              href={profile.linkedin}
+              rel="noreferrer"
+              target="_blank"
+            >
               LinkedIn
             </a>
-            <a className="hover:underline" href={profile.github} rel="noreferrer" target="_blank">
+            <a
+              className="hover:underline"
+              href={profile.github}
+              rel="noreferrer"
+              target="_blank"
+            >
               GitHub
             </a>
           </div>
