@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { profile } from "../content/profile";
 
 export function HomePage() {
   return (
@@ -15,20 +16,34 @@ export function HomePage() {
       </p>
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl">Hi, I am Jacek.</CardTitle>
+          <CardTitle className="text-3xl">{profile.name}</CardTitle>
+          <p className="text-zinc-600">{profile.title}</p>
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="max-w-2xl text-zinc-600">
-            This site is built with React, Vite, Tailwind, and a headless CMS.
-            Use this page as the base for your hero section and latest-post
-            preview.
+            {profile.about}
           </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-600">
+            <span>{profile.location}</span>
+            <a className="hover:underline" href={`mailto:${profile.email}`}>
+              {profile.email}
+            </a>
+            <a className="hover:underline" href={profile.linkedin} rel="noreferrer" target="_blank">
+              LinkedIn
+            </a>
+            <a className="hover:underline" href={profile.github} rel="noreferrer" target="_blank">
+              GitHub
+            </a>
+          </div>
           <div className="flex flex-wrap gap-3">
-            <Link to="/blog">
-              <Button>Read Blog</Button>
+            <Link to="/resume">
+              <Button>View Resume</Button>
             </Link>
             <Link to="/about">
               <Button variant="secondary">About Me</Button>
+            </Link>
+            <Link to="/blog">
+              <Button variant="ghost">Read Blog</Button>
             </Link>
           </div>
         </CardContent>
