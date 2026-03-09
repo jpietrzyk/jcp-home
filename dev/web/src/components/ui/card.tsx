@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 
 export const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  React.ComponentPropsWithoutRef<typeof motion.div>
 >(({ className, ...props }, ref) => (
   <motion.div
     whileHover={{
@@ -22,7 +22,7 @@ export const Card = React.forwardRef<
       className,
     )}
     ref={ref}
-    {...(props as any)}
+    {...props}
   />
 ));
 
