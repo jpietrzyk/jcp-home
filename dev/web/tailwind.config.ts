@@ -13,8 +13,8 @@ export default {
           700: '#3f3f46',
         },
         accent: {
-          primary: '#8b5cf6',
-          secondary: '#3b82f6',
+          primary: '#14b8a6', // teal-500
+          secondary: '#10b981', // emerald-500
         },
       },
       animation: {
