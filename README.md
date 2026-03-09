@@ -249,3 +249,4 @@ If you pick Contentful instead of Sanity, keep frontend and hosting unchanged.
 When to choose Contentful:
 
 - You value polished editor experience and structured workflows over maximum schema/studio customization.
+gi
