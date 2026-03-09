@@ -10,6 +10,8 @@ export const Card = React.forwardRef<
     whileHover={{
       scale: 1.02,
       y: -4,
+      // Note: rgba(139, 92, 246, 0.2) is derived from Tailwind's `accent-primary` (#8b5cf6).
+      // If `accent-primary` changes in tailwind.config.ts, update this value to match.
       boxShadow: "0 20px 40px -10px rgba(139, 92, 246, 0.2)",
     }}
     transition={{
