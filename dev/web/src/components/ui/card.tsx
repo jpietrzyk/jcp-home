@@ -7,10 +7,18 @@ export const Card = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <motion.div
-    whileHover={{ scale: 1.02, y: -4 }}
-    transition={{ duration: 0.3 }}
+    whileHover={{
+      scale: 1.02,
+      y: -4,
+      boxShadow: "0 20px 40px -10px rgba(139, 92, 246, 0.2)",
+    }}
+    transition={{
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    }}
     className={cn(
-      "glass rounded-lg border border-dark-800 bg-dark-900/50 text-zinc-100 shadow-lg hover:shadow-accent-primary/20 transition-all duration-300",
+      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-accent-primary/50 transition-colors duration-300",
       className,
     )}
     ref={ref}

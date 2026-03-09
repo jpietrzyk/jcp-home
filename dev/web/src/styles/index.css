@@ -34,28 +34,3 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #52525b;
 }
-
-/* Gradient text effect */
-.gradient-text {
-  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glassmorphism effect */
-.glass {
-  background: rgba(23, 23, 23, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Glow effect */
-.glow {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-}
-
-.glow-hover:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-}
