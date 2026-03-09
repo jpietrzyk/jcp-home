@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, type MotionProps } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export const Card = React.forwardRef<
