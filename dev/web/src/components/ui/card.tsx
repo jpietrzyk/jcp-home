@@ -16,11 +16,11 @@ export const Card = React.forwardRef<
     }}
     transition={{
       type: "spring",
-      stiffness: 300,
-      damping: 20,
+      stiffness: 200,
+      damping: 30,
     }}
     className={cn(
-      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-accent-primary/50 transition-colors duration-300",
+      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-accent-primary/30 transition-colors duration-300",
       className,
     )}
     ref={ref}

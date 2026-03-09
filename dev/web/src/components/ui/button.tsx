@@ -8,8 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-accent-primary text-white hover:bg-accent-secondary hover:shadow-lg hover:shadow-accent-primary/30",
+        default: "bg-accent-primary text-white hover:bg-accent-secondary",
         secondary:
           "border border-accent-primary/50 bg-transparent text-accent-primary hover:bg-accent-primary/10 hover:border-accent-primary",
         ghost:
@@ -39,9 +38,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     return (
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
