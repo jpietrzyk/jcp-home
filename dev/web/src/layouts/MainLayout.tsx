@@ -1,7 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
-import { BackgroundEffects } from "../components/BackgroundEffects";
 
 const links = [
   { to: "/", label: "Home" },
@@ -13,10 +12,12 @@ const links = [
 export function MainLayout() {
   return (
     <div className="min-h-screen bg-dark-950 text-zinc-100">
-      <BackgroundEffects />
-      <header className="border-b border-dark-800 bg-dark-900/80 backdrop-blur-md">
+      <header className="border-b border-zinc-800 bg-dark-900/80 backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link className="text-lg font-semibold gradient-text" to="/">
+          <Link
+            className="text-lg font-semibold text-zinc-100 hover:text-accent-primary transition-colors duration-300"
+            to="/"
+          >
             jcp.home
           </Link>
           <nav className="flex items-center gap-2 text-sm">
@@ -24,13 +25,17 @@ export function MainLayout() {
               <NavLink
                 key={link.to}
                 className={({ isActive }) =>
-                  cn(isActive ? "text-zinc-100" : "text-zinc-400")
+                  cn(
+                    isActive
+                      ? "text-zinc-100"
+                      : "text-zinc-400 hover:text-accent-primary",
+                  )
                 }
                 to={link.to}
               >
                 {({ isActive }) => (
                   <Button
-                    className="h-8 px-3 transition-all duration-300"
+                    className="h-8 px-3 transition-all duration-200"
                     size="sm"
                     variant={isActive ? "default" : "ghost"}
                   >
