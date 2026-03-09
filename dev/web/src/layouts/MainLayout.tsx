@@ -1,4 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { cn } from "../lib/utils";
 
 const links = [
   { to: "/", label: "Home" },
@@ -15,18 +17,24 @@ export function MainLayout() {
           <Link className="text-lg font-semibold" to="/">
             jcp.home
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
+          <nav className="flex items-center gap-2 text-sm">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 className={({ isActive }) =>
-                  isActive
-                    ? "font-semibold text-zinc-900"
-                    : "text-zinc-600 hover:text-zinc-900"
+                  cn(isActive ? "text-zinc-900" : "text-zinc-600")
                 }
                 to={link.to}
               >
-                {link.label}
+                {({ isActive }) => (
+                  <Button
+                    className="h-8 px-3"
+                    size="sm"
+                    variant={isActive ? "default" : "ghost"}
+                  >
+                    {link.label}
+                  </Button>
+                )}
               </NavLink>
             ))}
           </nav>

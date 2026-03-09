@@ -1,4 +1,11 @@
 import { Link } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 
 export function HomePage() {
   return (
@@ -6,25 +13,26 @@ export function HomePage() {
       <p className="text-sm uppercase tracking-wide text-zinc-500">
         Personal site MVP
       </p>
-      <h1 className="text-3xl font-bold tracking-tight">Hi, I am Jacek.</h1>
-      <p className="max-w-2xl text-zinc-600">
-        This site is built with React, Vite, Tailwind, and a headless CMS. Use
-        this page as the base for your hero section and latest-post preview.
-      </p>
-      <div className="flex gap-3 pt-2">
-        <Link
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm text-white"
-          to="/blog"
-        >
-          Read Blog
-        </Link>
-        <Link
-          className="rounded-md border border-zinc-300 px-4 py-2 text-sm"
-          to="/about"
-        >
-          About Me
-        </Link>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">Hi, I am Jacek.</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <p className="max-w-2xl text-zinc-600">
+            This site is built with React, Vite, Tailwind, and a headless CMS.
+            Use this page as the base for your hero section and latest-post
+            preview.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/blog">
+              <Button>Read Blog</Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="secondary">About Me</Button>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </section>
   );
 }

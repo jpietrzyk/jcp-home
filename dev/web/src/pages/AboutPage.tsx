@@ -1,4 +1,10 @@
 import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { getPageBySlug } from "../lib/cms/api";
 
 export function AboutPage() {
@@ -14,8 +20,14 @@ export function AboutPage() {
 
   return (
     <section className="space-y-3">
-      <h1 className="text-3xl font-bold">About</h1>
-      <p className="text-zinc-600">{content}</p>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">About</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-zinc-600">{content}</p>
+        </CardContent>
+      </Card>
     </section>
   );
 }

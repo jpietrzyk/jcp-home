@@ -6,6 +6,11 @@ node_modules/
 dist/
 build/
 coverage/
+*.tsbuildinfo
+
+# Accidental TypeScript emits
+dev/web/vite.config.js
+dev/web/vite.config.d.ts
 
 # Logs
 npm-debug.log*
