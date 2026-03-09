@@ -33,13 +33,13 @@ Recommendation: Start without SSR.
 Both are good choices. Main differences:
 
 - Vercel:
-	- Excellent DX for frontend projects.
-	- Best fit when using Next.js/SSR-heavy apps.
-	- Great preview deployments and edge features.
+  - Excellent DX for frontend projects.
+  - Best fit when using Next.js/SSR-heavy apps.
+  - Great preview deployments and edge features.
 - Netlify:
-	- Very strong for static/Vite sites.
-	- Built-in forms, redirects, and simple serverless functions.
-	- Usually straightforward for content-driven personal pages.
+  - Very strong for static/Vite sites.
+  - Built-in forms, redirects, and simple serverless functions.
+  - Usually straightforward for content-driven personal pages.
 
 Recommendation for your current stack (React + Vite): Netlify is slightly simpler, Vercel is equally valid.
 
@@ -48,20 +48,20 @@ Recommendation for your current stack (React + Vite): Netlify is slightly simple
 You are considering Contentful. It is solid, but there are alternatives depending on priorities.
 
 - Contentful:
-	- Mature, reliable, great editor UX.
-	- Strong API and localization support.
-	- Can be expensive as usage grows.
+  - Mature, reliable, great editor UX.
+  - Strong API and localization support.
+  - Can be expensive as usage grows.
 - Sanity:
-	- Very flexible content modeling.
-	- Excellent real-time editing experience.
-	- Great developer ergonomics.
+  - Very flexible content modeling.
+  - Excellent real-time editing experience.
+  - Great developer ergonomics.
 - Strapi:
-	- Self-hosted/open source option.
-	- Full control over backend and data.
-	- More maintenance overhead.
+  - Self-hosted/open source option.
+  - Full control over backend and data.
+  - More maintenance overhead.
 - Ghost:
-	- Great if blog is central and you want ready-made publishing features.
-	- Less flexible for complex, custom content models than headless-first CMS options.
+  - Great if blog is central and you want ready-made publishing features.
+  - Less flexible for complex, custom content models than headless-first CMS options.
 
 Recommendation:
 
@@ -93,14 +93,14 @@ You can migrate later to Next.js + SSR only if your requirements become strongly
 
 ```mermaid
 flowchart LR
-		A[Sanity Studio\nContent Editing] --> B[Sanity Content Lake API]
-		B --> C[Vite Build Process]
-		C --> D[Static Assets\nHTML/CSS/JS]
-		D --> E[Netlify CDN]
-		E --> F[Visitors]
+  A[Sanity Studio\nContent Editing] --> B[Sanity Content Lake API]
+  B --> C[Vite Build Process]
+  C --> D[Static Assets\nHTML/CSS/JS]
+  D --> E[Netlify CDN]
+  E --> F[Visitors]
 
-		G[GitHub Repo] --> C
-		H[Netlify Build Hook\n(Optional)] --> C
+  G[GitHub Repo] --> C
+  H[Netlify Build Hook\n(Optional)] --> C
 ```
 
 Notes:
@@ -114,41 +114,41 @@ Notes:
 Core document types:
 
 - `post`
-	- `title` (string)
-	- `slug` (slug)
-	- `excerpt` (text)
-	- `coverImage` (image)
-	- `publishedAt` (datetime)
-	- `updatedAt` (datetime)
-	- `author` (reference -> `author`)
-	- `tags` (array of reference -> `tag`)
-	- `body` (rich text/portable text)
-	- `seoTitle` (string)
-	- `seoDescription` (text)
-	- `canonicalUrl` (url, optional)
-	- `isDraft` (boolean)
+  - `title` (string)
+  - `slug` (slug)
+  - `excerpt` (text)
+  - `coverImage` (image)
+  - `publishedAt` (datetime)
+  - `updatedAt` (datetime)
+  - `author` (reference -> `author`)
+  - `tags` (array of reference -> `tag`)
+  - `body` (rich text/portable text)
+  - `seoTitle` (string)
+  - `seoDescription` (text)
+  - `canonicalUrl` (url, optional)
+  - `isDraft` (boolean)
 - `author`
-	- `name` (string)
-	- `slug` (slug)
-	- `avatar` (image)
-	- `bio` (text)
-	- `socialLinks` (object)
+  - `name` (string)
+  - `slug` (slug)
+  - `avatar` (image)
+  - `bio` (text)
+  - `socialLinks` (object)
 - `tag`
-	- `name` (string)
-	- `slug` (slug)
-	- `description` (text)
+  - `name` (string)
+  - `slug` (slug)
+  - `description` (text)
 - `page`
-	- `title` (string)
-	- `slug` (slug)
-	- `body` (rich text)
-	- `seoTitle` (string)
-	- `seoDescription` (text)
+  - `title` (string)
+  - `slug` (slug)
+  - `body` (rich text)
+  - `seoTitle` (string)
+  - `seoDescription` (text)
 - `siteSettings`
-	- `siteName` (string)
-	- `siteUrl` (url)
-	- `defaultSeoImage` (image)
-	- `mainNavigation` (array of links)
-	- `socialLinks` (object)
+  - `siteName` (string)
+  - `siteUrl` (url)
+  - `defaultSeoImage` (image)
+  - `mainNavigation` (array of links)
+  - `socialLinks` (object)
 
 Route mapping:
 
@@ -216,14 +216,14 @@ If you pick Contentful instead of Sanity, keep frontend and hosting unchanged.
 ### Recommended Contentful setup
 
 - Content types:
-	- `blogPost` (title, slug, excerpt, heroImage, publishDate, body, author, tags, SEO fields)
-	- `author` (name, bio, avatar, social links)
-	- `tag` (name, slug)
-	- `page` (title, slug, body, SEO fields)
-	- `siteSettings` (site metadata, nav, social links)
+  - `blogPost` (title, slug, excerpt, heroImage, publishDate, body, author, tags, SEO fields)
+  - `author` (name, bio, avatar, social links)
+  - `tag` (name, slug)
+  - `page` (title, slug, body, SEO fields)
+  - `siteSettings` (site metadata, nav, social links)
 - Environments:
-	- `master` for production
-	- `staging` for testing content changes
+  - `master` for production
+  - `staging` for testing content changes
 
 ### Delivery/API choice
 
@@ -240,11 +240,11 @@ If you pick Contentful instead of Sanity, keep frontend and hosting unchanged.
 ### Pros and cons vs Sanity
 
 - Contentful pros:
-	- Strong editorial interface and workflow tooling.
-	- Mature enterprise integrations and roles.
+  - Strong editorial interface and workflow tooling.
+  - Mature enterprise integrations and roles.
 - Contentful cons:
-	- Pricing can increase earlier with usage.
-	- Less flexible real-time customization than Sanity Studio.
+  - Pricing can increase earlier with usage.
+  - Less flexible real-time customization than Sanity Studio.
 
 When to choose Contentful:
 
