@@ -15,7 +15,7 @@ export function MainLayout() {
       <header className="border-b border-zinc-800 bg-dark-900/80 backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <Link
-            className="text-lg font-semibold text-zinc-100 hover:text-accent-primary transition-colors duration-300"
+            className="text-lg font-semibold text-zinc-100 hover:text-zinc-300 transition-colors duration-400"
             to="/"
           >
             jcp.home
@@ -28,14 +28,14 @@ export function MainLayout() {
                   cn(
                     isActive
                       ? "text-zinc-100"
-                      : "text-zinc-400 hover:text-accent-primary",
+                      : "text-zinc-400 hover:text-zinc-300",
                   )
                 }
                 to={link.to}
               >
                 {({ isActive }) => (
                   <Button
-                    className="h-8 px-3 transition-all duration-200"
+                    className="h-8 px-3 transition-all duration-400"
                     size="sm"
                     variant={isActive ? "default" : "ghost"}
                   >

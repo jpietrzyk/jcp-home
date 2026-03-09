@@ -13,7 +13,7 @@ export function HomePage() {
   return (
     <section className="space-y-4">
       <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-accent-primary">
+        <p className="text-sm uppercase tracking-wide text-zinc-500">
           Personal site MVP
         </p>
       </AnimatedSection>
@@ -29,17 +29,17 @@ export function HomePage() {
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">
-                <span className="hover:text-accent-primary transition-colors duration-300">
+                <span className="hover:text-zinc-200 transition-colors duration-400">
                   {profile.location}
                 </span>
                 <a
-                  className="hover:text-accent-primary hover:underline transition-all duration-300"
+                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
                   href={`mailto:${profile.email}`}
                 >
                   {profile.email}
                 </a>
                 <a
-                  className="hover:text-accent-primary hover:underline transition-all duration-300"
+                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
                   href={profile.linkedin}
                   rel="noreferrer"
                   target="_blank"
@@ -47,7 +47,7 @@ export function HomePage() {
                   LinkedIn
                 </a>
                 <a
-                  className="hover:text-accent-primary hover:underline transition-all duration-300"
+                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
                   href={profile.github}
                   rel="noreferrer"
                   target="_blank"
