@@ -29,7 +29,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    React.ComponentPropsWithoutRef<typeof motion.button>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
@@ -43,7 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...(props as any)}
+        {...props}
       />
     );
   },
