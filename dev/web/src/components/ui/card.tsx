@@ -4,21 +4,23 @@ import { cn } from "../../lib/utils";
 
 export const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & MotionProps
+  React.ComponentPropsWithoutRef<typeof motion.div>
 >(({ className, ...props }, ref) => (
   <motion.div
     whileHover={{
       scale: 1.02,
       y: -4,
+      // Note: rgba(139, 92, 246, 0.2) is derived from Tailwind's `accent-primary` (#8b5cf6).
+      // If `accent-primary` changes in tailwind.config.ts, update this value to match.
       boxShadow: "0 20px 40px -10px rgba(139, 92, 246, 0.2)",
     }}
     transition={{
       type: "spring",
-      stiffness: 300,
-      damping: 20,
+      stiffness: 200,
+      damping: 30,
     }}
     className={cn(
-      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-accent-primary/50 transition-colors duration-300",
+      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-accent-primary/30 transition-colors duration-300",
       className,
     )}
     ref={ref}
