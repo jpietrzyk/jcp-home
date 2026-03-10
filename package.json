@@ -15,7 +15,7 @@
     "typecheck:web": "cd dev/web && npm run typecheck",
     "typecheck:sanity": "cd dev/sanity && npm run typecheck",
     "install:all": "npm install && cd dev/web && npm install && cd ../sanity && npm install",
-    "clean": "rm -rf node_modules dev/web/node_modules dev/sanity/node_modules"
+    "clean": "rm -rf node_modules dev/web/node_modules dev/web/dist dev/web/.vite dev/sanity/node_modules"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
