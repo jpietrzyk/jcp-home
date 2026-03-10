@@ -17,6 +17,11 @@ export default {
           secondary: '#000000', // black
         },
       },
+      textColor: {
+        base: '#e5e5e5', // Improved contrast for body text
+        muted: '#a3a3a3', // Better contrast for muted text
+        'muted-light': '#d4d4d4', // Lighter muted text
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
         'fade-in-up': 'fadeInUp 0.5s ease-out',

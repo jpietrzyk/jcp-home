@@ -9,6 +9,30 @@
 body {
   margin: 0;
   background-color: #0a0a0a;
+  color: #e5e5e5; /* Improved contrast for better readability */
+}
+
+/* Improved text contrast for better readability */
+p,
+span,
+div {
+  color: #e5e5e5;
+}
+
+/* Better contrast for muted text */
+.text-muted,
+.text-gray-400,
+.text-zinc-400 {
+  color: #d4d4d4 !important;
+}
+
+/* Ensure headings have good contrast */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #fafafa;
 }
 
