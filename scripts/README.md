@@ -78,7 +78,7 @@ Remove all node_modules directories and build artifacts. Useful for troubleshoot
 ```
 
 #### `npm run clean`
-Remove all node_modules (same as `./scripts/clean.sh`)
+Remove all node_modules directories and build artifacts (`dev/web/dist`, `dev/web/.vite`). Same effect as `./scripts/clean.sh`, but without the interactive confirmation prompt.
 
 ### Type Checking Scripts
 
