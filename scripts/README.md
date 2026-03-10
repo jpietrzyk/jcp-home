@@ -133,16 +133,16 @@ Make sure to configure the following environment variables:
 
 ### Web App (`dev/web/.env`)
 ```env
-VITE_SANITY_PROJECT_ID=4kycpr3y
-VITE_SANITY_DATASET=production
+VITE_SANITY_PROJECT_ID=your_project_id
+VITE_SANITY_DATASET=your_dataset
 VITE_SANITY_API_VERSION=2025-01-01
 VITE_SANITY_USE_CDN=true
 ```
 
 ### Sanity (`dev/sanity/.env`)
 ```env
-SANITY_STUDIO_PROJECT_ID=4kycpr3y
-SANITY_STUDIO_DATASET=production
+SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_DATASET=your_dataset
 ```
 
 ## Troubleshooting
