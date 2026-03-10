@@ -37,8 +37,17 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_ROOT"
 
 print_warning "This will remove all node_modules directories. Are you sure? (y/N)"
-read -r response
 
+if [ -t 0 ]; then
+    # Interactive input: read the user's response safely under set -e
+    if ! read -r response; then
+        print_info "Operation cancelled."
+        exit 0
+    fi
+else
+    # Non-interactive input (e.g., CI): default to "no"
+    response="n"
+fi
 if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     print_info "Operation cancelled."
     exit 0
