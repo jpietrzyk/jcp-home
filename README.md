@@ -2,6 +2,21 @@
 
 This should be concept of my home page
 
+## Quick Start
+
+```bash
+# Install all dependencies
+npm run install:all
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+For detailed script usage, see [`scripts/README.md`](scripts/README.md).
+
 ## Details
 
 I want to build a personal homepage with:
