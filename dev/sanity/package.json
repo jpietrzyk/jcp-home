@@ -11,8 +11,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.84.0",
-    "styled-components": "^6.3.11"
+    "sanity": "^3.84.0"
   },
   "devDependencies": {
     "typescript": "^5.8.2"
