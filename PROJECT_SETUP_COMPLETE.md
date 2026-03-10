@@ -1,15 +1,15 @@
-# Project Setup Complete! 🎉
+# Project Setup Checklist
 
-Your Sanity headless CMS integration is fully configured and ready to use.
+Use this checklist to configure your Sanity headless CMS integration for this project.
 
-## What's Been Set Up
+## What You Should Configure
 
 ### ✅ Sanity CMS Integration
-- **Project ID**: your_project_id
-- **Dataset**: your_dataset
-- **Configuration**: All environment variables configured
-- **Content Types**: post, page, author, tag, siteSettings
-- **Test Content**: You've created and published a test post
+- [ ] Set your **Sanity Project ID** (for example via `SANITY_PROJECT_ID`, e.g. `<YOUR_SANITY_PROJECT_ID>`)
+- [ ] Set your **Sanity Dataset** (for example via `SANITY_DATASET`, e.g. `<YOUR_DATASET_NAME>`)
+- [ ] Configure all required environment variables for the web app and Sanity Studio
+- [ ] Define your content types (for example: `post`, `page`, `author`, `tag`, `siteSettings`)
+- [ ] Create and publish at least one test document in Sanity Studio
 
 ### ✅ Development Scripts
 Convenient scripts for managing the project from the root directory:
