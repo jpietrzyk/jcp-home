@@ -1,0 +1,27 @@
+{
+  "name": "jcp-home",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Personal website with Sanity CMS integration",
+  "scripts": {
+    "dev": "npm run dev:web",
+    "dev:web": "cd dev/web && npm run dev",
+    "dev:sanity": "cd dev/sanity && npm run dev",
+    "dev:all": "concurrently \"npm run dev:web\" \"npm run dev:sanity\" --names \"WEB,SANITY\" --prefix-colors \"blue,green\"",
+    "build": "cd dev/web && npm run build",
+    "preview": "cd dev/web && npm run preview",
+    "lint": "cd dev/web && npm run lint",
+    "typecheck": "npm run typecheck:web && npm run typecheck:sanity",
+    "typecheck:web": "cd dev/web && npm run typecheck",
+    "typecheck:sanity": "cd dev/sanity && npm run typecheck",
+    "install:all": "npm install && cd dev/web && npm install && cd ../sanity && npm install",
+    "clean": "rm -rf node_modules dev/web/node_modules dev/sanity/node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
