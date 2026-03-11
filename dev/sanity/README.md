@@ -38,14 +38,14 @@ npx sanity deploy
 The web app maps `page` documents by slug:
 
 - `slug = home`
-	- `title` -> Home main heading
-	- `subtitle` (fallback: `seoTitle`) -> Home subtitle
-	- `seoDescription` -> Home eyebrow text (small label above title)
-	- `body` -> Home intro paragraph
+  - `title` -> Home main heading
+  - `subtitle` (fallback: `seoTitle`) -> Home subtitle
+  - `seoDescription` -> Home eyebrow text (small label above title)
+  - `body` -> Home intro paragraph
 
 - `slug = about`
-	- `title` -> About heading
-	- `body` -> About content
+  - `title` -> About heading
+  - `body` -> About content
 
 Notes:
 
