@@ -2,8 +2,8 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { schemaTypes } from './schemaTypes';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.SANITY_STUDIO_DATASET;
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? '4kycpr3y';
+const dataset = process.env.SANITY_STUDIO_DATASET ?? 'production';
 
 if (!projectId) {
   throw new Error('Missing required environment variable: SANITY_STUDIO_PROJECT_ID');
