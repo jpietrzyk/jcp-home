@@ -16,5 +16,6 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
 export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
+  "subtitle": coalesce(subtitle, seoTitle),
   body
 }`;

@@ -12,5 +12,6 @@ export type PostDetails = PostSummary & {
 export type ContentPage = {
   title: string;
   slug: string;
+  subtitle?: string | null;
   bodyPlainText: string;
 };

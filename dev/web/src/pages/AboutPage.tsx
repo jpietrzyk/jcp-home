@@ -4,17 +4,36 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { useCmsPage } from "../lib/cms/useCmsPage";
 import { profile } from "../content/profile";
 
 export function AboutPage() {
+  const { page, isLoading, error } = useCmsPage("about", {
+    fallback: {
+      title: "About",
+      slug: "about",
+      subtitle: null,
+      bodyPlainText: profile.about,
+    },
+  });
+
   return (
     <section className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl">About</CardTitle>
+          <CardTitle className="text-3xl">{page.title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-zinc-600">{profile.about}</p>
+          {error ? (
+            <p className="text-amber-600">
+              Could not load CMS content. Showing fallback text.
+            </p>
+          ) : null}
+          {isLoading ? (
+            <p className="text-zinc-500">Loading content...</p>
+          ) : (
+            <p className="text-zinc-600">{page.bodyPlainText}</p>
+          )}
         </CardContent>
       </Card>
 

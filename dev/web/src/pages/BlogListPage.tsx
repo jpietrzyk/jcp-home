@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -6,21 +5,20 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { getPosts } from "../lib/cms/api";
-import type { PostSummary } from "../lib/cms/types";
+import { useCmsPosts } from "../lib/cms/useCmsPosts";
 
 export function BlogListPage() {
-  const [posts, setPosts] = useState<PostSummary[]>([]);
-
-  useEffect(() => {
-    getPosts()
-      .then(setPosts)
-      .catch(() => setPosts([]));
-  }, []);
+  const { posts, isLoading, error } = useCmsPosts();
 
   return (
     <section className="space-y-6">
       <h1 className="text-3xl font-bold">Blog</h1>
+      {error ? (
+        <p className="text-amber-600">
+          Could not load posts from CMS. Showing fallback content.
+        </p>
+      ) : null}
+      {isLoading ? <p className="text-zinc-500">Loading posts...</p> : null}
       <ul className="space-y-4">
         {posts.map((post) => (
           <li key={post.slug}>

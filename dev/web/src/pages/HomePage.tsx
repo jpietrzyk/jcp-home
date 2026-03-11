@@ -8,8 +8,18 @@ import {
 } from "../components/ui/card";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { profile } from "../content/profile";
+import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function HomePage() {
+  const { page, isLoading, error } = useCmsPage("home", {
+    fallback: {
+      title: profile.name,
+      slug: "home",
+      subtitle: profile.title,
+      bodyPlainText: profile.about,
+    },
+  });
+
   return (
     <section className="space-y-4">
       <AnimatedSection delay={0.1}>
@@ -20,12 +30,21 @@ export function HomePage() {
       <AnimatedSection delay={0.2}>
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl">{profile.name}</CardTitle>
-            <p className="text-zinc-400">{profile.title}</p>
+            <CardTitle className="text-3xl">{page.title}</CardTitle>
+            <p className="text-zinc-400">{page.subtitle}</p>
           </CardHeader>
           <CardContent className="space-y-6">
             <AnimatedSection delay={0.3}>
-              <p className="max-w-2xl text-zinc-400">{profile.about}</p>
+              {error ? (
+                <p className="max-w-2xl text-amber-500">
+                  Could not load CMS content. Showing fallback text.
+                </p>
+              ) : null}
+              {isLoading ? (
+                <p className="max-w-2xl text-zinc-500">Loading content...</p>
+              ) : (
+                <p className="max-w-2xl text-zinc-400">{page.bodyPlainText}</p>
+              )}
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">
