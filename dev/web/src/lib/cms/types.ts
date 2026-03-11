@@ -13,5 +13,6 @@ export type ContentPage = {
   title: string;
   slug: string;
   subtitle?: string | null;
+  eyebrow?: string | null;
   bodyPlainText: string;
 };

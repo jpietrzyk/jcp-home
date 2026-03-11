@@ -13,10 +13,12 @@ import { useCmsPage } from "../lib/cms/useCmsPage";
 export function HomePage() {
   const { page, isLoading, error } = useCmsPage("home", {
     fallback: {
-      title: profile.name,
+      title: "Home",
       slug: "home",
-      subtitle: profile.title,
-      bodyPlainText: profile.about,
+      subtitle: "Create home content in Sanity",
+      eyebrow: "CMS-driven content",
+      bodyPlainText:
+        "Add a Page document with slug 'home' in Sanity to manage this section.",
     },
   });
 
@@ -24,7 +26,7 @@ export function HomePage() {
     <section className="space-y-4">
       <AnimatedSection delay={0.1}>
         <p className="text-sm uppercase tracking-wide text-zinc-500">
-          Personal site MVP
+          {page.eyebrow ?? "Personal site"}
         </p>
       </AnimatedSection>
       <AnimatedSection delay={0.2}>

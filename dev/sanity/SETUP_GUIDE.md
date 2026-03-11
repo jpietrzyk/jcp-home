@@ -144,8 +144,22 @@ Your project includes these content types:
 
 ### Page (`dev/sanity/schemaTypes/pageType.ts`)
 - Title
+- Subtitle
 - Slug
 - Body (Portable Text content)
+- SEO title
+- SEO description
+
+#### Web usage by slug
+
+- `home`
+  - `title` -> hero heading
+  - `subtitle` (or `seoTitle`) -> hero subtitle
+  - `seoDescription` -> hero eyebrow text
+  - `body` -> hero intro text
+- `about`
+  - `title` -> about heading
+  - `body` -> about body text
 
 ### Author (`dev/sanity/schemaTypes/authorType.ts`)
 - Name
@@ -191,6 +205,8 @@ Your queries are defined in `dev/web/src/lib/cms/queries.ts`:
 *[_type == "page" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
+  "subtitle": coalesce(subtitle, seoTitle),
+  "eyebrow": seoDescription,
   body
 }
 ```
@@ -240,7 +256,8 @@ Never commit `.env` files. Use `.env.example` as a template and add `.env` to `.
 Your app includes fallback data in `dev/web/src/lib/cms/api.ts` so it works even without Sanity configured. This is useful for development.
 
 ### Schema Deployment
-The Sanity CLI (`npx sanity deploy`) has compatibility issues with ES module projects (`"type": "module"` in package.json). For headless setups, it's recommended to manually configure schemas in the Sanity web interface or use the Sanity Studio temporarily to deploy schemas.
+Schema deployment is supported in this project via `npx sanity deploy` from `dev/sanity`.
+The repo includes `sanity.cli.ts` with `api.projectId` and `dataset`, which the CLI requires to communicate with the Sanity API.
 
 ## Testing Your Setup
 
