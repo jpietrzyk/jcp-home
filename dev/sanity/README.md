@@ -8,7 +8,13 @@
 npm install
 ```
 
-2. Configure environment variables in `dev/sanity/.env`:
+2. Copy `.env.example` to `.env` and fill in your values (do **not** commit `.env`):
+
+```bash
+cp .env.example .env
+```
+
+Set the following variables before running any deploy commands. The `sanity.cli.ts` file falls back to hardcoded defaults when these variables are missing, which will cause deployments to the wrong project:
 
 - `SANITY_STUDIO_PROJECT_ID`
 - `SANITY_STUDIO_DATASET`
