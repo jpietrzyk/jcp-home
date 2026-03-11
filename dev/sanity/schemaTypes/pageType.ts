@@ -6,6 +6,7 @@ export const pageType = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: (rule: any) => rule.required() }),
+    defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
     defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 }, validation: (rule: any) => rule.required() }),
     defineField({ name: 'body', title: 'Body', type: 'array', of: [defineArrayMember({ type: 'block' })] }),
     defineField({ name: 'seoTitle', title: 'SEO title', type: 'string' }),

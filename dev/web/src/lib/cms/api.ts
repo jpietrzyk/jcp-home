@@ -49,6 +49,7 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     return {
       title: slug,
       slug,
+      subtitle: null,
       bodyPlainText: `Fallback ${slug} page content. Connect Sanity env vars to fetch real data.`
     };
   }
@@ -59,6 +60,7 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
   return {
     title: page.title,
     slug: page.slug,
+    subtitle: page.subtitle ?? null,
     bodyPlainText: toPlainText(page.body)
   };
 }

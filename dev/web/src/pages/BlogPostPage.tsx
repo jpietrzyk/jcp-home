@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import {
@@ -7,24 +6,29 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { getPostBySlug } from "../lib/cms/api";
-import type { PostDetails } from "../lib/cms/types";
+import { useCmsPost } from "../lib/cms/useCmsPost";
 
 export function BlogPostPage() {
   const { slug = "" } = useParams();
-  const [post, setPost] = useState<PostDetails | null>(null);
+  const { post, isLoading, error } = useCmsPost(slug);
 
-  useEffect(() => {
-    if (!slug) return;
-    getPostBySlug(slug)
-      .then(setPost)
-      .catch(() => setPost(null));
-  }, [slug]);
+  if (isLoading) {
+    return (
+      <section className="space-y-3">
+        <h1 className="text-2xl font-bold">Loading post...</h1>
+      </section>
+    );
+  }
 
   if (!post) {
     return (
       <section className="space-y-3">
-        <h1 className="text-2xl font-bold">Post not found</h1>
+        <h1 className="text-2xl font-bold">
+          {error ? "Could not load post" : "Post not found"}
+        </h1>
+        {error ? (
+          <p className="text-amber-600">Please try again in a moment.</p>
+        ) : null}
         <Link to="/blog">
           <Button size="sm" variant="secondary">
             Back to blog
