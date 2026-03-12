@@ -4,6 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { CmsPageContent } from "../components/CmsPageContent";
 import { useCmsPage } from "../lib/cms/useCmsPage";
 import { profile } from "../content/profile";
 
@@ -24,16 +25,13 @@ export function AboutPage() {
           <CardTitle className="text-3xl">{page.title}</CardTitle>
         </CardHeader>
         <CardContent>
-          {error ? (
-            <p className="text-amber-600">
-              Could not load CMS content. Showing fallback text.
-            </p>
-          ) : null}
-          {isLoading ? (
-            <p className="text-zinc-500">Loading content...</p>
-          ) : (
-            <p className="text-zinc-600">{page.bodyPlainText}</p>
-          )}
+          <CmsPageContent
+            error={error}
+            isLoading={isLoading}
+            body={page.body}
+            bodyPlainText={page.bodyPlainText}
+            richTextClassName="prose-zinc text-zinc-600"
+          />
         </CardContent>
       </Card>
 

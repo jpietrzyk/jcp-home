@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
+import { CmsPageContent } from "../components/CmsPageContent";
 import {
   Card,
   CardContent,
@@ -37,16 +38,15 @@ export function HomePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <AnimatedSection delay={0.3}>
-              {error ? (
-                <p className="max-w-2xl text-amber-500">
-                  Could not load CMS content. Showing fallback text.
-                </p>
-              ) : null}
-              {isLoading ? (
-                <p className="max-w-2xl text-zinc-500">Loading content...</p>
-              ) : (
-                <p className="max-w-2xl text-zinc-400">{page.bodyPlainText}</p>
-              )}
+              <CmsPageContent
+                error={error}
+                isLoading={isLoading}
+                body={page.body}
+                bodyPlainText={page.bodyPlainText}
+                richTextClassName="prose-invert max-w-2xl text-zinc-400"
+                errorClassName="max-w-2xl text-amber-500"
+                loadingClassName="max-w-2xl text-zinc-500"
+              />
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">

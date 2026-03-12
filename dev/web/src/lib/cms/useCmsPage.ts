@@ -21,6 +21,7 @@ export function useCmsPage(slug: string, options: UseCmsPageOptions) {
         subtitle: result.subtitle ?? fallback.subtitle,
         eyebrow: result.eyebrow ?? fallback.eyebrow,
         bodyPlainText: result.bodyPlainText || fallback.bodyPlainText,
+        body: result.body ?? fallback.body,
       };
     },
     deps: [slug],

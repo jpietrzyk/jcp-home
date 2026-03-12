@@ -51,7 +51,8 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
       slug,
       subtitle: null,
       eyebrow: null,
-      bodyPlainText: `Fallback ${slug} page content. Connect Sanity env vars to fetch real data.`
+      bodyPlainText: `Fallback ${slug} page content. Connect Sanity env vars to fetch real data.`,
+      body: []
     };
   }
 
@@ -63,6 +64,7 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     slug: page.slug,
     subtitle: page.subtitle ?? null,
     eyebrow: page.eyebrow ?? null,
-    bodyPlainText: toPlainText(page.body)
+    bodyPlainText: toPlainText(page.body),
+    body: Array.isArray(page.body) ? page.body : []
   };
 }

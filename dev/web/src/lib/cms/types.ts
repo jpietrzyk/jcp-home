@@ -1,3 +1,5 @@
+import type { TypedObject } from "@portabletext/types";
+
 export type PostSummary = {
   title: string;
   slug: string;
@@ -15,4 +17,5 @@ export type ContentPage = {
   subtitle?: string | null;
   eyebrow?: string | null;
   bodyPlainText: string;
+  body?: TypedObject[];
 };
