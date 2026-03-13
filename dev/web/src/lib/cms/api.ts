@@ -29,7 +29,9 @@ export async function getPosts(): Promise<PostSummary[]> {
 export async function getPostBySlug(slug: string): Promise<PostDetails | null> {
   if (!sanityClient) {
     const fallback = fallbackPosts.find((post) => post.slug === slug);
-    return fallback ? { ...fallback, bodyPlainText: 'Sample post body from fallback data.' } : null;
+    return fallback
+      ? { ...fallback, bodyPlainText: 'Sample post body from fallback data.', body: [] }
+      : null;
   }
 
   const post = await sanityClient.fetch<any>(postBySlugQuery, { slug });
@@ -40,7 +42,8 @@ export async function getPostBySlug(slug: string): Promise<PostDetails | null> {
     slug: post.slug,
     excerpt: post.excerpt,
     publishedAt: post.publishedAt ?? null,
-    bodyPlainText: toPlainText(post.body)
+    bodyPlainText: toPlainText(post.body),
+    body: Array.isArray(post.body) ? post.body : []
   };
 }
 

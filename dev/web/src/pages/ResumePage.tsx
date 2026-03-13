@@ -21,9 +21,6 @@ export function ResumePage() {
   return (
     <section className="space-y-6">
       <Card>
-        <CardHeader>
-          <CardTitle>CV Versions</CardTitle>
-        </CardHeader>
         <CardContent className="flex flex-wrap gap-3">
           <a
             className="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
@@ -49,15 +46,13 @@ export function ResumePage() {
           <CardTitle className="text-3xl">{page.title}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-zinc-700">
-          {page.subtitle ? (
-            <p className="text-zinc-500">{page.subtitle}</p>
-          ) : null}
           <CmsPageContent
             error={error}
             isLoading={isLoading}
             body={page.body}
             bodyPlainText={page.bodyPlainText}
             richTextClassName="prose-zinc"
+            hideFirstHeadingMatching={page.title}
           />
         </CardContent>
       </Card>

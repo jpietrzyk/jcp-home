@@ -44,6 +44,7 @@ export function HomePage() {
                 body={page.body}
                 bodyPlainText={page.bodyPlainText}
                 richTextClassName="prose-invert max-w-2xl text-zinc-400"
+                hideFirstHeadingMatching={page.title}
                 errorClassName="max-w-2xl text-amber-500"
                 loadingClassName="max-w-2xl text-zinc-500"
               />

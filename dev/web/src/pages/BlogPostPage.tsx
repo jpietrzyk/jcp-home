@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
+import { CmsRichText } from "../components/CmsRichText";
 import {
   Card,
   CardContent,
@@ -47,9 +48,12 @@ export function BlogPostPage() {
           <p className="text-zinc-600">{post.excerpt}</p>
         </CardHeader>
         <CardContent>
-          <section className="prose max-w-none text-zinc-700">
-            <p>{post.bodyPlainText}</p>
-          </section>
+          <CmsRichText
+            body={post.body}
+            bodyPlainText={post.bodyPlainText}
+            className="prose-zinc text-zinc-700"
+            hideFirstHeadingMatching={post.title}
+          />
         </CardContent>
       </Card>
     </article>

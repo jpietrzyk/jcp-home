@@ -7,6 +7,7 @@ type CmsPageContentProps = {
   body?: TypedObject[];
   bodyPlainText: string;
   richTextClassName?: string;
+  hideFirstHeadingMatching?: string;
   errorClassName?: string;
   loadingClassName?: string;
   errorMessage?: string;
@@ -23,6 +24,7 @@ export function CmsPageContent({
   body,
   bodyPlainText,
   richTextClassName,
+  hideFirstHeadingMatching,
   errorClassName = "text-amber-600",
   loadingClassName = "text-zinc-500",
   errorMessage = defaultErrorMessage,
@@ -38,6 +40,7 @@ export function CmsPageContent({
           body={body}
           bodyPlainText={bodyPlainText}
           className={richTextClassName}
+          hideFirstHeadingMatching={hideFirstHeadingMatching}
         />
       )}
     </>

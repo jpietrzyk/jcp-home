@@ -31,6 +31,7 @@ export function AboutPage() {
             body={page.body}
             bodyPlainText={page.bodyPlainText}
             richTextClassName="prose-zinc text-zinc-600"
+            hideFirstHeadingMatching={page.title}
           />
         </CardContent>
       </Card>

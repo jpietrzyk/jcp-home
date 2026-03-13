@@ -9,6 +9,7 @@ export type PostSummary = {
 
 export type PostDetails = PostSummary & {
   bodyPlainText: string;
+  body?: TypedObject[];
 };
 
 export type ContentPage = {
