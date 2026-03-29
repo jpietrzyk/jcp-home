@@ -21,7 +21,7 @@ export const Card = React.forwardRef<
       className,
     )}
     ref={ref}
-    {...(props as any)}
+    {...(props as React.ComponentPropsWithoutRef<typeof motion.div>)}
   />
 ));
 
