@@ -36,7 +36,7 @@ export function MainLayout() {
               >
                 {({ isActive }) => (
                   <Button
-                    className="h-8 px-3 transition-all duration-400"
+                    className="h-8 px-3 transition-all duration-300"
                     size="sm"
                     variant={isActive ? "default" : "ghost"}
                   >
