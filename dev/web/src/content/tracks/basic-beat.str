@@ -1,0 +1,15 @@
+---
+id: basic-beat
+title: Basic Beat
+description: A simple drum pattern with kick, snare, and hi-hat. Perfect for getting started with Strudel.
+bpm: 120
+tags:
+  - drums
+  - beginner
+---
+
+stack(
+  s("bd ~ ~ ~"),
+  s("~ sd ~ ~"),
+  s("~ ~ hh ~"),
+)

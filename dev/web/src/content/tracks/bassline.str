@@ -1,0 +1,14 @@
+---
+id: bassline
+title: Bassline
+description: Deep bass pattern with a simple kick drum accompaniment.
+bpm: 128
+tags:
+  - bass
+  - techno
+---
+
+stack(
+  note("c2 c2 eb2 c2").s("sawtooth").lpf(400),
+  s("bd ~ ~ ~"),
+)
