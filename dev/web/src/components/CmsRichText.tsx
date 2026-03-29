@@ -17,7 +17,7 @@ function getBlockText(block: TypedObject) {
   if (!("children" in block) || !Array.isArray(block.children)) return "";
 
   return block.children
-    .map((child) => {
+    .map((child: unknown) => {
       if (typeof child !== "object" || child === null || !("text" in child)) {
         return "";
       }
