@@ -1,0 +1,13 @@
+---
+id: melodic-sequence
+title: Melodic Sequence
+description: A simple melody using sawtooth waves with a low-pass filter.
+bpm: 120
+tags:
+  - melody
+  - synth
+---
+
+note("c4 e4 g4 c5")
+  .s("sawtooth")
+  .lpf(800)
