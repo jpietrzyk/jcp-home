@@ -1,0 +1,96 @@
+---
+id: manieczki
+title: WiP Equa...nieczki
+description: Fun with detuned saws
+cpm: 2.2
+tags:
+  - bass
+  - techno
+  - manieczki
+  - equador
+---
+
+samples('github:eddyflux/crate');
+
+
+// org cps 2.2
+setcps(2.2)
+
+
+// reusable patts
+const mainArp = "<[21 23 15]!4 [21 23 16]!4 [21 23 19]!4 [21 23 17]!4>";
+const hiTrips = "<[28 ~ ~]!2 [26]@2 [27 ~ ~] [29 ~ ~] [26]@2>/3";
+
+_$: n(`<[17 ~ 17] 19 [17 ~ 17] 19
+     [18 ~ 18] 20 [18 ~ 18] 20
+     [19 ~ 19] 21 [19 ~ 19] 21
+     [21 ~ 18] 19 [20 ~ 18] 19>`).scale("C:major").transpose(-12)
+  .s("sawtooth:0:.7, supersaw:2:.9, saw:3, square:2")
+  .struct("{1!2/ 1!3 1!2 1!3}%3")
+  .pan(rand.fast(4)).orbit(2).clip(tri.fast(2).range(0.3, 0.9)).decay(8)
+  .room(1).roomsize(2)
+  .postgain(".5")
+
+_revBass: freq("63.2388").s("sine").orbit(3).gain(.6)
+_kick: s("<bd:8>").bank("crate").duckorbit(3).duckattack(0.1).duckonset(0.15)
+
+_snares: s("<~ crate_sd:7>").gain(".2").orbit(4).room(.5).roomsize(2)
+_md_oh: s("<[~ yamaharx21_oh]>").gain(.07).attack(.04).decay(.2).release(.1).duckorbit(4).room(.5).roomsize(1)
+
+hh: s("<[~ rolandjd990_oh ~]>").orbit(5).gain(tri.range(.1, .2).fast(1)).attack(.1).room(".5").roomsize("3").postgain(.4)
+_plates: s("[kr55_cr*4]").gain("[~ ~ .3 ~ .4 ~ .3 ~]").attack(.015).decay(.25).room(.1).roomsize(1).postgain(.35)
+
+// // bas - add layer to pianos
+basses: stack(
+  n("<[~ -8 -6]!4 [~ -5 -5]!4 [~ -6 -2]!4 [~ -5 -7]!4>").scale("C:major").s("tri, sine:1:.7, square:1:.7").decay(".15").gain("[~ .6 .7]").orbit(6).room(".8").roomsize(".9").delay(".01"),
+  n("<-8@3 -8 -5@4 -2@4 -5@2 -6 -7>").scale("C:major").s("triangle:0:.9").gain(".2")
+).postgain(.4)
+
+
+// orbits: 3x
+_synths: stack(
+  n(mainArp).scale("C:major").s("supersaw:1, supersaw:3, sawtooth:1").orbit(30).gain(tri.range(.3, .4).slow(2)).decay(.3).clip(.5)
+  .room(.8).roomsize(2),
+  n("<19@4 16@4 19@8 20@8 19@4 16@4>").scale("C:major").s("supersaw:1, supersaw:3, sawtooth:1").orbit(31).gain(sine.range(.45, .55)).room(1).roomsize(4).clip(2).decay(.5),
+  n("<[15]!4 [16]!4 [19]!4 [17]!4>").scale("C:major").s("supersaw:1, supersaw:3, sawtooth:1").gain(rand.range(.4, .7)).transpose(-12).decay(.5).clip(.5),
+
+  n(hiTrips).scale("C:major").s("supersaw:1, supersaw:3, sawtooth:1").gain(rand.range(.4, .7)).duckorbit(31).duckattack(.01).duckonset(.01).room("1").roomsize("2").clip(.6).decay(.2),
+  n("<~ 21 19 ~ ~ 21 ~ 16 ~ 20@3 ~ 21 19 18>").scale("C:major").s("supersaw:1, supersaw:3, sawtooth:1").duckorbit(31).gain(sine.range(.35, .45).fast(4)).clip(2).decay(.6),
+).postgain(".4")
+
+// orbits: 2x
+// pianos for introducing mello
+pianos: stack(
+  n(mainArp).scale("C:major").s("piano").orbit(20).gain(tri.range(.3, .4).slow(2)),
+
+  n("<19@4 16@4 19@8 20@8 19@4 16@4>").scale("C:major").s("piano").orbit(21).gain(sine.range(.45, .55)).room(1).roomsize(4),
+  n("<-6@4 -5@4 -2@4 -4@4>").scale("C:major").s("piano").duckorbit(21).duckattack(.3).gain(.4),
+
+  n(hiTrips).scale("C:major").s("piano").gain(rand.range(.4, .7)).duckorbit(21).duckattack(.01).duckonset(.01).room("1").roomsize("2"),
+  n("<~ 21 19 ~ ~ 21 ~ 16 ~ 20@3 ~ 21 19 18>").scale("C:major").s("piano").duckorbit(21).gain(sine.range(.45, .55).fast(4)),
+  n("<[~ -6 -6]!4 [~ -5 -5]!4 [~ -5 -2]!4 [~ -5 -4]!4>").scale("C:major").transpose(0).s("piano").gain(rand.range(.2, .35)).clip(2).decay(.4)
+).postgain(.6)
+
+_pads: n("<-6@4 -5@4 -2@4 -4@4>").scale("C:major").s("sine:3, supersaw:1:3").gain(.2).attack(.15).clip(2.1).postgain(.4)
+_hiPads: n("<15!4 16!4 19!4 17!4, 23@16>").scale("C:major").s("gm_pad_new_age:5").gain(.2).attack(.15).clip(2.1).postgain(.7)
+
+_synthArpLead: n("<[21 23 15]!4 [21 23 16]!4 [21 23 19]!4 [21 23 17]!4>").scale("C:major").s("triangle:3, sine:1:.7, saw:0, square:0")
+  .transpose(-12)
+  .gain(sine.range(.25, .5).slow(2))
+  .orbit(12).clip(tri.fast(2).range(0.6, 0.8)).decay(8).room(1).roomsize(2).postgain(.3)
+
+
+
+
+_ta: n("<[28 ~ ~]!2 [26 ~ ~]!2 [27 ~ ~] [29 ~ ~] [23 ~]@2>/3").scale("C:major").s("square").postgain(.5)
+_tb: n("<[21 23 15]!4 [21 23 16]!4 [21 23 19]!4 [21 23 17]!4>").scale("C:major").s("sawtooth").postgain(.4)
+_tc: n("<-6@4 -5@4 -2@4 -4@4>").scale("C:major").s("sawtooth")
+
+
+// Rhythmic
+// noise: s("pink").distort("2:1").orbit(4) // used rhythmically with 0.3 onset below
+// hhat: s("hh*16").orbit(7)
+// ducker: s("bd*4").bank("tr909").duckorbit("4:7").duckonset("0.3:0.003").duckattack(0.25)
+
+
+// sound: freq("250.2388").s("saw")
