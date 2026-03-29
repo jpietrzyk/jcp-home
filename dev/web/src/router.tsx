@@ -4,6 +4,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { BlogListPage } from "./pages/BlogListPage";
 import { BlogPostPage } from "./pages/BlogPostPage";
 import { HomePage } from "./pages/HomePage";
+import { MusicPage } from "./pages/MusicPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ResumePage } from "./pages/ResumePage";
 
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: "resume", element: <ResumePage /> },
       { path: "blog", element: <BlogListPage /> },
       { path: "blog/:slug", element: <BlogPostPage /> },
+      { path: "music", element: <MusicPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
