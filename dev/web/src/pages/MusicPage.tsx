@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { StrudelPlayer } from "../components/StrudelPlayer";
 import { TrackSelector } from "../components/TrackSelector";
@@ -14,9 +14,24 @@ export function MusicPage() {
   const [selectedTrack, setSelectedTrack] = useState<StrudelTrack | null>(
     tracks.length > 0 ? tracks[0] : null,
   );
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const handleSelectTrack = (track: StrudelTrack) => {
     setSelectedTrack(track);
+  };
+
+  const handleSelectAndScroll = (track: StrudelTrack) => {
+    setSelectedTrack(track);
+    setTimeout(() => {
+      editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
+  const handlePlay = (track: StrudelTrack) => {
+    setSelectedTrack(track);
+    setTimeout(() => {
+      editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   return (
@@ -67,12 +82,14 @@ export function MusicPage() {
                 tracks={tracks}
                 selectedTrackId={selectedTrack?.id ?? ""}
                 onSelectTrack={handleSelectTrack}
+                onSelectAndScroll={handleSelectAndScroll}
+                onPlay={handlePlay}
               />
             </AnimatedSection>
 
             {selectedTrack && (
               <AnimatedSection delay={0.5}>
-                <div className="space-y-4">
+                <div ref={editorRef} className="space-y-4 scroll-mt-4">
                   <h3 className="text-lg font-semibold text-zinc-100">
                     {selectedTrack.title}
                   </h3>

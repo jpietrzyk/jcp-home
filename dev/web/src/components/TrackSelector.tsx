@@ -1,16 +1,21 @@
 import { StrudelTrack } from "../content/tracks";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
 
 interface TrackSelectorProps {
   tracks: StrudelTrack[];
   selectedTrackId: string;
   onSelectTrack: (track: StrudelTrack) => void;
+  onSelectAndScroll?: (track: StrudelTrack) => void;
+  onPlay?: (track: StrudelTrack) => void;
 }
 
 export function TrackSelector({
   tracks,
   selectedTrackId,
   onSelectTrack,
+  onSelectAndScroll,
+  onPlay,
 }: TrackSelectorProps) {
   return (
     <div className="space-y-4">
@@ -19,12 +24,11 @@ export function TrackSelector({
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`cursor-pointer transition-all duration-200 hover:border-zinc-600 ${
+            className={`transition-all duration-200 hover:border-zinc-600 ${
               track.id === selectedTrackId
                 ? "border-zinc-400 bg-zinc-800/50"
                 : "border-zinc-800 bg-zinc-900/50"
             }`}
-            onClick={() => onSelectTrack(track)}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-base">{track.title}</CardTitle>
@@ -45,6 +49,24 @@ export function TrackSelector({
                     {track.bpm} BPM
                   </span>
                 )}
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => onSelectAndScroll?.(track)}
+                >
+                  Load
+                </Button>
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => onPlay?.(track)}
+                >
+                  Play
+                </Button>
               </div>
             </CardContent>
           </Card>
