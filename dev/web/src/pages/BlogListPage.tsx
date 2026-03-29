@@ -18,7 +18,9 @@ export function BlogListPage() {
           Could not load posts from CMS. Showing fallback content.
         </p>
       ) : null}
-      {isLoading ? <p className="text-zinc-500">Loading posts...</p> : null}
+      {isLoading ? (
+        <p className="text-stone-500 dark:text-stone-500">Loading posts...</p>
+      ) : null}
       <ul className="space-y-4">
         {posts.map((post) => (
           <li key={post.slug}>
@@ -29,18 +31,20 @@ export function BlogListPage() {
                     {post.title}
                   </Link>
                 </CardTitle>
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-stone-500 dark:text-stone-500">
                   {post.publishedAt ?? "Draft"}
                 </p>
               </CardHeader>
               <CardContent>
-                <p className="text-zinc-600">{post.excerpt}</p>
+                <p className="text-stone-600 dark:text-stone-300">
+                  {post.excerpt}
+                </p>
               </CardContent>
             </Card>
           </li>
         ))}
         {posts.length === 0 ? (
-          <li className="text-zinc-500">No posts yet.</li>
+          <li className="text-stone-500 dark:text-stone-500">No posts yet.</li>
         ) : null}
       </ul>
     </section>

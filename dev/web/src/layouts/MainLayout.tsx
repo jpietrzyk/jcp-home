@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 const links = [
   { to: "/", label: "Home" },
@@ -12,11 +13,11 @@ const links = [
 
 export function MainLayout() {
   return (
-    <div className="min-h-screen bg-dark-950 text-zinc-100">
-      <header className="border-b border-zinc-800 bg-dark-900/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-light-50 text-stone-900 dark:bg-stone-950 dark:text-stone-200">
+      <header className="border-b border-stone-200 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/50 dark:bg-stone-900/80">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <Link
-            className="text-lg font-semibold text-zinc-100 hover:text-zinc-300 transition-colors duration-400"
+            className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
             to="/"
           >
             jcp.home
@@ -28,15 +29,15 @@ export function MainLayout() {
                 className={({ isActive }) =>
                   cn(
                     isActive
-                      ? "text-zinc-100"
-                      : "text-zinc-400 hover:text-zinc-300",
+                      ? "text-stone-900 dark:text-stone-100"
+                      : "text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-300",
                   )
                 }
                 to={link.to}
               >
                 {({ isActive }) => (
                   <Button
-                    className="h-8 px-3 transition-all duration-400"
+                    className="h-8 px-3 transition-all duration-300"
                     size="sm"
                     variant={isActive ? "default" : "ghost"}
                   >
@@ -45,6 +46,7 @@ export function MainLayout() {
                 )}
               </NavLink>
             ))}
+            <ThemeToggle />
           </nav>
         </div>
       </header>

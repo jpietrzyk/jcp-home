@@ -17,7 +17,7 @@ export const Card = React.forwardRef<
       damping: 35,
     }}
     className={cn(
-      "rounded-lg border border-zinc-800 bg-dark-900 text-zinc-100 shadow-sm hover:border-zinc-600 transition-colors duration-400",
+      "rounded-lg border border-stone-200 bg-light-100 text-stone-900 shadow-sm hover:border-stone-300 backdrop-blur-sm transition-colors duration-300 dark:border-stone-700/50 dark:bg-stone-900/80 dark:text-stone-200 dark:hover:border-stone-600",
       className,
     )}
     ref={ref}

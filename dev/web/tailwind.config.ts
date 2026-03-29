@@ -7,20 +7,35 @@ export default {
     extend: {
       colors: {
         dark: {
-          950: '#0a0a0a',
-          900: '#171717',
-          800: '#262626',
-          700: '#3f3f46',
+          950: '#0c0a09',  // Warm near-black
+          900: '#1c1917',  // Warm dark
+          800: '#292524',  // Elevated surface
+          700: '#44403c',  // Borders
+          600: '#57534e',  // Hover borders
+        },
+        light: {
+          50: '#fafaf9',   // Near-white
+          100: '#f5f5f4',  // Very light
+          200: '#e7e5e4',  // Light gray
+          300: '#d6d3d1',  // Medium light
+          400: '#a8a29e',  // Muted
+          500: '#78716c',  // Subtle
         },
         accent: {
-          primary: '#ffffff', // white
-          secondary: '#000000', // black
+          primary: '#f59e0b',    // Amber-500
+          secondary: '#fbbf24',  // Amber-400
+          muted: '#92400e',      // Amber-800
         },
       },
       textColor: {
-        base: '#e5e5e5', // Improved contrast for body text
-        muted: '#a3a3a3', // Better contrast for muted text
-        'muted-light': '#d4d4d4', // Lighter muted text
+        body: '#1c1917',      // Stone-900 - light mode
+        muted: '#78716c',     // Stone-500 - light mode
+        'muted-light': '#a8a29e', // Stone-400 - light mode
+      },
+      backgroundColor: {
+        base: '#fafaf9',      // Stone-50 - light mode
+        surface: '#f5f5f4',   // Stone-100 - light mode
+        elevated: '#e7e5e4',  // Stone-200 - light mode
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
