@@ -1,0 +1,39 @@
+---
+id: funeral
+title: Funefuneral
+description: Joke #8
+bpm: 140
+tags:
+  - funny
+  - dead
+---
+
+// deds to Syciu
+
+setcpm(140/4)
+
+_$: n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").room(".5").roomsize("1.5")
+_$: n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(".5").room(".8").roomsize("1.5").delay(".1")
+
+_$: n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").gain("<.5@2 .7@2 .5@2 .6@2>").attack(".09")
+_$: n("<-4@2 -5@2 -3@2 -7@2>").scale("C:minor").s("piano").gain("<.5@2 .7@2 .5@2 .6@2>").room("1").roomsize("1.5").attack(".01")
+_$: n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").gain(sine.range(.3, 1).fast(5)).room("1").roomsize("2").attack(".03").postgain(".8")
+
+$: n("<10 [11 12] [13] 13 11 [12 9] 10 11>, <-4 -4 -5 -5 -5 -3 -4 -5>!8").s("gm_pad_poly").scale("C:minor").clip(1).room("1").roomsize(".5").delay(".1").postgain(".4")
+
+_$: n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 17 14] [~ ~ 13 ~] [~ 14 17 13] [~ ~ 11 ~] [~ 14@2 12]>").s("triangle, sine, supersaw")
+  .scale("C:minor").room("1").roomsize(".5").decay(rand.range(.2, .4)).clip(1.5).delay(".5")
+  // .jux(rev)
+  .postgain(".2")
+
+$: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine, sawtooth").attack(".5").clip("1").postgain(".2")
+
+// Clicks
+_sound: freq("63.2388").s("sine").orbit(2).gain(4)
+duckerWithClick: s("bd*4").duckorbit(2).duckattack(0.3).duckonset(0).postgain(0)
+
+
+// Rhythmic
+// noise: s("pink").distort("2:1").orbit(4) // used rhythmically with 0.3 onset below
+// hhat: s("hh*16").orbit(7)
+// ducker: s("bd*4").bank("tr909").duckorbit("4:7").duckonset("0.3:0.003").duckattack(0.25)

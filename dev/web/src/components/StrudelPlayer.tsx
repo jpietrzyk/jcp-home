@@ -1,12 +1,17 @@
 interface StrudelPlayerProps {
   code: string;
   bpm?: number;
+  autoplay?: boolean;
 }
 
-export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
+export function StrudelPlayer({
+  code,
+  bpm,
+  autoplay = false,
+}: StrudelPlayerProps) {
   // Encode the code as base64 for Strudel
   const encodedCode = btoa(unescape(encodeURIComponent(code)));
-  const strudelUrl = `https://strudel.cc/#${encodedCode}`;
+  const strudelUrl = `https://strudel.cc/#${encodedCode}${autoplay ? "?autoplay=1" : ""}`;
 
   return (
     <div className="space-y-4">
