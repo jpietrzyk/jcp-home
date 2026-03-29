@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Button } from "./ui/button";
+import { useEffect } from "react";
 
 interface StrudelPlayerProps {
   code: string;
@@ -7,28 +6,21 @@ interface StrudelPlayerProps {
 }
 
 export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   // Encode the code for URL
   const encodedCode = encodeURIComponent(code);
   const strudelUrl = `https://strudel.cc/#${encodedCode}`;
 
-  const handleToggle = () => {
-    setIsPlaying(!isPlaying);
-  };
+  useEffect(() => {
+    // Cleanup function to handle component unmount
+    return () => {
+      // Any cleanup needed when component unmounts
+      // The iframe will be removed from DOM automatically
+    };
+  }, []);
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <Button
-          onClick={handleToggle}
-          variant={isPlaying ? "secondary" : "default"}
-        >
-          {isPlaying ? "Pause" : "Play"}
-        </Button>
-        <Button onClick={() => setIsPlaying(false)} variant="ghost">
-          Stop
-        </Button>
         {bpm && <span className="text-sm text-zinc-400">{bpm} BPM</span>}
         <a
           href={strudelUrl}

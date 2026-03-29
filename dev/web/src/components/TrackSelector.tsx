@@ -1,6 +1,5 @@
 import { StrudelTrack } from "../content/tracks";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
 
 interface TrackSelectorProps {
   tracks: StrudelTrack[];
@@ -47,17 +46,6 @@ export function TrackSelector({
                   </span>
                 )}
               </div>
-              <Button
-                variant={track.id === selectedTrackId ? "default" : "ghost"}
-                size="sm"
-                className="w-full mt-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onSelectTrack(track);
-                }}
-              >
-                {track.id === selectedTrackId ? "Selected" : "Select"}
-              </Button>
             </CardContent>
           </Card>
         ))}

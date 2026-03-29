@@ -11,7 +11,9 @@ import {
 import { tracks, StrudelTrack } from "../content/tracks";
 
 export function MusicPage() {
-  const [selectedTrack, setSelectedTrack] = useState<StrudelTrack>(tracks[0]);
+  const [selectedTrack, setSelectedTrack] = useState<StrudelTrack | null>(
+    tracks.length > 0 ? tracks[0] : null,
+  );
 
   const handleSelectTrack = (track: StrudelTrack) => {
     setSelectedTrack(track);
@@ -63,37 +65,27 @@ export function MusicPage() {
             <AnimatedSection delay={0.4}>
               <TrackSelector
                 tracks={tracks}
-                selectedTrackId={selectedTrack.id}
+                selectedTrackId={selectedTrack?.id ?? ""}
                 onSelectTrack={handleSelectTrack}
               />
             </AnimatedSection>
 
-            <AnimatedSection delay={0.5}>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
+            {selectedTrack && (
+              <AnimatedSection delay={0.5}>
+                <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-zinc-100">
                     {selectedTrack.title}
                   </h3>
-                  <a
-                    href={`https://strudel.cc/#${encodeURIComponent(
-                      selectedTrack.code,
-                    )}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm text-zinc-400 hover:text-zinc-200 hover:underline"
-                  >
-                    Open in Strudel.cc →
-                  </a>
+                  <p className="text-sm text-zinc-400">
+                    {selectedTrack.description}
+                  </p>
+                  <StrudelPlayer
+                    code={selectedTrack.code}
+                    bpm={selectedTrack.bpm}
+                  />
                 </div>
-                <p className="text-sm text-zinc-400">
-                  {selectedTrack.description}
-                </p>
-                <StrudelPlayer
-                  code={selectedTrack.code}
-                  bpm={selectedTrack.bpm}
-                />
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            )}
           </CardContent>
         </Card>
       </AnimatedSection>
