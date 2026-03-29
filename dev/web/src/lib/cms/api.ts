@@ -1,4 +1,4 @@
-import type { ContentPage, PostDetails, PostSummary } from './types';
+import type { ContentPage, PostDetails, PostSummary, SanityPost, SanityPage } from './types';
 import { pageBySlugQuery, postBySlugQuery, postsQuery } from './queries';
 import { sanityClient } from './sanity.client';
 
@@ -14,8 +14,8 @@ const fallbackPosts: PostSummary[] = [
 function toPlainText(value: unknown): string {
   if (!Array.isArray(value)) return '';
   return value
-    .flatMap((block) => (typeof block === 'object' && block && 'children' in block ? (block as any).children : []))
-    .map((child) => (typeof child === 'object' && child && 'text' in child ? String((child as any).text) : ''))
+    .flatMap((block) => (typeof block === 'object' && block && 'children' in block ? (block as { children: unknown[] }).children : []))
+    .map((child) => (typeof child === 'object' && child && 'text' in child ? String((child as { text: unknown }).text) : ''))
     .join(' ')
     .trim();
 }
@@ -34,7 +34,7 @@ export async function getPostBySlug(slug: string): Promise<PostDetails | null> {
       : null;
   }
 
-  const post = await sanityClient.fetch<any>(postBySlugQuery, { slug });
+  const post = await sanityClient.fetch<SanityPost | null>(postBySlugQuery, { slug });
   if (!post) return null;
 
   return {
@@ -59,7 +59,7 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     };
   }
 
-  const page = await sanityClient.fetch<any>(pageBySlugQuery, { slug });
+  const page = await sanityClient.fetch<SanityPage | null>(pageBySlugQuery, { slug });
   if (!page) return null;
 
   return {

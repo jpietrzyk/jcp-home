@@ -55,6 +55,7 @@ export function useCmsResource<T>(options: UseCmsResourceOptions<T>) {
     return () => {
       isCancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, ...deps]);
 
   return { data, isLoading, error };
