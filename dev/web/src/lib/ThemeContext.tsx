@@ -9,12 +9,17 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const isValidTheme = (value: string | null): value is Theme =>
+  value === "light" || value === "dark";
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check localStorage first
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme") as Theme;
-      if (stored) return stored;
+      const stored = localStorage.getItem("theme");
+      if (isValidTheme(stored)) {
+        return stored;
+      }
       // Check system preference
       if (window.matchMedia("(prefers-color-scheme: light)").matches) {
         return "light";

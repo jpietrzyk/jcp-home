@@ -45,13 +45,13 @@ export function ResumePage() {
         <CardHeader>
           <CardTitle className="text-3xl">{page.title}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3 text-stone-700 dark:text-stone-700">
+        <CardContent className="space-y-3 text-stone-700 dark:text-stone-300">
           <CmsPageContent
             error={error}
             isLoading={isLoading}
             body={page.body}
             bodyPlainText={page.bodyPlainText}
-            richTextClassName="prose-stone"
+            richTextClassName="prose prose-stone dark:prose-invert"
             hideFirstHeadingMatching={page.title}
           />
         </CardContent>

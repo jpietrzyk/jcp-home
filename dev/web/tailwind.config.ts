@@ -28,7 +28,7 @@ export default {
         },
       },
       textColor: {
-        base: '#1c1917',      // Stone-900 - light mode
+        body: '#1c1917',      // Stone-900 - light mode
         muted: '#78716c',     // Stone-500 - light mode
         'muted-light': '#a8a29e', // Stone-400 - light mode
       },

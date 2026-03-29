@@ -31,7 +31,7 @@ export function TrackSelector({
             }`}
           >
             <CardHeader className="pb-2">
-              <CardTitle className="text-base">{track.title}</CardTitle>
+              <CardTitle className="text-[1rem]">{track.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <p className="text-sm text-stone-600 dark:text-stone-400">

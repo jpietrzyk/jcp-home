@@ -30,7 +30,7 @@ export function AboutPage() {
             isLoading={isLoading}
             body={page.body}
             bodyPlainText={page.bodyPlainText}
-            richTextClassName="prose-stone text-stone-600 dark:text-stone-600"
+            richTextClassName="prose prose-stone text-stone-800 dark:prose-invert"
             hideFirstHeadingMatching={page.title}
           />
         </CardContent>
@@ -40,7 +40,7 @@ export function AboutPage() {
         <CardHeader>
           <CardTitle>Contact</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-2 text-stone-700 dark:text-stone-700">
+        <CardContent className="grid gap-2 text-stone-700 dark:text-stone-300">
           <p>
             <strong>Email:</strong>{" "}
             <a className="hover:underline" href={`mailto:${profile.email}`}>

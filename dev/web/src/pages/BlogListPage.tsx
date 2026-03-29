@@ -36,7 +36,7 @@ export function BlogListPage() {
                 </p>
               </CardHeader>
               <CardContent>
-                <p className="text-stone-600 dark:text-stone-600">
+                <p className="text-stone-600 dark:text-stone-300">
                   {post.excerpt}
                 </p>
               </CardContent>
