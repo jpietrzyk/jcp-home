@@ -7,6 +7,7 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/resume", label: "Resume" },
   { to: "/blog", label: "Blog" },
+  { to: "/music", label: "Music" },
 ];
 
 export function MainLayout() {
