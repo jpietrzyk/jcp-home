@@ -11,6 +11,10 @@
     "build": "cd dev/web && npm run build",
     "preview": "cd dev/web && npm run preview",
     "lint": "cd dev/web && npm run lint",
+    "test": "cd dev/web && npm run test",
+    "test:run": "cd dev/web && npm run test:run",
+    "test:ui": "cd dev/web && npm run test:ui",
+    "test:coverage": "cd dev/web && npm run test:coverage",
     "typecheck": "npm run typecheck:web && npm run typecheck:sanity",
     "typecheck:web": "cd dev/web && npm run typecheck",
     "typecheck:sanity": "cd dev/sanity && npm run typecheck",
@@ -21,7 +25,7 @@
     "concurrently": "^8.2.2"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "npm": ">=9.0.0"
   }
 }
