@@ -23,7 +23,7 @@ export function ResumePage() {
       <Card>
         <CardContent className="flex flex-wrap gap-3">
           <a
-            className="inline-flex h-10 items-center justify-center rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
             href="/integration-spec-en.pdf"
             rel="noreferrer"
             target="_blank"
@@ -31,7 +31,7 @@ export function ResumePage() {
             Open CV (EN)
           </a>
           <a
-            className="inline-flex h-10 items-center justify-center rounded-md border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-900 hover:bg-stone-50"
+            className="inline-flex h-10 items-center justify-center rounded-md border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-900 hover:bg-stone-50 dark:border-stone-300 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-50"
             href="/integration-spec-pl.pdf"
             rel="noreferrer"
             target="_blank"

@@ -17,33 +17,37 @@ export function TrackSelector({
 }: TrackSelectorProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-stone-100">Select a Track</h3>
+      <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+        Select a Track
+      </h3>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`transition-all duration-200 hover:border-stone-600 ${
+            className={`transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
               track.id === selectedTrackId
-                ? "border-stone-400 bg-stone-800/50"
-                : "border-stone-700/50 bg-stone-900/50"
+                ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-stone-800/50"
+                : "border-stone-200 bg-light-100 dark:border-stone-700/50 dark:bg-stone-900/50"
             }`}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-base">{track.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <p className="text-sm text-stone-400">{track.description}</p>
+              <p className="text-sm text-stone-600 dark:text-stone-400">
+                {track.description}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {track.tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-stone-800 px-2 py-0.5 text-xs text-stone-400"
+                    className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400"
                   >
                     {tag}
                   </span>
                 ))}
                 {track.bpm && (
-                  <span className="rounded-full bg-stone-800 px-2 py-0.5 text-xs text-stone-400">
+                  <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400">
                     {track.bpm} BPM
                   </span>
                 )}

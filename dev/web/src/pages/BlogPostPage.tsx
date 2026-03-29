@@ -43,15 +43,17 @@ export function BlogPostPage() {
     <article className="space-y-5">
       <Card>
         <CardHeader className="space-y-2">
-          <p className="text-sm text-stone-500">{post.publishedAt}</p>
+          <p className="text-sm text-stone-500 dark:text-stone-500">
+            {post.publishedAt}
+          </p>
           <CardTitle className="text-3xl">{post.title}</CardTitle>
-          <p className="text-stone-600">{post.excerpt}</p>
+          <p className="text-stone-600 dark:text-stone-600">{post.excerpt}</p>
         </CardHeader>
         <CardContent>
           <CmsRichText
             body={post.body}
             bodyPlainText={post.bodyPlainText}
-            className="prose-stone text-stone-700"
+            className="prose-stone text-stone-700 dark:text-stone-700"
             hideFirstHeadingMatching={post.title}
           />
         </CardContent>

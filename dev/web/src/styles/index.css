@@ -8,31 +8,57 @@
 
 body {
   margin: 0;
+  background-color: #fafaf9; /* Stone-50 - light mode */
+  color: #1c1917; /* Stone-900 - light mode */
+}
+
+dark body {
   background-color: #0c0a09; /* Warm near-black */
   color: #e7e5e4; /* Warm light gray */
 }
 
-/* Warm text colors */
+/* Text colors */
 p,
 span,
 div {
-  color: #e7e5e4;
+  color: #1c1917; /* Stone-900 - light mode */
 }
 
-/* Warm muted text */
+dark p,
+dark span,
+dark div {
+  color: #e7e5e4; /* Warm light gray */
+}
+
+/* Muted text */
 .text-muted,
 .text-gray-400,
 .text-zinc-400 {
+  color: #78716c !important; /* Stone-500 - light mode */
+}
+
+dark .text-muted,
+dark .text-gray-400,
+dark .text-zinc-400 {
   color: #a8a29e !important; /* Stone-400 */
 }
 
-/* Soft white headings */
+/* Headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  color: #0c0a09; /* Stone-950 - light mode */
+}
+
+dark h1,
+dark h2,
+dark h3,
+dark h4,
+dark h5,
+dark h6 {
   color: #fafaf9; /* Stone-50 */
 }
 
@@ -47,14 +73,26 @@ html {
 }
 
 ::-webkit-scrollbar-track {
+  background: #e7e5e4; /* Stone-200 - light mode */
+}
+
+dark ::-webkit-scrollbar-track {
   background: #1c1917; /* Stone-900 */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #44403c; /* Stone-700 */
+  background: #a8a29e; /* Stone-400 - light mode */
   border-radius: 4px;
 }
 
+dark ::-webkit-scrollbar-thumb {
+  background: #44403c; /* Stone-700 */
+}
+
 ::-webkit-scrollbar-thumb:hover {
+  background: #78716c; /* Stone-500 - light mode */
+}
+
+dark ::-webkit-scrollbar-thumb:hover {
   background: #57534e; /* Stone-600 */
 }
