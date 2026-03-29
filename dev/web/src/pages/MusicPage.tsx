@@ -17,11 +17,6 @@ export function MusicPage() {
   const [autoplay, setAutoplay] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
-  const handleSelectTrack = (track: StrudelTrack) => {
-    setSelectedTrack(track);
-    setAutoplay(false);
-  };
-
   const handleSelectAndScroll = (track: StrudelTrack) => {
     setSelectedTrack(track);
     setAutoplay(false);
@@ -85,7 +80,6 @@ export function MusicPage() {
               <TrackSelector
                 tracks={tracks}
                 selectedTrackId={selectedTrack?.id ?? ""}
-                onSelectTrack={handleSelectTrack}
                 onSelectAndScroll={handleSelectAndScroll}
                 onPlay={handlePlay}
               />
