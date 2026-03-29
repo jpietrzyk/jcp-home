@@ -23,6 +23,9 @@ export function useCmsResource<T>(options: UseCmsResourceOptions<T>) {
 
   useEffect(() => {
     if (!enabled) {
+      setData(fallbackData);
+      setIsLoading(false);
+      setError(null);
       return;
     }
 
@@ -53,7 +56,7 @@ export function useCmsResource<T>(options: UseCmsResourceOptions<T>) {
       isCancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, fetcher, fallbackData, ...deps]);
+  }, [enabled, ...deps]);
 
   return { data, isLoading, error };
 }

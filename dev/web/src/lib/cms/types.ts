@@ -20,3 +20,16 @@ export type ContentPage = {
   bodyPlainText: string;
   body?: TypedObject[];
 };
+
+// Raw Sanity API response types (before transformation)
+export type SanityPost = PostSummary & {
+  body?: TypedObject[];
+};
+
+export type SanityPage = {
+  title: string;
+  slug: string;
+  subtitle?: string | null;
+  eyebrow?: string | null;
+  body?: TypedObject[];
+};

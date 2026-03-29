@@ -1,4 +1,4 @@
-import type { ContentPage, PostDetails, PostSummary } from './types';
+import type { ContentPage, PostDetails, PostSummary, SanityPost, SanityPage } from './types';
 import { pageBySlugQuery, postBySlugQuery, postsQuery } from './queries';
 import { sanityClient } from './sanity.client';
 
@@ -34,7 +34,7 @@ export async function getPostBySlug(slug: string): Promise<PostDetails | null> {
       : null;
   }
 
-  const post = await sanityClient.fetch<PostDetails>(postBySlugQuery, { slug });
+  const post = await sanityClient.fetch<SanityPost | null>(postBySlugQuery, { slug });
   if (!post) return null;
 
   return {
@@ -59,7 +59,7 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     };
   }
 
-  const page = await sanityClient.fetch<ContentPage>(pageBySlugQuery, { slug });
+  const page = await sanityClient.fetch<SanityPage | null>(pageBySlugQuery, { slug });
   if (!page) return null;
 
   return {
