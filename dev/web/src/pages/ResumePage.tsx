@@ -21,7 +21,7 @@ export function ResumePage() {
   return (
     <section className="space-y-6">
       <Card>
-        <CardContent className="flex flex-wrap items-center gap-3">
+        <CardContent className="flex flex-wrap items-center gap-3 p-6">
           <a
             className="inline-flex h-10 items-center justify-center rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
             href="/integration-spec-en.pdf"
