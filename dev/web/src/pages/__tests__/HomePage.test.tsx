@@ -1,11 +1,12 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { HomePage } from "../HomePage";
+import { useCmsPage } from "../../lib/cms/useCmsPage";
 
 // Mock the useCmsPage hook
 vi.mock("../../lib/cms/useCmsPage", () => ({
-  useCmsPage: () => ({
+  useCmsPage: vi.fn(() => ({
     page: {
       title: "Test Home",
       slug: "home",
@@ -15,7 +16,7 @@ vi.mock("../../lib/cms/useCmsPage", () => ({
     },
     isLoading: false,
     error: null,
-  }),
+  })),
 }));
 
 // Mock the profile content
@@ -29,6 +30,10 @@ vi.mock("../../content/profile", () => ({
 }));
 
 describe("HomePage", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it("renders page title", () => {
     render(
       <MemoryRouter>
@@ -118,5 +123,51 @@ describe("HomePage", () => {
     expect(resumeLink).toHaveAttribute("href", "/resume");
     expect(aboutLink).toHaveAttribute("href", "/about");
     expect(blogLink).toHaveAttribute("href", "/blog");
+  });
+
+  it("renders loading state", () => {
+    vi.mocked(useCmsPage).mockReturnValue({
+      page: {
+        title: "Home",
+        slug: "home",
+        subtitle: "Create home content in Sanity",
+        eyebrow: "CMS-driven content",
+        bodyPlainText:
+          "Add a Page document with slug 'home' in Sanity to manage this section.",
+      },
+      isLoading: true,
+      error: null,
+    });
+
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Loading content...")).toBeInTheDocument();
+  });
+
+  it("renders error state", () => {
+    vi.mocked(useCmsPage).mockReturnValue({
+      page: {
+        title: "Home",
+        slug: "home",
+        subtitle: "Create home content in Sanity",
+        eyebrow: "CMS-driven content",
+        bodyPlainText:
+          "Add a Page document with slug 'home' in Sanity to manage this section.",
+      },
+      isLoading: false,
+      error: new Error("Failed to fetch"),
+    });
+
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+    expect(
+      screen.getByText("Could not load CMS content. Showing fallback text."),
+    ).toBeInTheDocument();
   });
 });

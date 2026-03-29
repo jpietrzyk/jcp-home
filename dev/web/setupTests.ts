@@ -6,10 +6,11 @@ class MockIntersectionObserver {
   readonly rootMargin: string;
   readonly thresholds: ReadonlyArray<number>;
 
-  constructor() {
+  constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
     this.root = null;
-    this.rootMargin = '';
-    this.thresholds = [];
+    this.rootMargin = options?.rootMargin ?? '';
+    const threshold = options?.threshold;
+    this.thresholds = Array.isArray(threshold) ? threshold : [threshold ?? 0];
   }
 
   disconnect() {
@@ -33,4 +34,25 @@ Object.defineProperty(window, 'IntersectionObserver', {
   writable: true,
   configurable: true,
   value: MockIntersectionObserver,
+});
+
+// Mock ResizeObserver for Framer Motion
+class MockResizeObserver {
+  observe() {
+    return null;
+  }
+
+  unobserve() {
+    return null;
+  }
+
+  disconnect() {
+    return null;
+  }
+}
+
+Object.defineProperty(window, 'ResizeObserver', {
+  writable: true,
+  configurable: true,
+  value: MockResizeObserver,
 });

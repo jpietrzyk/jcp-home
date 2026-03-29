@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../card";
 
 describe("Card", () => {
@@ -23,13 +24,14 @@ describe("Card", () => {
   });
 
   it("forwards ref correctly", () => {
-    const ref = { current: null };
+    const ref = React.createRef<HTMLDivElement>();
     render(
       <Card ref={ref}>
         <div>Content</div>
       </Card>,
     );
-    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    expect(ref.current).toHaveTextContent("Content");
   });
 });
 

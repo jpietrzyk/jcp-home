@@ -22,16 +22,7 @@ describe("AnimatedSection", () => {
     expect(section).toHaveClass("custom-class");
   });
 
-  it("renders with default delay", () => {
-    render(
-      <AnimatedSection>
-        <div>Content</div>
-      </AnimatedSection>,
-    );
-    expect(screen.getByText("Content")).toBeInTheDocument();
-  });
-
-  it("renders with custom delay", () => {
+  it("renders with delay prop", () => {
     render(
       <AnimatedSection delay={0.5}>
         <div>Content</div>
@@ -49,5 +40,14 @@ describe("AnimatedSection", () => {
     );
     expect(screen.getByText("Child 1")).toBeInTheDocument();
     expect(screen.getByText("Child 2")).toBeInTheDocument();
+  });
+
+  it("renders without delay prop (defaults to 0)", () => {
+    render(
+      <AnimatedSection>
+        <div>Content</div>
+      </AnimatedSection>,
+    );
+    expect(screen.getByText("Content")).toBeInTheDocument();
   });
 });
