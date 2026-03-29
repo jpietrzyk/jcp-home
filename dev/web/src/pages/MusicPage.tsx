@@ -36,7 +36,7 @@ export function MusicPage() {
   return (
     <section className="space-y-8">
       <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-zinc-500">
+        <p className="text-sm uppercase tracking-wide text-stone-500">
           Interactive Music
         </p>
       </AnimatedSection>
@@ -45,7 +45,7 @@ export function MusicPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl">Music</CardTitle>
-            <p className="text-zinc-400">
+            <p className="text-stone-400">
               Explore my experiments with Strudel, a JavaScript port of Tidal
               Cycles for live coding music. Select a track below, hit play, and
               feel free to modify the code to create your own variations.
@@ -53,11 +53,11 @@ export function MusicPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <AnimatedSection delay={0.3}>
-              <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                <h3 className="mb-2 font-semibold text-zinc-100">
+              <div className="rounded-lg border border-stone-700/50 bg-stone-900/50 p-4">
+                <h3 className="mb-2 font-semibold text-stone-100">
                   About Strudel
                 </h3>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-stone-400">
                   Strudel is a JavaScript implementation of Tidal Cycles, a
                   language for live coding patterns. It allows you to create
                   music by writing code that describes patterns of sound. Each
@@ -69,7 +69,7 @@ export function MusicPage() {
                   href="https://strudel.cc/workshop/getting-started/"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-2 inline-block text-sm text-zinc-300 hover:text-zinc-100 hover:underline"
+                  className="mt-2 inline-block text-sm text-stone-300 hover:text-stone-100 hover:underline"
                 >
                   Learn more about Strudel →
                 </a>
@@ -88,10 +88,10 @@ export function MusicPage() {
             {selectedTrack && (
               <AnimatedSection delay={0.5}>
                 <div ref={editorRef} className="space-y-4 scroll-mt-4">
-                  <h3 className="text-lg font-semibold text-zinc-100">
+                  <h3 className="text-lg font-semibold text-stone-100">
                     {selectedTrack.title}
                   </h3>
-                  <p className="text-sm text-zinc-400">
+                  <p className="text-sm text-stone-400">
                     {selectedTrack.description}
                   </p>
                   <StrudelPlayer

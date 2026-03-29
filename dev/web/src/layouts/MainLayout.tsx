@@ -12,11 +12,11 @@ const links = [
 
 export function MainLayout() {
   return (
-    <div className="min-h-screen bg-dark-950 text-zinc-100">
-      <header className="border-b border-zinc-800 bg-dark-900/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-stone-950 text-stone-200">
+      <header className="border-b border-stone-700/50 bg-stone-900/80 backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <Link
-            className="text-lg font-semibold text-zinc-100 hover:text-zinc-300 transition-colors duration-400"
+            className="text-lg font-semibold text-stone-100 hover:text-stone-300 transition-colors duration-300"
             to="/"
           >
             jcp.home
@@ -28,8 +28,8 @@ export function MainLayout() {
                 className={({ isActive }) =>
                   cn(
                     isActive
-                      ? "text-zinc-100"
-                      : "text-zinc-400 hover:text-zinc-300",
+                      ? "text-stone-100"
+                      : "text-stone-400 hover:text-stone-300",
                   )
                 }
                 to={link.to}

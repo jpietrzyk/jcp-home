@@ -26,7 +26,7 @@ export function HomePage() {
   return (
     <section className="space-y-4">
       <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-zinc-500">
+        <p className="text-sm uppercase tracking-wide text-stone-500">
           {page.eyebrow ?? "Personal site"}
         </p>
       </AnimatedSection>
@@ -34,7 +34,7 @@ export function HomePage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl">{page.title}</CardTitle>
-            <p className="text-zinc-400">{page.subtitle}</p>
+            <p className="text-stone-400">{page.subtitle}</p>
           </CardHeader>
           <CardContent className="space-y-6">
             <AnimatedSection delay={0.3}>
@@ -43,25 +43,25 @@ export function HomePage() {
                 isLoading={isLoading}
                 body={page.body}
                 bodyPlainText={page.bodyPlainText}
-                richTextClassName="prose-invert max-w-2xl text-zinc-400"
+                richTextClassName="prose-invert max-w-2xl text-stone-400"
                 hideFirstHeadingMatching={page.title}
                 errorClassName="max-w-2xl text-amber-500"
-                loadingClassName="max-w-2xl text-zinc-500"
+                loadingClassName="max-w-2xl text-stone-500"
               />
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">
-                <span className="hover:text-zinc-200 transition-colors duration-400">
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-400">
+                <span className="hover:text-stone-200 transition-colors duration-300">
                   {profile.location}
                 </span>
                 <a
-                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
+                  className="hover:text-stone-200 hover:underline transition-all duration-300"
                   href={`mailto:${profile.email}`}
                 >
                   {profile.email}
                 </a>
                 <a
-                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
+                  className="hover:text-stone-200 hover:underline transition-all duration-300"
                   href={profile.linkedin}
                   rel="noreferrer"
                   target="_blank"
@@ -69,7 +69,7 @@ export function HomePage() {
                   LinkedIn
                 </a>
                 <a
-                  className="hover:text-zinc-200 hover:underline transition-all duration-400"
+                  className="hover:text-stone-200 hover:underline transition-all duration-300"
                   href={profile.github}
                   rel="noreferrer"
                   target="_blank"

@@ -17,33 +17,33 @@ export function TrackSelector({
 }: TrackSelectorProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-zinc-100">Select a Track</h3>
+      <h3 className="text-lg font-semibold text-stone-100">Select a Track</h3>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`transition-all duration-200 hover:border-zinc-600 ${
+            className={`transition-all duration-200 hover:border-stone-600 ${
               track.id === selectedTrackId
-                ? "border-zinc-400 bg-zinc-800/50"
-                : "border-zinc-800 bg-zinc-900/50"
+                ? "border-stone-400 bg-stone-800/50"
+                : "border-stone-700/50 bg-stone-900/50"
             }`}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-base">{track.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <p className="text-sm text-zinc-400">{track.description}</p>
+              <p className="text-sm text-stone-400">{track.description}</p>
               <div className="flex flex-wrap gap-2">
                 {track.tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400"
+                    className="rounded-full bg-stone-800 px-2 py-0.5 text-xs text-stone-400"
                   >
                     {tag}
                   </span>
                 ))}
                 {track.bpm && (
-                  <span className="rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                  <span className="rounded-full bg-stone-800 px-2 py-0.5 text-xs text-stone-400">
                     {track.bpm} BPM
                   </span>
                 )}
