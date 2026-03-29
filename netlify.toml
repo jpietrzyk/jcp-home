@@ -1,6 +1,6 @@
 [build]
 base = "dev/web"
-command = "npm ci --legacy-peer-deps && npm run build"
+command = "npm ci && npm run build"
 publish = "dist"
 
 [build.environment]
