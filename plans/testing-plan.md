@@ -253,7 +253,7 @@ This document outlines the testing strategy and remaining tests to implement for
 
 ```bash
 # Run all tests
-npm test
+npm run test:run
 
 # Run tests in watch mode
 npm test
