@@ -86,11 +86,11 @@ export async function getResume(): Promise<Resume | null> {
   return {
     title,
     slug,
-    bio: resume.bio,
-    contactData: resume.contactData ?? [],
+    bio: resume.bio ?? undefined,
+    contactData: resume.contactData ?? undefined,
     skills: resume.skills ?? [],
     experience: resume.experience ?? [],
-    education: resume.education ?? [],
+    education: resume.education ?? undefined,
     volunteerExperience: resume.volunteerExperience ?? [],
     projects: resume.projects ?? []
   };
