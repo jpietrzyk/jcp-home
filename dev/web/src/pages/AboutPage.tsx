@@ -14,12 +14,18 @@ export function AboutPage() {
       title: "About",
       slug: "about",
       subtitle: null,
+      eyebrow: null,
       bodyPlainText: profile.about,
     },
   });
 
   return (
     <section className="space-y-6">
+      {page.eyebrow ? (
+        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+          {page.eyebrow}
+        </p>
+      ) : null}
       <Card>
         <CardHeader>
           <CardTitle className="text-3xl">{page.title}</CardTitle>

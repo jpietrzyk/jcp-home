@@ -6,13 +6,28 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { useCmsPosts } from "../lib/cms/useCmsPosts";
+import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function BlogListPage() {
+  const { page } = useCmsPage("blog", {
+    fallback: {
+      title: "Blog",
+      slug: "blog",
+      subtitle: null,
+      eyebrow: null,
+      bodyPlainText: "",
+    },
+  });
   const { posts, isLoading, error } = useCmsPosts();
 
   return (
     <section className="space-y-6">
-      <h1 className="text-3xl font-bold">Blog</h1>
+      {page.eyebrow ? (
+        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+          {page.eyebrow}
+        </p>
+      ) : null}
+      <h1 className="text-3xl font-bold">{page.title}</h1>
       {error ? (
         <p className="text-amber-600">
           Could not load posts from CMS. Showing fallback content.

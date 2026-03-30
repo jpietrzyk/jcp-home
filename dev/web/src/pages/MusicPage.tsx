@@ -9,8 +9,21 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { tracks, StrudelTrack } from "../content/tracks";
+import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function MusicPage() {
+  const { page } = useCmsPage("music", {
+    fallback: {
+      title: "Music",
+      slug: "music",
+      subtitle:
+        "Explore my experiments with Strudel, a JavaScript port of Tidal Cycles for live coding music. Select a track below, hit play, and feel free to modify the code to create your own variations.",
+      eyebrow: "Interactive Music",
+      bodyPlainText:
+        "Add a Page document with slug 'music' in Sanity to manage this section.",
+    },
+  });
+
   const [selectedTrack, setSelectedTrack] = useState<StrudelTrack | null>(
     tracks.length > 0 ? tracks[0] : null,
   );
@@ -29,20 +42,20 @@ export function MusicPage() {
 
   return (
     <section className="space-y-8">
-      <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
-          Interactive Music
-        </p>
-      </AnimatedSection>
+      {page.eyebrow ? (
+        <AnimatedSection delay={0.1}>
+          <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+            {page.eyebrow}
+          </p>
+        </AnimatedSection>
+      ) : null}
 
       <AnimatedSection delay={0.2}>
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl">Music</CardTitle>
+            <CardTitle className="text-3xl">{page.title}</CardTitle>
             <p className="text-stone-600 dark:text-stone-400">
-              Explore my experiments with Strudel, a JavaScript port of Tidal
-              Cycles for live coding music. Select a track below, hit play, and
-              feel free to modify the code to create your own variations.
+              {page.subtitle}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
