@@ -98,6 +98,7 @@ export function MainLayout() {
                       )
                     }
                     to={link.to}
+                    end={link.to === "/"}
                   >
                     {link.label}
                   </NavLink>
