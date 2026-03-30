@@ -47,6 +47,7 @@ export function TrackSelector({
             }}
             role="button"
             tabIndex={0}
+            aria-pressed={track.id === selectedTrackId}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-[1rem]">{track.title}</CardTitle>
