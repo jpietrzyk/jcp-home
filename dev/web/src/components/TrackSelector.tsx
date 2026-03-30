@@ -34,36 +34,50 @@ export function TrackSelector({
             <CardHeader className="pb-2">
               <CardTitle className="text-[1rem]">{track.title}</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-1 flex-col space-y-2">
-              <p className="text-sm text-stone-600 dark:text-stone-400">
-                {track.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {track.tags?.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
-                {track.bpm && (
-                  <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400">
-                    {track.bpm} BPM
-                  </span>
-                )}
+            <CardContent className="flex flex-1 flex-col pb-0">
+              <div className="flex-1 space-y-2">
+                <p className="text-sm text-stone-600 dark:text-stone-400">
+                  {track.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {track.tags?.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {track.bpm && (
+                    <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400">
+                      {track.bpm} BPM
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="mt-auto flex gap-2 pt-2">
+              <div className="flex justify-center p-4">
                 <Button
                   variant="default"
                   size="sm"
-                  className="flex-1"
+                  className="h-10 w-10 rounded-full p-0"
                   onClick={(e) => {
                     e.stopPropagation();
                     onPlay?.(track);
                   }}
+                  aria-label={`Play ${track.title}`}
                 >
-                  Play
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-5 w-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </Button>
               </div>
             </CardContent>
