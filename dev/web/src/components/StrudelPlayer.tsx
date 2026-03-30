@@ -1,17 +1,31 @@
 interface StrudelPlayerProps {
   code: string;
   bpm?: number;
-  autoplay?: boolean;
 }
 
-export function StrudelPlayer({
-  code,
-  bpm,
-  autoplay = false,
-}: StrudelPlayerProps) {
+export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
   // Encode the code as base64 for Strudel
-  const encodedCode = btoa(unescape(encodeURIComponent(code)));
-  const strudelUrl = `https://strudel.cc/#${encodedCode}${autoplay ? "?autoplay=1" : ""}`;
+  // Use a chunked approach to handle large strings
+  const encoder = new TextEncoder();
+  const data = encoder.encode(code);
+  let binary = "";
+  for (let i = 0; i < data.length; i++) {
+    binary += String.fromCharCode(data[i]);
+  }
+  const base64 = btoa(binary);
+  // Don't use ?autoplay=1 parameter - it causes decoding errors in Strudel
+  const strudelUrl = `https://strudel.cc/#${base64}`;
+
+  console.log("[StrudelPlayer] Code length:", code.length);
+  console.log("[StrudelPlayer] Base64 length:", base64.length);
+  console.log(
+    "[StrudelPlayer] First 100 chars of code:",
+    code.substring(0, 100),
+  );
+  console.log(
+    "[StrudelPlayer] First 100 chars of base64:",
+    base64.substring(0, 100),
+  );
 
   return (
     <div className="space-y-4">
@@ -32,7 +46,7 @@ export function StrudelPlayer({
       </div>
       <div className="rounded-lg border border-stone-200 bg-light-100 overflow-hidden dark:border-stone-700/50 dark:bg-stone-900/50">
         <iframe
-          key={encodedCode}
+          key={base64}
           src={strudelUrl}
           title="Strudel REPL"
           className="w-full min-h-[400px] border-0"

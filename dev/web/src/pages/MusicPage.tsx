@@ -14,17 +14,14 @@ export function MusicPage() {
   const [selectedTrack, setSelectedTrack] = useState<StrudelTrack | null>(
     tracks.length > 0 ? tracks[0] : null,
   );
-  const [autoplay, setAutoplay] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (track: StrudelTrack) => {
     setSelectedTrack(track);
-    setAutoplay(false);
   };
 
   const handlePlay = (track: StrudelTrack) => {
     setSelectedTrack(track);
-    setAutoplay(true);
     setTimeout(() => {
       editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
@@ -94,7 +91,6 @@ export function MusicPage() {
                   <StrudelPlayer
                     code={selectedTrack.code}
                     bpm={selectedTrack.bpm}
-                    autoplay={autoplay}
                   />
                 </div>
               </AnimatedSection>
