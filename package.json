@@ -7,7 +7,6 @@
     "dev": "npm run dev:web",
     "dev:web": "cd dev/web && npm run dev",
     "dev:sanity": "cd dev/sanity && npm run dev",
-    "sanity:dev": "cd dev/sanity && npm run dev",
     "dev:all": "concurrently \"npm run dev:web\" \"npm run dev:sanity\" --names \"WEB,SANITY\" --prefix-colors \"blue,green\"",
     "build": "cd dev/web && npm run build",
     "preview": "cd dev/web && npm run preview",
