@@ -23,8 +23,8 @@ This plan outlines how to make these subtitles CMS-driven using Sanity.
 
 ### Sanity Schema (`dev/sanity/schemaTypes/pageType.ts`)
 - Has `subtitle` field (line 9)
-- Does NOT have a dedicated `eyebrow` field
-- Currently uses `seoDescription` as eyebrow in the query
+- Has a dedicated `eyebrow` field
+- Previously used `seoDescription` as the eyebrow value in the query
 
 ### CMS Query (`dev/web/src/lib/cms/queries.ts`)
 - Line 20: `"eyebrow": seoDescription` - maps seoDescription to eyebrow
