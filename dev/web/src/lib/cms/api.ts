@@ -1,5 +1,5 @@
-import type { ContentPage, PostDetails, PostSummary, SanityPost, SanityPage } from './types';
-import { pageBySlugQuery, postBySlugQuery, postsQuery } from './queries';
+import type { ContentPage, PostDetails, PostSummary, Resume, SanityPost, SanityPage, SanityResume } from './types';
+import { pageBySlugQuery, postBySlugQuery, postsQuery, resumeQuery } from './queries';
 import { sanityClient } from './sanity.client';
 
 const fallbackPosts: PostSummary[] = [
@@ -69,5 +69,29 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     eyebrow: page.eyebrow ?? null,
     bodyPlainText: toPlainText(page.body),
     body: Array.isArray(page.body) ? page.body : []
+  };
+}
+
+export async function getResume(): Promise<Resume | null> {
+  if (!sanityClient) {
+    return null;
+  }
+
+  const resume = await sanityClient.fetch<SanityResume | null>(resumeQuery);
+  if (!resume) return null;
+
+  const title = typeof resume.title === 'string' && resume.title.trim() ? resume.title : 'Resume';
+  const slug = typeof resume.slug === 'string' && resume.slug.trim() ? resume.slug : 'resume';
+
+  return {
+    title,
+    slug,
+    bio: resume.bio ?? undefined,
+    contactData: resume.contactData ?? undefined,
+    skills: resume.skills ?? [],
+    experience: resume.experience ?? [],
+    education: resume.education ?? undefined,
+    volunteerExperience: resume.volunteerExperience ?? [],
+    projects: resume.projects ?? []
   };
 }

@@ -36,7 +36,22 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, asChild, ...props }, ref) => {
+    if (asChild && React.isValidElement(props.children)) {
+      const child = props.children as React.ReactElement<{
+        className?: string;
+      }>;
+      // Exclude children from props to avoid nesting
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { children: _, ...restProps } = props;
+      return React.cloneElement(child, {
+        className: cn(
+          buttonVariants({ variant, size, className }),
+          child.props.className,
+        ),
+        ...restProps,
+      });
+    }
     return (
       <motion.button
         className={cn(buttonVariants({ variant, size, className }))}
