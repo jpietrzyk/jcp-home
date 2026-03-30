@@ -26,7 +26,7 @@ export function HomePage() {
   return (
     <section className="space-y-4">
       <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-500">
+        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
           {page.eyebrow ?? "Personal site"}
         </p>
       </AnimatedSection>

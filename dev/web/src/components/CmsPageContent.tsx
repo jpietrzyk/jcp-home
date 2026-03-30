@@ -25,7 +25,7 @@ export function CmsPageContent({
   bodyPlainText,
   richTextClassName,
   hideFirstHeadingMatching,
-  errorClassName = "text-amber-600 dark:text-amber-600",
+  errorClassName = "text-amber-600 dark:text-amber-500",
   loadingClassName = "text-stone-500 dark:text-stone-500",
   errorMessage = defaultErrorMessage,
   loadingMessage = defaultLoadingMessage,

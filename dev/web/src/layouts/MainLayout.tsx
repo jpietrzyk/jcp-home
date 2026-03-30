@@ -13,9 +13,9 @@ const links = [
 
 export function MainLayout() {
   return (
-    <div className="min-h-screen bg-light-50 text-stone-900 dark:bg-stone-950 dark:text-stone-200">
-      <header className="border-b border-stone-200 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/50 dark:bg-stone-900/80">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+    <div className="min-h-screen bg-light-50 text-stone-900 dark:bg-dark-950 dark:text-stone-200">
+      <header className="border-b border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/30 dark:bg-dark-900/80">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link
             className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
             to="/"
@@ -51,7 +51,7 @@ export function MainLayout() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-6 py-10">
+      <main className="mx-auto max-w-6xl px-4 py-10">
         <Outlet />
       </main>
     </div>

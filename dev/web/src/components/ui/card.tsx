@@ -8,7 +8,7 @@ export const Card = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <motion.div
     className={cn(
-      "rounded-lg border border-stone-200 bg-light-100 text-stone-900 shadow-sm hover:border-stone-300 transition-colors duration-300 dark:border-stone-700/50 dark:bg-stone-900/80 dark:text-stone-200 dark:hover:border-stone-600",
+      "rounded-lg border-t border-b border-stone-200/50 bg-light-50 text-stone-900 transition-colors duration-300 dark:border-stone-700/30 dark:bg-dark-950 dark:text-stone-200",
       className,
     )}
     ref={ref}
