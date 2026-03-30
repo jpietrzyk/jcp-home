@@ -58,14 +58,16 @@ export function ResumePage() {
       </Card>
 
       {/* Bio Section */}
-      {resume.bio && (
+      {resume.title && (
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl">{resume.title}</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-stone-700 dark:text-stone-300">
-            <p>{resume.bio}</p>
-          </CardContent>
+          {resume.bio && (
+            <CardContent className="space-y-3 text-stone-700 dark:text-stone-300">
+              <p>{resume.bio}</p>
+            </CardContent>
+          )}
         </Card>
       )}
 
