@@ -8,10 +8,13 @@ export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
   // Use a chunked approach to handle large strings
   const encoder = new TextEncoder();
   const data = encoder.encode(code);
-  let binary = "";
-  for (let i = 0; i < data.length; i++) {
-    binary += String.fromCharCode(data[i]);
+  const CHUNK_SIZE = 0x8000; // 32k, avoids passing too many args to fromCharCode
+  const chunks: string[] = [];
+  for (let i = 0; i < data.length; i += CHUNK_SIZE) {
+    const chunk = data.subarray(i, i + CHUNK_SIZE);
+    chunks.push(String.fromCharCode(...chunk));
   }
+  const binary = chunks.join("");
   const base64 = btoa(binary);
   // Don't use ?autoplay=1 parameter - it causes decoding errors in Strudel
   const strudelUrl = `https://strudel.cc/#${base64}`;
