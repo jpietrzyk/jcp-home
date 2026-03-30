@@ -19,16 +19,18 @@ export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
   // Don't use ?autoplay=1 parameter - it causes decoding errors in Strudel
   const strudelUrl = `https://strudel.cc/#${base64}`;
 
-  console.log("[StrudelPlayer] Code length:", code.length);
-  console.log("[StrudelPlayer] Base64 length:", base64.length);
-  console.log(
-    "[StrudelPlayer] First 100 chars of code:",
-    code.substring(0, 100),
-  );
-  console.log(
-    "[StrudelPlayer] First 100 chars of base64:",
-    base64.substring(0, 100),
-  );
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[StrudelPlayer] Code length:", code.length);
+    console.log("[StrudelPlayer] Base64 length:", base64.length);
+    console.log(
+      "[StrudelPlayer] First 100 chars of code:",
+      code.substring(0, 100),
+    );
+    console.log(
+      "[StrudelPlayer] First 100 chars of base64:",
+      base64.substring(0, 100),
+    );
+  }
 
   return (
     <div className="space-y-4">
