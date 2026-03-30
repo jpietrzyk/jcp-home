@@ -1,5 +1,5 @@
-import type { ContentPage, PostDetails, PostSummary, SanityPost, SanityPage } from './types';
-import { pageBySlugQuery, postBySlugQuery, postsQuery } from './queries';
+import type { ContentPage, PostDetails, PostSummary, Resume, SanityPost, SanityPage, SanityResume } from './types';
+import { pageBySlugQuery, postBySlugQuery, postsQuery, resumeQuery } from './queries';
 import { sanityClient } from './sanity.client';
 
 const fallbackPosts: PostSummary[] = [
@@ -69,5 +69,26 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
     eyebrow: page.eyebrow ?? null,
     bodyPlainText: toPlainText(page.body),
     body: Array.isArray(page.body) ? page.body : []
+  };
+}
+
+export async function getResume(): Promise<Resume | null> {
+  if (!sanityClient) {
+    return null;
+  }
+
+  const resume = await sanityClient.fetch<SanityResume | null>(resumeQuery);
+  if (!resume) return null;
+
+  return {
+    title: resume.title,
+    slug: resume.slug,
+    bio: resume.bio,
+    contactData: resume.contactData,
+    skills: resume.skills,
+    experience: resume.experience,
+    education: resume.education,
+    volunteerExperience: resume.volunteerExperience,
+    projects: resume.projects
   };
 }

@@ -20,3 +20,24 @@ export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{
   "eyebrow": seoDescription,
   body
 }`;
+
+export const resumeQuery = `*[_type == "resume"][0]{
+  title,
+  "slug": slug.current,
+  bio,
+  contactData,
+  skills,
+  experience[] | order(startDate desc) {
+    company,
+    position,
+    location,
+    employmentType,
+    startDate,
+    endDate,
+    isCurrent,
+    achievements
+  },
+  education,
+  volunteerExperience[] | order(startDate desc),
+  projects[] | order(startDate desc)
+}`;
