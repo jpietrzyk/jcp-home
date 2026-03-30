@@ -4,16 +4,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-500 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 dark:focus-visible:ring-stone-500 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-amber-500 text-stone-950 hover:bg-amber-400 dark:bg-amber-500/90 dark:hover:bg-amber-400",
+          "bg-amber-400/80 text-stone-900 hover:bg-amber-400/90 dark:bg-amber-500/70 dark:hover:bg-amber-500/80",
         secondary:
-          "border border-stone-300 bg-light-100 text-stone-900 hover:bg-light-200 hover:border-stone-400 dark:border-stone-600 dark:bg-stone-800/50 dark:text-stone-200 dark:hover:bg-stone-700/50 dark:hover:border-stone-500",
+          "bg-stone-100 text-stone-800 hover:bg-stone-200 dark:bg-dark-800/50 dark:text-stone-200 dark:hover:bg-dark-700/50",
         ghost:
-          "text-stone-600 hover:text-stone-900 hover:bg-light-200/50 dark:text-stone-400 dark:hover:text-stone-200 dark:hover:bg-stone-800/30",
+          "text-stone-600 hover:text-stone-800 hover:bg-stone-100/50 dark:text-stone-400 dark:hover:text-stone-200 dark:hover:bg-dark-800/30",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -39,9 +39,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     return (
       <motion.button
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.99 }}
-        transition={{ type: "spring", stiffness: 200, damping: 30 }}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...(props as React.ComponentPropsWithoutRef<typeof motion.button>)}

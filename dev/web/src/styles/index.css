@@ -8,39 +8,39 @@
 
 body {
   margin: 0;
-  background-color: #fafaf9; /* Stone-50 - light mode */
-  color: #1c1917; /* Stone-900 - light mode */
+  background-color: #faf9f8; /* Warm off-white - light mode */
+  color: #3d3833; /* Warm dark brown - light mode */
 }
 
 .dark body {
-  background-color: #0c0a09; /* Warm near-black */
-  color: #e7e5e4; /* Warm light gray */
+  background-color: #1a1816; /* Warm dark gray */
+  color: #e8e4e0; /* Warm light */
 }
 
 /* Text colors */
 p,
 span,
 div {
-  color: #1c1917; /* Stone-900 - light mode */
+  color: #3d3833; /* Warm dark brown - light mode */
 }
 
 .dark p,
 .dark span,
 .dark div {
-  color: #e7e5e4; /* Warm light gray */
+  color: #e8e4e0; /* Warm light */
 }
 
 /* Muted text */
 .text-muted,
 .text-gray-400,
 .text-zinc-400 {
-  color: #78716c !important; /* Stone-500 - light mode */
+  color: #6b6560 !important; /* Muted brown - light mode */
 }
 
 .dark .text-muted,
 .dark .text-gray-400,
 .dark .text-zinc-400 {
-  color: #a8a29e !important; /* Stone-400 */
+  color: #b5afa8 !important; /* Muted warm */
 }
 
 /* Headings */
@@ -50,7 +50,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0c0a09; /* Stone-950 - light mode */
+  color: #3d3833; /* Warm dark brown - light mode */
 }
 
 .dark h1,
@@ -59,7 +59,7 @@ h6 {
 .dark h4,
 .dark h5,
 .dark h6 {
-  color: #fafaf9; /* Stone-50 */
+  color: #faf9f8; /* Warm off-white */
 }
 
 /* Smooth scrolling */
@@ -73,26 +73,26 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e7e5e4; /* Stone-200 - light mode */
+  background: #f5f3f0; /* Soft cream - light mode */
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #1c1917; /* Stone-900 */
+  background: #242120; /* Warm surface */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a8a29e; /* Stone-400 - light mode */
+  background: #e5e0da; /* Borders - light mode */
   border-radius: 4px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #44403c; /* Stone-700 */
+  background: #3a3634; /* Borders - dark mode */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #78716c; /* Stone-500 - light mode */
+  background: #9c9590; /* Muted - light mode */
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #57534e; /* Stone-600 */
+  background: #4a4543; /* Hover borders - dark mode */
 }

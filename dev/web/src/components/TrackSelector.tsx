@@ -26,8 +26,8 @@ export function TrackSelector({
             key={track.id}
             className={`cursor-pointer flex flex-col transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
               track.id === selectedTrackId
-                ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-stone-800/50"
-                : "border-stone-200 bg-light-100 dark:border-stone-700/50 dark:bg-stone-900/50"
+                ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-dark-800/50"
+                : "border-stone-200/50 bg-light-100 dark:border-stone-700/30 dark:bg-dark-900/50"
             }`}
             onClick={() => onSelect?.(track)}
             onKeyDown={(e) => {
@@ -61,13 +61,13 @@ export function TrackSelector({
                   {track.tags?.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+                      className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400"
                     >
                       {tag}
                     </span>
                   ))}
                   {track.bpm && (
-                    <span className="rounded-full bg-stone-200 px-2 py-0.5 text-xs text-stone-600 dark:bg-stone-800 dark:text-stone-400">
+                    <span className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400">
                       {track.bpm} BPM
                     </span>
                   )}

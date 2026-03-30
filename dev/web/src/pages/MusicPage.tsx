@@ -30,7 +30,7 @@ export function MusicPage() {
   return (
     <section className="space-y-8">
       <AnimatedSection delay={0.1}>
-        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-500">
+        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
           Interactive Music
         </p>
       </AnimatedSection>
@@ -47,7 +47,7 @@ export function MusicPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <AnimatedSection delay={0.3}>
-              <div className="rounded-lg border border-stone-200 bg-light-100 p-4 dark:border-stone-700/50 dark:bg-stone-900/50">
+              <div className="rounded-lg border border-stone-200/50 bg-light-100 p-4 dark:border-stone-700/30 dark:bg-dark-900/50">
                 <h3 className="mb-2 font-semibold text-stone-900 dark:text-stone-100">
                   About Strudel
                 </h3>

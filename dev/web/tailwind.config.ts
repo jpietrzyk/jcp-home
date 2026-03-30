@@ -7,35 +7,35 @@ export default {
     extend: {
       colors: {
         dark: {
-          950: '#0c0a09',  // Warm near-black
-          900: '#1c1917',  // Warm dark
-          800: '#292524',  // Elevated surface
-          700: '#44403c',  // Borders
-          600: '#57534e',  // Hover borders
+          950: '#1a1816',  // Warm dark (NOT pure black)
+          900: '#242120',  // Warm surface
+          800: '#2e2a28',  // Elevated
+          700: '#3a3634',  // Borders
+          600: '#4a4543',  // Hover borders
         },
         light: {
-          50: '#fafaf9',   // Near-white
-          100: '#f5f5f4',  // Very light
-          200: '#e7e5e4',  // Light gray
-          300: '#d6d3d1',  // Medium light
-          400: '#a8a29e',  // Muted
-          500: '#78716c',  // Subtle
+          50: '#faf9f8',   // Warm off-white
+          100: '#f5f3f0',  // Soft cream
+          200: '#eee9e3',  // Light beige
+          300: '#e5e0da',  // Borders
+          400: '#9c9590',  // Muted
+          500: '#6b6560',  // Secondary
         },
         accent: {
-          primary: '#f59e0b',    // Amber-500
-          secondary: '#fbbf24',  // Amber-400
-          muted: '#92400e',      // Amber-800
+          primary: '#d4a574',    // Soft terracotta
+          secondary: '#e8c9a8',  // Lighter peach
+          muted: '#a67c52',      // Deeper terracotta
         },
       },
       textColor: {
-        body: '#1c1917',      // Stone-900 - light mode
-        muted: '#78716c',     // Stone-500 - light mode
-        'muted-light': '#a8a29e', // Stone-400 - light mode
+        body: '#3d3833',      // Warm dark brown - light mode
+        muted: '#6b6560',     // Muted brown - light mode
+        'muted-light': '#9c9590', // Soft gray - light mode
       },
       backgroundColor: {
-        base: '#fafaf9',      // Stone-50 - light mode
-        surface: '#f5f5f4',   // Stone-100 - light mode
-        elevated: '#e7e5e4',  // Stone-200 - light mode
+        base: '#faf9f8',      // Warm off-white - light mode
+        surface: '#f5f3f0',   // Soft cream - light mode
+        elevated: '#eee9e3',  // Light beige - light mode
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

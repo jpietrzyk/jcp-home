@@ -49,7 +49,7 @@ export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
           Open in Strudel.cc →
         </a>
       </div>
-      <div className="rounded-lg border border-stone-200 bg-light-100 overflow-hidden dark:border-stone-700/50 dark:bg-stone-900/50">
+      <div className="rounded-lg border border-stone-200/50 bg-light-100 overflow-hidden dark:border-stone-700/30 dark:bg-dark-900/50">
         <iframe
           key={base64}
           src={strudelUrl}
