@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   font-family: "Manrope", "Segoe UI", sans-serif;
@@ -96,8 +94,6 @@ html {
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #5e4f3f; /* Hover borders - dark mode */
 }
-
-
 
 @layer base {
   :root {
