@@ -165,7 +165,8 @@ export function ResumePage() {
                     {exp.position}
                   </h3>
                   <span className="text-sm text-stone-500 dark:text-stone-400">
-                    {exp.startDate} - {exp.isCurrent ? "Present" : exp.endDate}
+                    {exp.startDate}
+                    {exp.isCurrent ? " - Present" : exp.endDate ? ` - ${exp.endDate}` : ""}
                   </span>
                 </div>
                 <p className="text-stone-700 dark:text-stone-300">
