@@ -80,15 +80,18 @@ export async function getResume(): Promise<Resume | null> {
   const resume = await sanityClient.fetch<SanityResume | null>(resumeQuery);
   if (!resume) return null;
 
+  const title = typeof resume.title === 'string' && resume.title.trim() ? resume.title : 'Resume';
+  const slug = typeof resume.slug === 'string' && resume.slug.trim() ? resume.slug : 'resume';
+
   return {
-    title: resume.title,
-    slug: resume.slug,
+    title,
+    slug,
     bio: resume.bio,
-    contactData: resume.contactData,
-    skills: resume.skills,
-    experience: resume.experience,
-    education: resume.education,
-    volunteerExperience: resume.volunteerExperience,
-    projects: resume.projects
+    contactData: resume.contactData ?? [],
+    skills: resume.skills ?? [],
+    experience: resume.experience ?? [],
+    education: resume.education ?? [],
+    volunteerExperience: resume.volunteerExperience ?? [],
+    projects: resume.projects ?? []
   };
 }
