@@ -25,13 +25,13 @@ Radical redesign of the site to use pastel, delicate colors with minimal borders
 - **Accent**: `#d4a574` (soft terracotta/peach)
 
 ### Dark Mode (Pastel)
-- **Background**: `#1a1816` (warm dark gray, NOT pure black)
-- **Surface**: `#242120` (slightly lighter warm gray)
-- **Elevated**: `#2e2a28` (elevated surface)
+- **Background**: `#342b1d` (warm dark brown, NOT pure black)
+- **Surface**: `#3d3224` (slightly lighter warm brown)
+- **Elevated**: `#463a2b` (elevated surface)
 - **Text Primary**: `#e8e4e0` (warm light)
 - **Text Secondary**: `#b5afa8` (muted warm)
 - **Text Muted**: `#8a837c` (soft gray)
-- **Borders**: `#3a3634` (very subtle warm gray)
+- **Borders**: `#524435` (very subtle warm brown)
 - **Accent**: `#d4a574` (same terracotta/peach - works in both modes)
 
 ---
@@ -47,11 +47,11 @@ Radical redesign of the site to use pastel, delicate colors with minimal borders
 ```typescript
 colors: {
   dark: {
-    950: '#1a1816',  // Warm dark (NOT pure black)
-    900: '#242120',  // Warm surface
-    800: '#2e2a28',  // Elevated
-    700: '#3a3634',  // Borders
-    600: '#4a4543',  // Hover borders
+    950: '#342b1d',  // Warm dark (NOT pure black)
+    900: '#3d3224',  // Warm surface
+    800: '#463a2b',  // Elevated
+    700: '#524435',  // Borders
+    600: '#5e4f3f',  // Hover borders
   },
   light: {
     50: '#faf9f8',   // Warm off-white
@@ -173,7 +173,7 @@ ghost: "text-stone-600 hover:text-stone-800 hover:bg-stone-100/50 dark:text-ston
 - Colors: High contrast, harsh
 
 ### After (Redesigned)
-- Dark mode: Warm dark gray (#1a1816)
+- Dark mode: Warm dark brown (#342b1d)
 - Cards: Only top/bottom borders, no shadow, no hover highlight
 - Layout: max-w-6xl with px-4 padding
 - Colors: Pastel, delicate, warm tones
