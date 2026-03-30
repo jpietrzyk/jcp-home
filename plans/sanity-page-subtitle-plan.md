@@ -42,7 +42,7 @@ Add a new `eyebrow` field to the page schema:
 defineField({ name: 'eyebrow', title: 'Eyebrow', type: 'string' }),
 ```
 
-This will be placed after the `subtitle` field. The eyebrow is a short label that appears above the title (e.g., "CMS-driven content", "Interactive Music").
+This will be placed before the `subtitle` field. The eyebrow is a short label that appears above the title (e.g., "CMS-driven content", "Interactive Music").
 
 ### Step 2: Update CMS Query to Fetch Eyebrow Field
 
