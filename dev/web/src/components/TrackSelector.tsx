@@ -31,7 +31,16 @@ export function TrackSelector({
             }`}
             onClick={() => onSelect?.(track)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                onSelect?.(track);
+              } else if (e.key === " ") {
+                // Prevent page from scrolling, activation occurs on keyup to match native button behavior
+                e.preventDefault();
+              }
+            }}
+            onKeyUp={(e) => {
+              if (e.key === " ") {
                 e.preventDefault();
                 onSelect?.(track);
               }
