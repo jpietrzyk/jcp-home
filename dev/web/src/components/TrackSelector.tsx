@@ -30,6 +30,14 @@ export function TrackSelector({
                 : "border-stone-200 bg-light-100 dark:border-stone-700/50 dark:bg-stone-900/50"
             }`}
             onClick={() => onSelect?.(track)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onSelect?.(track);
+              }
+            }}
+            role="button"
+            tabIndex={0}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-[1rem]">{track.title}</CardTitle>
