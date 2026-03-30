@@ -21,7 +21,7 @@ export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{
   body
 }`;
 
-export const resumeQuery = `*[_type == "resume"][0]{
+export const resumeQuery = `*[_type == "resume"] | order(_createdAt desc)[0]{
   title,
   "slug": slug.current,
   bio,
