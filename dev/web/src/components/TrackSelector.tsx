@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 interface TrackSelectorProps {
   tracks: StrudelTrack[];
   selectedTrackId: string;
-  onSelect?: (track: StrudelTrack) => void;
+  onSelect: (track: StrudelTrack) => void;
   onPlay?: (track: StrudelTrack) => void;
 }
 
