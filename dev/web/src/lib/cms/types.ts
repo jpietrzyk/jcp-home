@@ -93,4 +93,14 @@ export type Resume = {
 };
 
 // Raw Sanity API response type for resume
-export type SanityResume = Resume;
+export type SanityResume = {
+  title?: string | null;
+  slug?: string | null;
+  bio?: string | null;
+  contactData?: ContactData | null;
+  skills?: string[] | null;
+  experience?: Experience[] | null;
+  education?: Education | null;
+  volunteerExperience?: VolunteerExperience[] | null;
+  projects?: Project[] | null;
+};
