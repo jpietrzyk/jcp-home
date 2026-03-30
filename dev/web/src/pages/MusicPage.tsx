@@ -44,7 +44,7 @@ export function MusicPage() {
     <section className="space-y-8">
       <AnimatedSection delay={0.1}>
         <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
-          {page.eyebrow ?? "Interactive Music"}
+          {page.eyebrow}
         </p>
       </AnimatedSection>
 
