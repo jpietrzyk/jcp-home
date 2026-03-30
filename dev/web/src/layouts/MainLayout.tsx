@@ -82,10 +82,16 @@ export function MainLayout() {
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-stone-900 dark:text-stone-100">
+              <h3
+                id="footer-quick-links-heading"
+                className="text-sm font-semibold text-stone-900 dark:text-stone-100"
+              >
                 Quick Links
               </h3>
-              <nav className="flex flex-col gap-2">
+              <nav
+                className="flex flex-col gap-2"
+                aria-labelledby="footer-quick-links-heading"
+              >
                 {links.map((link) => (
                   <NavLink
                     key={link.to}
