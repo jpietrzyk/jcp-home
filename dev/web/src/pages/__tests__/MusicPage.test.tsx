@@ -47,7 +47,7 @@ describe("MusicPage", () => {
     expect(screen.getByText("Test eyebrow")).toBeInTheDocument();
   });
 
-  it("renders eyebrow paragraph with fallback value when eyebrow is null", () => {
+  it("does not render eyebrow paragraph when eyebrow is null", () => {
     vi.mocked(useCmsPage).mockReturnValue({
       page: {
         title: "Music",
@@ -65,11 +65,11 @@ describe("MusicPage", () => {
         <MusicPage />
       </MemoryRouter>,
     );
-    // The eyebrow paragraph should be in the document (with fallback value)
+    // The eyebrow paragraph should NOT be in the document when eyebrow is null
     const eyebrowParagraph = container.querySelector(
       "p.text-sm.uppercase.tracking-wide",
     );
-    expect(eyebrowParagraph).toBeInTheDocument();
+    expect(eyebrowParagraph).not.toBeInTheDocument();
   });
 
   it("renders about strudel section", () => {
