@@ -7,11 +7,11 @@ export default {
     extend: {
       colors: {
         dark: {
-          950: '#1a1816',  // Warm dark (NOT pure black)
-          900: '#242120',  // Warm surface
-          800: '#2e2a28',  // Elevated
-          700: '#3a3634',  // Borders
-          600: '#4a4543',  // Hover borders
+          950: '#342b1d',  // Warm dark (NOT pure black)
+          900: '#3d3224',  // Warm surface
+          800: '#463a2b',  // Elevated
+          700: '#524435',  // Borders
+          600: '#5e4f3f',  // Hover borders
         },
         light: {
           50: '#faf9f8',   // Warm off-white
