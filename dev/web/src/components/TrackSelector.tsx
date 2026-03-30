@@ -5,14 +5,14 @@ import { Button } from "./ui/button";
 interface TrackSelectorProps {
   tracks: StrudelTrack[];
   selectedTrackId: string;
-  onSelectAndScroll?: (track: StrudelTrack) => void;
+  onSelect?: (track: StrudelTrack) => void;
   onPlay?: (track: StrudelTrack) => void;
 }
 
 export function TrackSelector({
   tracks,
   selectedTrackId,
-  onSelectAndScroll,
+  onSelect,
   onPlay,
 }: TrackSelectorProps) {
   return (
@@ -24,11 +24,12 @@ export function TrackSelector({
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
+            className={`cursor-pointer transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
               track.id === selectedTrackId
                 ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-stone-800/50"
                 : "border-stone-200 bg-light-100 dark:border-stone-700/50 dark:bg-stone-900/50"
             }`}
+            onClick={() => onSelect?.(track)}
           >
             <CardHeader className="pb-2">
               <CardTitle className="text-[1rem]">{track.title}</CardTitle>
@@ -54,18 +55,13 @@ export function TrackSelector({
               </div>
               <div className="flex gap-2 pt-2">
                 <Button
-                  variant="secondary"
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => onSelectAndScroll?.(track)}
-                >
-                  Load
-                </Button>
-                <Button
                   variant="default"
                   size="sm"
                   className="flex-1"
-                  onClick={() => onPlay?.(track)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onPlay?.(track);
+                  }}
                 >
                   Play
                 </Button>

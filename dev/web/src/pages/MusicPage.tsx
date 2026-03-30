@@ -17,12 +17,9 @@ export function MusicPage() {
   const [autoplay, setAutoplay] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
-  const handleSelectAndScroll = (track: StrudelTrack) => {
+  const handleSelect = (track: StrudelTrack) => {
     setSelectedTrack(track);
     setAutoplay(false);
-    setTimeout(() => {
-      editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
   };
 
   const handlePlay = (track: StrudelTrack) => {
@@ -80,7 +77,7 @@ export function MusicPage() {
               <TrackSelector
                 tracks={tracks}
                 selectedTrackId={selectedTrack?.id ?? ""}
-                onSelectAndScroll={handleSelectAndScroll}
+                onSelect={handleSelect}
                 onPlay={handlePlay}
               />
             </AnimatedSection>
