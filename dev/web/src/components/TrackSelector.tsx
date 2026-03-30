@@ -24,7 +24,7 @@ export function TrackSelector({
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`cursor-pointer transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
+            className={`cursor-pointer flex flex-col transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
               track.id === selectedTrackId
                 ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-stone-800/50"
                 : "border-stone-200 bg-light-100 dark:border-stone-700/50 dark:bg-stone-900/50"
@@ -34,7 +34,7 @@ export function TrackSelector({
             <CardHeader className="pb-2">
               <CardTitle className="text-[1rem]">{track.title}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="flex flex-1 flex-col space-y-2">
               <p className="text-sm text-stone-600 dark:text-stone-400">
                 {track.description}
               </p>
@@ -53,7 +53,7 @@ export function TrackSelector({
                   </span>
                 )}
               </div>
-              <div className="flex gap-2 pt-2">
+              <div className="mt-auto flex gap-2 pt-2">
                 <Button
                   variant="default"
                   size="sm"
