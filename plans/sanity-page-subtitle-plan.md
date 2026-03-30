@@ -14,7 +14,7 @@ This plan outlines how to make these subtitles CMS-driven using Sanity.
 - Already uses `useCmsPage("home")` hook to fetch CMS data
 - Displays `page.eyebrow` (line 30) and `page.subtitle` (line 38)
 - Has fallback values when CMS is unavailable
-- The eyebrow is currently mapped from `seoDescription` field in the CMS query
+- The eyebrow is fetched from the dedicated `eyebrow` field in the CMS query
 
 ### MusicPage (`dev/web/src/pages/MusicPage.tsx`)
 - Does NOT use CMS - completely hardcoded
@@ -23,11 +23,11 @@ This plan outlines how to make these subtitles CMS-driven using Sanity.
 
 ### Sanity Schema (`dev/sanity/schemaTypes/pageType.ts`)
 - Has `subtitle` field (line 9)
-- Has a dedicated `eyebrow` field
-- Previously used `seoDescription` as the eyebrow value in the query
+- Has a dedicated `eyebrow` field (line 8)
+- The `eyebrow` field is used directly in the query
 
 ### CMS Query (`dev/web/src/lib/cms/queries.ts`)
-- Line 20: `"eyebrow": seoDescription` - maps seoDescription to eyebrow
+- Line 20: `eyebrow` - fetches the dedicated eyebrow field directly
 - Line 19: `"subtitle": coalesce(subtitle, seoTitle)` - uses subtitle or falls back to seoTitle
 
 ## Implementation Plan

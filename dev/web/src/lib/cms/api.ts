@@ -49,14 +49,7 @@ export async function getPostBySlug(slug: string): Promise<PostDetails | null> {
 
 export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
   if (!sanityClient) {
-    return {
-      title: slug,
-      slug,
-      subtitle: null,
-      eyebrow: null,
-      bodyPlainText: `Fallback ${slug} page content. Connect Sanity env vars to fetch real data.`,
-      body: []
-    };
+    return null;
   }
 
   const page = await sanityClient.fetch<SanityPage | null>(pageBySlugQuery, { slug });
