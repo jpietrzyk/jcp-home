@@ -10,10 +10,24 @@ describe("JcpLogo", () => {
     expect(svg).toHaveAttribute("role", "img");
   });
 
-  it("has aria-label for accessibility", () => {
+  it("defaults to aria-hidden when no label provided", () => {
     const { container } = render(<JcpLogo />);
     const svg = container.querySelector("svg");
+    expect(svg).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("sets aria-hidden to undefined when aria-label is provided", () => {
+    const { container } = render(<JcpLogo aria-label="jcp.home" />);
+    const svg = container.querySelector("svg");
     expect(svg).toHaveAttribute("aria-label", "jcp.home");
+    expect(svg).not.toHaveAttribute("aria-hidden");
+  });
+
+  it("sets aria-hidden to undefined when aria-labelledby is provided", () => {
+    const { container } = render(<JcpLogo aria-labelledby="logo-title" />);
+    const svg = container.querySelector("svg");
+    expect(svg).toHaveAttribute("aria-labelledby", "logo-title");
+    expect(svg).not.toHaveAttribute("aria-hidden");
   });
 
   it("applies custom className", () => {
@@ -40,9 +54,9 @@ describe("JcpLogo", () => {
   it("applies light and dark fill classes to text elements", () => {
     const { container } = render(<JcpLogo />);
     const texts = container.querySelectorAll("text");
-    expect(texts[0].className.baseVal).toContain("fill-[#3d3833]");
-    expect(texts[0].className.baseVal).toContain("dark:fill-[#dde4ee]");
-    expect(texts[1].className.baseVal).toContain("fill-[#a67c52]");
-    expect(texts[1].className.baseVal).toContain("dark:fill-[#c4956a]");
+    expect(texts[0].className.baseVal).toContain("fill-logo-ink");
+    expect(texts[0].className.baseVal).toContain("dark:fill-logo-ink-dark");
+    expect(texts[1].className.baseVal).toContain("fill-logo-accent");
+    expect(texts[1].className.baseVal).toContain("dark:fill-logo-accent-dark");
   });
 });
