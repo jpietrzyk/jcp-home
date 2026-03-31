@@ -16,11 +16,7 @@ export function TrackSelector({
   onPlay,
 }: TrackSelectorProps) {
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-        Select a Track
-      </h3>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tracks.map((track) => (
           <Card
             key={track.id}
@@ -102,6 +98,5 @@ export function TrackSelector({
           </Card>
         ))}
       </div>
-    </div>
   );
 }

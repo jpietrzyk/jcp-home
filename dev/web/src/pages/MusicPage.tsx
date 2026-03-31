@@ -1,5 +1,9 @@
 import { useState, useRef } from "react";
+import { Music, Wand2 } from "lucide-react";
 import { AnimatedSection } from "../components/AnimatedSection";
+import { PageTransition } from "../components/PageTransition";
+import { SectionHeading } from "../components/resume/SectionHeading";
+import { CmsPageContent } from "../components/CmsPageContent";
 import { StrudelPlayer } from "../components/StrudelPlayer";
 import { TrackSelector } from "../components/TrackSelector";
 import {
@@ -12,7 +16,7 @@ import { tracks, StrudelTrack } from "../content/tracks";
 import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function MusicPage() {
-  const { page } = useCmsPage("music", {
+  const { page, isLoading, error } = useCmsPage("music", {
     fallback: {
       title: "Music",
       slug: "music",
@@ -20,7 +24,7 @@ export function MusicPage() {
         "Explore my experiments with Strudel, a JavaScript port of Tidal Cycles for live coding music. Select a track below, hit play, and feel free to modify the code to create your own variations.",
       eyebrow: "Interactive Music",
       bodyPlainText:
-        "Add a Page document with slug 'music' in Sanity to manage this section.",
+        "Strudel is a JavaScript implementation of Tidal Cycles, a language for live coding patterns. It allows you to create music by writing code that describes patterns of sound. Each track below is a mini-program that generates music in real-time. You can modify the code and hear your changes instantly.\n\n[Learn more about Strudel →](https://strudel.cc/workshop/getting-started/)",
     },
   });
 
@@ -41,60 +45,55 @@ export function MusicPage() {
   };
 
   return (
-    <section className="space-y-8">
-      {page.eyebrow ? (
-        <AnimatedSection delay={0.1}>
-          <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
-            {page.eyebrow}
-          </p>
-        </AnimatedSection>
-      ) : null}
-
-      <AnimatedSection delay={0.2}>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-3xl">{page.title}</CardTitle>
-            <p className="text-stone-600 dark:text-stone-400">
-              {page.subtitle}
+    <PageTransition>
+      <section className="space-y-10">
+        {page.eyebrow ? (
+          <AnimatedSection>
+            <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              {page.eyebrow}
             </p>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <AnimatedSection delay={0.3}>
-              <div className="rounded-lg border border-stone-200/50 bg-light-100 p-4 dark:border-stone-700/30 dark:bg-dark-900/50">
-                <h3 className="mb-2 font-semibold text-stone-900 dark:text-stone-100">
-                  About Strudel
-                </h3>
-                <p className="text-sm text-stone-600 dark:text-stone-400">
-                  Strudel is a JavaScript implementation of Tidal Cycles, a
-                  language for live coding patterns. It allows you to create
-                  music by writing code that describes patterns of sound. Each
-                  track below is a mini-program that generates music in
-                  real-time. You can modify the code and hear your changes
-                  instantly.
-                </p>
-                <a
-                  href="https://strudel.cc/workshop/getting-started/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-2 inline-block text-sm text-stone-600 hover:text-stone-900 hover:underline dark:text-stone-300 dark:hover:text-stone-100"
-                >
-                  Learn more about Strudel →
-                </a>
-              </div>
-            </AnimatedSection>
+          </AnimatedSection>
+        ) : null}
 
-            <AnimatedSection delay={0.4}>
-              <TrackSelector
-                tracks={tracks}
-                selectedTrackId={selectedTrack?.id ?? ""}
-                onSelect={handleSelect}
-                onPlay={handlePlay}
+        <AnimatedSection delay={0.1}>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl">{page.title}</CardTitle>
+              <p className="text-stone-600 dark:text-stone-400">
+                {page.subtitle}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <CmsPageContent
+                error={error}
+                isLoading={isLoading}
+                body={page.body}
+                bodyPlainText={page.bodyPlainText}
+                richTextClassName="prose max-w-2xl text-stone-600 dark:text-stone-400 dark:prose-invert"
+                hideFirstHeadingMatching={page.title}
+                errorClassName="max-w-2xl text-amber-600 dark:text-amber-500"
+                loadingClassName="max-w-2xl text-stone-500 dark:text-stone-500"
               />
-            </AnimatedSection>
+            </CardContent>
+          </Card>
+        </AnimatedSection>
 
-            {selectedTrack && (
-              <AnimatedSection delay={0.5}>
-                <div ref={editorRef} className="space-y-4 scroll-mt-4">
+        <AnimatedSection delay={0.2}>
+          <SectionHeading icon={Music} title="Tracks" />
+          <TrackSelector
+            tracks={tracks}
+            selectedTrackId={selectedTrack?.id ?? ""}
+            onSelect={handleSelect}
+            onPlay={handlePlay}
+          />
+        </AnimatedSection>
+
+        {selectedTrack && (
+          <AnimatedSection delay={0.3}>
+            <SectionHeading icon={Wand2} title="Play & Modify" />
+            <Card>
+              <CardContent className="p-5 md:p-6 space-y-4">
+                <div ref={editorRef} className="scroll-mt-4 space-y-3">
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
                     {selectedTrack.title}
                   </h3>
@@ -106,11 +105,11 @@ export function MusicPage() {
                     bpm={selectedTrack.bpm}
                   />
                 </div>
-              </AnimatedSection>
-            )}
-          </CardContent>
-        </Card>
-      </AnimatedSection>
-    </section>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        )}
+      </section>
+    </PageTransition>
   );
 }
