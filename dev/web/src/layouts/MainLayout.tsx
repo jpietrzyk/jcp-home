@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { ThemeToggle } from "../components/ThemeToggle";
+import { JcpLogo } from "../components/JcpLogo";
 import { profile } from "../content/profile";
 import {
   Sidebar,
@@ -80,11 +81,8 @@ export function MainLayout() {
     <SidebarProvider>
       <Sidebar className="border-r border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/30 dark:bg-dark-900/80">
         <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-700/30">
-          <Link
-            className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
-            to="/"
-          >
-            jcp.home
+          <Link to="/" aria-label="jcp.home">
+            <JcpLogo className="h-8 w-auto" />
           </Link>
         </SidebarHeader>
         <SidebarContent>
@@ -159,11 +157,8 @@ export function MainLayout() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {/* Brand and Copyright */}
               <div className="space-y-4">
-                <Link
-                  className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
-                  to="/"
-                >
-                  jcp.home
+                <Link to="/" aria-label="jcp.home">
+                  <JcpLogo className="h-8 w-auto" />
                 </Link>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
                   © {new Date().getFullYear()} {profile.name}. All rights
