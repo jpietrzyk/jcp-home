@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -71,6 +71,7 @@ const socialLinks = [
 ];
 
 export function MainLayout() {
+  const location = useLocation();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -92,20 +93,19 @@ export function MainLayout() {
               <SidebarMenu>
                 {links.map((link) => (
                   <SidebarMenuItem key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      end={link.to === "/"}
+                    <SidebarMenuButton
+                      asChild
+                      isActive={link.to === location.pathname || (link.to !== "/" && location.pathname.startsWith(link.to))}
+                      className="transition-colors duration-300 h-12 text-base"
                     >
-                      {({ isActive }) => (
-                        <SidebarMenuButton
-                          isActive={isActive}
-                          className="transition-colors duration-300 h-12 text-base"
-                        >
-                          <link.icon className="h-5 w-5" />
-                          <span>{link.label}</span>
-                        </SidebarMenuButton>
-                      )}
-                    </NavLink>
+                      <NavLink
+                        to={link.to}
+                        end={link.to === "/"}
+                      >
+                        <link.icon className="h-5 w-5" />
+                        <span>{link.label}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
@@ -120,17 +120,20 @@ export function MainLayout() {
               <SidebarMenu>
                 {socialLinks.map((link) => (
                   <SidebarMenuItem key={link.href}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={link.ariaLabel}
+                    <SidebarMenuButton
+                      asChild
+                      className="h-12 text-base"
                     >
-                      <SidebarMenuButton className="h-12 text-base">
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.ariaLabel}
+                      >
                         <link.icon className="h-5 w-5" />
                         <span>{link.label}</span>
-                      </SidebarMenuButton>
-                    </a>
+                      </a>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
@@ -146,11 +149,11 @@ export function MainLayout() {
           <SidebarTrigger className="-ml-1 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100" />
           <div className="flex-1" />
         </header>
-        <main className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto">
           <div className="mx-auto max-w-6xl px-4 py-10">
             <Outlet />
           </div>
-        </main>
+        </div>
         <footer className="border-t border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/30 dark:bg-dark-900/80">
           <div className="mx-auto max-w-6xl px-4 py-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">

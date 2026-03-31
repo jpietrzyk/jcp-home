@@ -27,6 +27,17 @@
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-ring: hsl(var(--ring));
+  --color-input: hsl(var(--input));
 }
 
 :root {
@@ -126,6 +137,16 @@ html {
 
 @layer base {
   :root {
+    --background: 30 15% 98%;
+    --foreground: 30 10% 20%;
+    --popover: 30 15% 98%;
+    --popover-foreground: 30 10% 20%;
+    --muted: 30 10% 92%;
+    --muted-foreground: 30 5% 42%;
+    --secondary: 30 10% 92%;
+    --secondary-foreground: 30 10% 20%;
+    --ring: 30 40% 60%;
+    --input: 30 8% 88%;
     --sidebar-background: 30 15% 96.1%;
     --sidebar-foreground: 30 10% 20%;
     --sidebar-primary: 30 15% 15%;
@@ -136,6 +157,16 @@ html {
     --sidebar-ring: 30 40% 60%;
   }
   .dark {
+    --background: 30 24% 12%;
+    --foreground: 30 10% 92%;
+    --popover: 30 24% 12%;
+    --popover-foreground: 30 10% 92%;
+    --muted: 30 18% 24%;
+    --muted-foreground: 30 5% 58%;
+    --secondary: 30 18% 24%;
+    --secondary-foreground: 30 10% 92%;
+    --ring: 30 40% 60%;
+    --input: 30 15% 25%;
     --sidebar-background: 30 24% 19%;
     --sidebar-foreground: 30 10% 92%;
     --sidebar-primary: 30 15% 40%;
