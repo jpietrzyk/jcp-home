@@ -19,6 +19,13 @@
   --color-accent-secondary: #e8c9a8;
   --color-accent-muted: #a67c52;
 
+  --color-logo-ink: #3d3833;
+  --color-logo-ink-dark: #dde4ee;
+  --color-logo-accent: #a67c52;
+  --color-logo-accent-dark: #c4956a;
+  --color-logo-warm: #d4a574;
+  --color-logo-warm-dark: #6a9bc4;
+
   /* Sidebar color tokens */
   --color-sidebar: hsl(var(--sidebar-background));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));

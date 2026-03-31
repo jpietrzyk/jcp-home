@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { ThemeToggle } from "../components/ThemeToggle";
+import { JcpLogo } from "../components/JcpLogo";
 import { profile } from "../content/profile";
 import {
   Sidebar,
@@ -81,10 +82,11 @@ export function MainLayout() {
       <Sidebar className="border-r border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-700/30 dark:bg-dark-900/80">
         <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-700/30">
           <Link
-            className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
             to="/"
+            aria-label="JCP Home"
+            className="inline-flex items-center px-1.5 py-1 rounded-md hover:bg-stone-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:hover:bg-stone-800/60 dark:focus-visible:ring-offset-dark-900"
           >
-            jcp.home
+            <JcpLogo className="h-8 w-auto" aria-hidden="true" />
           </Link>
         </SidebarHeader>
         <SidebarContent>
@@ -160,10 +162,11 @@ export function MainLayout() {
               {/* Brand and Copyright */}
               <div className="space-y-4">
                 <Link
-                  className="text-lg font-semibold text-stone-900 hover:text-stone-700 transition-colors duration-300 dark:text-stone-100 dark:hover:text-stone-300"
                   to="/"
+                  aria-label="JCP Home"
+                  className="inline-flex items-center px-1.5 py-1 rounded-md hover:bg-stone-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:hover:bg-stone-800/60 dark:focus-visible:ring-offset-dark-900"
                 >
-                  jcp.home
+                  <JcpLogo className="h-8 w-auto" aria-hidden="true" />
                 </Link>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
                   © {new Date().getFullYear()} {profile.name}. All rights
