@@ -40,6 +40,12 @@ describe("ResumeProject", () => {
     expect(link).toHaveAttribute("target", "_blank");
   });
 
+  it("does not render date range when no dates provided", () => {
+    const { container } = render(<ResumeProject name="My App" />);
+    expect(container.querySelector("svg.lucide-calendar")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Present/)).not.toBeInTheDocument();
+  });
+
   it("does not render link when url is undefined", () => {
     render(<ResumeProject name="My App" />);
     expect(screen.queryByText("View Project")).not.toBeInTheDocument();

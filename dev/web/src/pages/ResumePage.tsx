@@ -10,6 +10,7 @@ import { ResumeVolunteer } from "../components/resume/ResumeVolunteer";
 import { ResumeProject } from "../components/resume/ResumeProject";
 import { Card, CardContent } from "../components/ui/card";
 import { useResume } from "../lib/cms/useResume";
+import { profile } from "../content/profile";
 import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function ResumePage() {
@@ -71,12 +72,8 @@ export function ResumePage() {
 
         <AnimatedSection>
           <ResumeHeader
-            name={resume.title}
-            title={
-              resume.contactData?.location
-                ? "Senior Software Engineer"
-                : "Senior Software Engineer"
-            }
+            name={profile.name}
+            title={profile.title}
             contactData={resume.contactData}
             cvLinks={[
               { label: "CV (EN)", href: "/integration-spec-en.pdf" },

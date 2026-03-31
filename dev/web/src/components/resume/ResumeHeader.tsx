@@ -78,7 +78,7 @@ export function ResumeHeader({
               <a
                 href={contactData.linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
               >
                 <LinkedInIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
@@ -89,7 +89,7 @@ export function ResumeHeader({
               <a
                 href={contactData.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
               >
                 <GitHubIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
@@ -102,7 +102,7 @@ export function ResumeHeader({
             <div className="flex flex-wrap gap-3 mt-1">
               {cvLinks.map((link) => (
                 <Button key={link.href} asChild size="sm">
-                  <a href={link.href} rel="noreferrer" target="_blank">
+                  <a href={link.href} rel="noopener noreferrer" target="_blank">
                     <FileText className="w-4 h-4 mr-1.5" />
                     {link.label}
                     <Download className="w-3.5 h-3.5 ml-1.5 opacity-70" />

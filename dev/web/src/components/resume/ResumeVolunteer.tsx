@@ -1,4 +1,4 @@
-import { Heart, Calendar, Building2 } from "lucide-react";
+import { Heart, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +19,10 @@ export function ResumeVolunteer({
   description,
   className,
 }: ResumeVolunteerProps) {
-  const dateRange = [startDate, endDate || "Present"].filter(Boolean).join(" — ");
+  const hasDate = !!(startDate || endDate);
+  const dateRange = hasDate
+    ? [startDate, endDate || "Present"].filter(Boolean).join(" — ")
+    : null;
 
   return (
     <Card

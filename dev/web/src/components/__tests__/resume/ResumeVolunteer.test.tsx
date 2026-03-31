@@ -45,6 +45,14 @@ describe("ResumeVolunteer", () => {
     expect(screen.getByText("Organized events")).toBeInTheDocument();
   });
 
+  it("does not render date range when no dates provided", () => {
+    const { container } = render(
+      <ResumeVolunteer organization="Org" role="Role" />,
+    );
+    expect(container.querySelector("svg.lucide-calendar")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Present/)).not.toBeInTheDocument();
+  });
+
   it("renders without optional props", () => {
     render(<ResumeVolunteer organization="Org" role="Role" />);
     expect(screen.getByText("Role")).toBeInTheDocument();

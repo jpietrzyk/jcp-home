@@ -21,9 +21,10 @@ export function ResumeProject({
   endDate,
   className,
 }: ResumeProjectProps) {
-  const dateRange = [startDate, endDate || "Present"]
-    .filter(Boolean)
-    .join(" — ");
+  const hasDate = !!(startDate || endDate);
+  const dateRange = hasDate
+    ? [startDate, endDate || "Present"].filter(Boolean).join(" — ")
+    : null;
 
   return (
     <Card
@@ -69,7 +70,7 @@ export function ResumeProject({
           <a
             href={url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm text-amber-700 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300 transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
