@@ -19,6 +19,7 @@
   --color-accent-secondary: #e8c9a8;
   --color-accent-muted: #a67c52;
 
+  /* Sidebar color tokens */
   --color-sidebar: hsl(var(--sidebar-background));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));
   --color-sidebar-primary: hsl(var(--sidebar-primary));
@@ -28,6 +29,7 @@
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
+  /* shadcn/ui theme tokens */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-popover: hsl(var(--popover));
