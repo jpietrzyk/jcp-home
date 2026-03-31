@@ -2,73 +2,73 @@
 
 ## Context
 
-After the Tailwind v3→v4 migration, several leftover artifacts and version mismatches remain. The `package.json` declarations don't match what's actually installed. The goal is a clean, up-to-date dependency tree.
+After the Tailwind v3→v4 migration, several leftover artifacts and version mismatches were identified. Some have already been resolved; remaining items are tracked below. The goal is a clean, up-to-date dependency tree.
 
 ---
 
 ## P1 — High Priority (broken/misleading config)
 
-### 1. Fix `tailwindcss` version declaration in `package.json`
+### 1. Fix `tailwindcss` version declaration in `package.json` — ✅ Done
 
-**Problem**: `package.json` declares `"tailwindcss": "^3.4.17"` in devDependencies, but v4.2.2 is actually installed (pulled in by `@tailwindcss/vite`). The declared semver range `^3.x` doesn't match v4.
+**Problem**: `package.json` previously declared `"tailwindcss": "^3.4.17"` in devDependencies while v4.2.2 was actually installed. The declared semver range `^3.x` didn't match v4.
 
-**Fix**: Change to `"tailwindcss": "^4.2.2"` in devDependencies (or remove it entirely since `@tailwindcss/vite` pulls it in as a dependency — but keeping it explicit is clearer).
+**Fix**: Already resolved — `dev/web/package.json` now correctly declares `"tailwindcss": "^4.2.2"` in devDependencies.
 
-**Complexity**: Low — single line edit in `package.json`
+**Complexity**: None — already done.
 
-### 2. Declare `@tailwindcss/vite` in `package.json`
+### 2. Declare `@tailwindcss/vite` in `package.json` — ✅ Done
 
-**Problem**: `@tailwindcss/vite@4.2.2` is installed and used in `vite.config.ts`, but it's not listed anywhere in `package.json`. It exists in the lockfile only. This means `pnpm install` on a fresh clone could fail or resolve differently.
+**Problem**: `@tailwindcss/vite@4.2.2` was installed and used in `vite.config.ts`, but was missing from `package.json` (only in the lockfile).
 
-**Fix**: Add `"@tailwindcss/vite": "^4.2.2"` to devDependencies (it's a build tool, not a runtime dependency).
+**Fix**: Already resolved — `dev/web/package.json` now lists `"@tailwindcss/vite": "^4.2.2"` in devDependencies.
 
-**Complexity**: Low — single line edit in `package.json`
+**Complexity**: None — already done.
 
-### 3. Delete `tailwind.config.ts` (leftover from v3)
+### 3. `tailwind.config.ts` (leftover from v3) — ✅ Done
 
-**Problem**: The old Tailwind v3 config file still exists. It's not used — all tokens are now in `@theme` in `index.css`. Having it is confusing and could mislead tooling (e.g. `components.json` previously pointed at it). The animations defined in it (`fade-in`, `fade-in-up`, etc.) are **not used anywhere** in the codebase.
+**Status**: This file no longer exists in the repo (no `dev/web/tailwind.config.ts`). The v3 config has already been removed and all tokens live in `@theme` in `index.css`.
 
-**Fix**: Delete `tailwind.config.ts`. If any animations are needed later, define them in `@theme` in `index.css` (Tailwind v4 way).
+**Action**: None — cleanup already completed. If any Tailwind animations are needed in the future, define them in `@theme` in `index.css` (Tailwind v4 way).
 
-**Complexity**: Low — delete file
+**Complexity**: N/A — no work required.
 
-### 4. Delete `postcss.config.js` (leftover from v3)
+### 4. `postcss.config.js` (leftover from v3) — ✅ Done
 
-**Problem**: PostCSS config references `tailwindcss` and `autoprefixer` plugins — this is the Tailwind v3 integration pattern. With Tailwind v4 + `@tailwindcss/vite`, PostCSS is not used. Neither `autoprefixer` nor `postcss` are installed (marked as "missing" by `pnpm outdated`).
+**Status**: There is no `dev/web/postcss.config.js` in the repo. The old PostCSS integration (with `tailwindcss` and `autoprefixer` plugins) has already been removed in favor of Tailwind v4 + `@tailwindcss/vite`.
 
-**Fix**: Delete `postcss.config.js`.
+**Action**: None — cleanup already completed.
 
-**Complexity**: Low — delete file
+**Complexity**: N/A — no work required.
 
-### 5. Remove `autoprefixer` and `postcss` from `package.json`
+### 5. `autoprefixer` and `postcss` devDependencies — ✅ Done
 
-**Problem**: Both are declared in devDependencies but not installed. They're not needed — Tailwind v4 includes autoprefixer functionality, and the Vite plugin handles CSS processing.
+**Status**: `autoprefixer` and `postcss` are not listed in `dev/web/package.json` devDependencies anymore. The Tailwind v4 toolchain (via `@tailwindcss/vite`) handles CSS processing without these explicit devDependencies.
 
-**Fix**: Remove both entries from devDependencies in `package.json`.
+**Action**: None — cleanup already completed.
 
-**Complexity**: Low — remove two lines
+**Complexity**: N/A — no work required.
 
-### 6. Remove deprecated `@types/testing-library__react`
+### 6. Remove deprecated `@types/testing-library__react` — ✅ Done
 
-**Problem**: `pnpm outdated` reports it as **Deprecated**. Modern `@testing-library/react` (v16+) ships its own types.
+**Problem**: `pnpm outdated` reported it as **Deprecated**. Modern `@testing-library/react` (v16+) ships its own types.
 
-**Fix**: Remove `"@types/testing-library__react"` from devDependencies.
+**Fix**: Already resolved — removed from devDependencies.
 
-**Complexity**: Low — remove one line
+**Complexity**: None — already done.
 
 ---
 
 ## P2 — Medium Priority (stale types, version bumps)
 
-### 7. Remove `@types/react` and `@types/react-dom` (or keep pinned to v18)
+### 7. Keep `@types/react` and `@types/react-dom` (required for React 18)
 
-**Problem**: React 18.x ships with its own types (types are included in the `react` and `react-dom` packages starting from certain versions). The separate `@types/react` and `@types/react-dom` packages are at v18.x but v19.x exists. However, since we're on React 18, the v18 types are correct.
+**Problem**: For React 18, TypeScript types are still provided by the DefinitelyTyped packages (`@types/react` and `@types/react-dom`), not bundled directly with `react` / `react-dom`. In this repo, those `@types` packages are on v18.x while v19.x exists on npm, but that mismatch is expected and correct because the app itself is on React 18.
 
 **Fix**: Two options:
-- **Option A** (recommended for now): Keep them as-is since we're on React 18 — they're needed.
-- **Option B**: If upgrading to React 19 (see P3), these should be removed since React 19 ships its own types.
+- **Option A** (recommended for now): Keep `@types/react` and `@types/react-dom` pinned to a compatible v18.x range, since they are required while we are on React 18.
+- **Option B**: If/when upgrading to a React version that **does** bundle its own TypeScript types (e.g. a future React 19+ that inlines types — see P3), remove `@types/react` and `@types/react-dom` and rely on the bundled types instead.
 
-**Complexity**: N/A (no action needed unless React 19 upgrade happens)
+**Complexity**: N/A (no action needed unless/until a React major upgrade that bundles types happens)
 
 ### 8. Bump `typescript-eslint` to `^8.58.0`
 
@@ -155,16 +155,16 @@ After the Tailwind v3→v4 migration, several leftover artifacts and version mis
 
 ## Recommended Execution Order
 
-1. **Batch P1 items together** (items 1–6) — clean up the broken/leftover artifacts first
+1. ~~**Batch P1 items together** (items 1–6)~~ — All P1 items are already done.
 2. Run `pnpm install` to refresh lockfile
 3. Run `pnpm build && pnpm lint && pnpm test:run` to verify
-4. **Then tackle P3 items individually** — one major upgrade at a time with verification between each
-5. P2 items can be done alongside P1 or P3 as convenient
+4. **Tackle P3 items individually** — one major upgrade at a time with verification between each
+5. P2 items can be done alongside P3 as convenient
 
-## File Change Summary (P1 only)
+## File Change Summary (P1 — all completed)
 
-| File | Action |
-|------|--------|
-| `package.json` | Fix tailwindcss version, add @tailwindcss/vite, remove autoprefixer/postcss/@types/testing-library__react |
-| `tailwind.config.ts` | Delete |
-| `postcss.config.js` | Delete |
+| File | Action | Status |
+|------|--------|--------|
+| `package.json` | Fix tailwindcss version, add @tailwindcss/vite, remove autoprefixer/postcss/@types/testing-library__react | ✅ Done |
+| `tailwind.config.ts` | Delete | ✅ Done |
+| `postcss.config.js` | Delete | ✅ Done |
