@@ -28,7 +28,7 @@ export function ProjectsPage() {
       ) : null}
       {error ? (
         <p className="text-amber-600">
-          Could not load projects from CMS. Showing fallback content.
+          Could not load projects from CMS. Please try again later.
         </p>
       ) : null}
       {isLoading ? (
