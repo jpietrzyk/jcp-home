@@ -20,9 +20,11 @@ export function ResumeHero({ bio, skills, className }: ResumeHeroProps) {
     >
       <CardContent className="p-6 md:p-8 space-y-6">
         {bio && (
-          <p className="text-lg md:text-xl leading-relaxed text-stone-700 dark:text-stone-300">
-            {bio}
-          </p>
+          <div className="space-y-3 text-lg md:text-xl leading-relaxed text-stone-700 dark:text-stone-300">
+            {bio.split("\n").filter(Boolean).map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
         )}
 
         {skills && skills.length > 0 && (
