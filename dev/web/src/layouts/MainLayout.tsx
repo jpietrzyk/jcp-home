@@ -88,9 +88,6 @@ export function MainLayout() {
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel className="text-stone-500 dark:text-stone-400">
-              Navigation
-            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {links.map((link) => (
@@ -98,13 +95,6 @@ export function MainLayout() {
                     <NavLink
                       to={link.to}
                       end={link.to === "/"}
-                      className={({ isActive }) =>
-                        cn(
-                          isActive
-                            ? "bg-stone-200/50 text-stone-900 dark:bg-dark-800/50 dark:text-stone-100"
-                            : "text-stone-600 hover:bg-stone-200/30 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-dark-800/30 dark:hover:text-stone-100",
-                        )
-                      }
                     >
                       {({ isActive }) => (
                         <SidebarMenuButton
@@ -123,7 +113,7 @@ export function MainLayout() {
           </SidebarGroup>
           <SidebarSeparator />
           <SidebarGroup>
-            <SidebarGroupLabel className="text-stone-500 dark:text-stone-400">
+            <SidebarGroupLabel className="text-sm font-semibold text-stone-500 dark:text-stone-400">
               Connect
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -135,7 +125,6 @@ export function MainLayout() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.ariaLabel}
-                      className="text-stone-600 hover:bg-stone-200/30 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-dark-800/30 dark:hover:text-stone-100 transition-colors duration-300"
                     >
                       <SidebarMenuButton className="h-12 text-base">
                         <link.icon className="h-5 w-5" />
