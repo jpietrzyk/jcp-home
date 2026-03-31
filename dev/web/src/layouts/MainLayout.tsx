@@ -1,5 +1,4 @@
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { JcpLogo } from "../components/JcpLogo";
@@ -23,7 +22,6 @@ import {
 import {
   Home,
   User,
-  FileText,
   FolderKanban,
   BookOpen,
   Music,
@@ -46,7 +44,6 @@ const GitHubIcon = ({ className }: { className?: string }) => (
 const links = [
   { to: "/", label: "Home", icon: Home },
   { to: "/about", label: "About", icon: User },
-  { to: "/resume", label: "Resume", icon: FileText },
   { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/blog", label: "Blog", icon: BookOpen },
   { to: "/music", label: "Music", icon: Music },
@@ -75,9 +72,6 @@ const socialLinks = [
 
 export function MainLayout() {
   const location = useLocation();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <SidebarProvider>
@@ -86,9 +80,9 @@ export function MainLayout() {
           <Link
             to="/"
             aria-label="JCP Home"
-            className="inline-flex items-center px-1.5 py-1 rounded-md hover:bg-stone-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:hover:bg-stone-800/60 dark:focus-visible:ring-offset-dark-900"
+            className="inline-flex items-center px-1.5 py-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
           >
-            <JcpLogo className="h-8 w-auto" aria-hidden="true" />
+            <JcpLogo className="h-12 w-auto" aria-hidden="true" />
           </Link>
         </SidebarHeader>
         <SidebarContent>
@@ -149,7 +143,7 @@ export function MainLayout() {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30 px-4">
+        <header className="sticky top-0 z-10 flex h-10 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30 px-3">
           <SidebarTrigger className="-ml-1 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100" />
           <div className="flex-1" />
         </header>
@@ -175,7 +169,7 @@ export function MainLayout() {
               </div>
 
               <nav className="flex items-center gap-4 text-sm">
-                {["Resume", "Blog", "Music"].map((label) => {
+                {["About", "Blog", "Music"].map((label) => {
                   const link = links.find((l) => l.label === label);
                   if (!link) return null;
                   return (
