@@ -101,13 +101,8 @@
     color: #3d3833; /* Warm dark brown - light mode */
   }
 
-  .dark h1,
-  .dark h2,
-  .dark h3,
-  .dark h4,
-  .dark h5,
-  .dark h6 {
-    color: #faf9f8; /* Warm off-white */
+  :where(.dark) :is(h1, h2, h3, h4, h5, h6) {
+    color: #faf9f8; /* Warm off-white - dark mode default */
   }
 
   /* Smooth scrolling */
