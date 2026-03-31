@@ -4,7 +4,6 @@ import { MemoryRouter } from "react-router-dom";
 import { MusicPage } from "../MusicPage";
 import { useCmsPage } from "../../lib/cms/useCmsPage";
 
-// Mock the useCmsPage hook
 vi.mock("../../lib/cms/useCmsPage", () => ({
   useCmsPage: vi.fn(() => ({
     page: {
@@ -13,13 +12,13 @@ vi.mock("../../lib/cms/useCmsPage", () => ({
       subtitle: "Test subtitle",
       eyebrow: "Test eyebrow",
       bodyPlainText: "Test body content",
+      body: undefined,
     },
     isLoading: false,
     error: null,
   })),
 }));
 
-// Mock the tracks content
 vi.mock("../../content/tracks", () => ({
   tracks: [
     {
@@ -55,6 +54,7 @@ describe("MusicPage", () => {
         subtitle: "Test subtitle",
         eyebrow: null,
         bodyPlainText: "Test body content",
+        body: undefined,
       },
       isLoading: false,
       error: null,
@@ -65,19 +65,45 @@ describe("MusicPage", () => {
         <MusicPage />
       </MemoryRouter>,
     );
-    // The eyebrow paragraph should NOT be in the document when eyebrow is null
     const eyebrowParagraph = container.querySelector(
       "p.text-sm.uppercase.tracking-wide",
     );
     expect(eyebrowParagraph).not.toBeInTheDocument();
   });
 
-  it("renders about strudel section", () => {
+  it("renders CMS body content via CmsPageContent", () => {
     render(
       <MemoryRouter>
         <MusicPage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("About Strudel")).toBeInTheDocument();
+    expect(screen.getByText("Test body content")).toBeInTheDocument();
+  });
+
+  it("renders Tracks section heading", () => {
+    render(
+      <MemoryRouter>
+        <MusicPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Tracks")).toBeInTheDocument();
+  });
+
+  it("renders Play & Modify section heading", () => {
+    render(
+      <MemoryRouter>
+        <MusicPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Play & Modify")).toBeInTheDocument();
+  });
+
+  it("renders track cards from mock data", () => {
+    render(
+      <MemoryRouter>
+        <MusicPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getAllByText("Test Track").length).toBeGreaterThanOrEqual(1);
   });
 });
