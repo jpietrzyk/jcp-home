@@ -1,10 +1,14 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { Briefcase, GraduationCap, Heart, FolderOpen } from "lucide-react";
+import { AnimatedSection } from "../components/AnimatedSection";
+import { PageTransition } from "../components/PageTransition";
+import { SectionHeading } from "../components/resume/SectionHeading";
+import { ResumeHeader } from "../components/resume/ResumeHeader";
+import { ResumeHero } from "../components/resume/ResumeHero";
+import { ResumeJobExperience } from "../components/resume/ResumeJobExperience";
+import { ResumeEducation } from "../components/resume/ResumeEducation";
+import { ResumeVolunteer } from "../components/resume/ResumeVolunteer";
+import { ResumeProject } from "../components/resume/ResumeProject";
+import { Card, CardContent } from "../components/ui/card";
 import { useResume } from "../lib/cms/useResume";
 import { useCmsPage } from "../lib/cms/useCmsPage";
 
@@ -22,310 +26,153 @@ export function ResumePage() {
 
   if (isLoading) {
     return (
-      <section className="space-y-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="animate-pulse space-y-4">
-              <div className="h-8 bg-stone-200 dark:bg-stone-700 rounded w-1/4"></div>
-              <div className="h-4 bg-stone-200 dark:bg-stone-700 rounded w-1/2"></div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
+      <PageTransition>
+        <section className="space-y-6">
+          <Card>
+            <CardContent className="p-6">
+              <div className="animate-pulse space-y-4">
+                <div className="h-10 bg-stone-200 dark:bg-stone-700 rounded w-1/3" />
+                <div className="h-5 bg-stone-200 dark:bg-stone-700 rounded w-1/2" />
+                <div className="h-4 bg-stone-200 dark:bg-stone-700 rounded w-2/3" />
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      </PageTransition>
     );
   }
 
   if (error) {
     return (
-      <section className="space-y-6">
-        <Card>
-          <CardContent className="p-6">
-            <p className="text-red-500">
-              Error loading resume: {error.message}
-            </p>
-          </CardContent>
-        </Card>
-      </section>
+      <PageTransition>
+        <section className="space-y-6">
+          <Card>
+            <CardContent className="p-6">
+              <p className="text-red-500">
+                Error loading resume: {error.message}
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      </PageTransition>
     );
   }
 
   return (
-    <section className="space-y-6">
-      {page.eyebrow ? (
-        <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
-          {page.eyebrow}
-        </p>
-      ) : null}
-      {/* CV Download Links */}
-      <Card>
-        <CardContent className="flex flex-wrap items-center gap-3 p-6">
-          <Button asChild>
-            <a href="/integration-spec-en.pdf" rel="noreferrer" target="_blank">
-              Open CV (EN)
-            </a>
-          </Button>
-          <Button asChild>
-            <a href="/integration-spec-pl.pdf" rel="noreferrer" target="_blank">
-              Open CV (PL)
-            </a>
-          </Button>
-        </CardContent>
-      </Card>
+    <PageTransition>
+      <section className="space-y-10">
+        {page.eyebrow && (
+          <AnimatedSection>
+            <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              {page.eyebrow}
+            </p>
+          </AnimatedSection>
+        )}
 
-      {/* Bio Section */}
-      {resume.title && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-3xl">{resume.title}</CardTitle>
-          </CardHeader>
-          {resume.bio && (
-            <CardContent className="space-y-3 text-stone-700 dark:text-stone-300">
-              <p>{resume.bio}</p>
-            </CardContent>
-          )}
-        </Card>
-      )}
+        <AnimatedSection>
+          <ResumeHeader
+            name={resume.title}
+            title={
+              resume.contactData?.location
+                ? "Senior Software Engineer"
+                : "Senior Software Engineer"
+            }
+            contactData={resume.contactData}
+            cvLinks={[
+              { label: "CV (EN)", href: "/integration-spec-en.pdf" },
+              { label: "CV (PL)", href: "/integration-spec-pl.pdf" },
+            ]}
+          />
+        </AnimatedSection>
 
-      {/* Contact Data Section */}
-      {resume.contactData && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Contact</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2 text-stone-700 dark:text-stone-300">
-            {resume.contactData.email && (
-              <p>
-                <strong>Email:</strong>{" "}
-                <a
-                  href={`mailto:${resume.contactData.email}`}
-                  className="text-blue-600 hover:underline dark:text-blue-400"
-                >
-                  {resume.contactData.email}
-                </a>
-              </p>
-            )}
-            {resume.contactData.phone && (
-              <p>
-                <strong>Phone:</strong> {resume.contactData.phone}
-              </p>
-            )}
-            {resume.contactData.location && (
-              <p>
-                <strong>Location:</strong> {resume.contactData.location}
-              </p>
-            )}
-            {resume.contactData.linkedin && (
-              <p>
-                <strong>LinkedIn:</strong>{" "}
-                <a
-                  href={resume.contactData.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline dark:text-blue-400"
-                >
-                  {resume.contactData.linkedin}
-                </a>
-              </p>
-            )}
-            {resume.contactData.github && (
-              <p>
-                <strong>GitHub:</strong>{" "}
-                <a
-                  href={resume.contactData.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 hover:underline dark:text-blue-400"
-                >
-                  {resume.contactData.github}
-                </a>
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      )}
+        <AnimatedSection delay={0.1}>
+          <ResumeHero bio={resume.bio} skills={resume.skills} />
+        </AnimatedSection>
 
-      {/* Skills Section */}
-      {resume.skills && resume.skills.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Skills</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {resume.skills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center rounded-md bg-stone-100 px-3 py-1 text-sm font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300"
-                >
-                  {skill}
-                </span>
+        {resume.experience && resume.experience.length > 0 && (
+          <div>
+            <AnimatedSection>
+              <SectionHeading icon={Briefcase} title="Work Experience" />
+            </AnimatedSection>
+            <div className="space-y-4">
+              {resume.experience.map((exp, index) => (
+                <AnimatedSection key={index} delay={0.05 * index}>
+                  <ResumeJobExperience
+                    position={exp.position}
+                    company={exp.company}
+                    location={exp.location}
+                    employmentType={exp.employmentType}
+                    startDate={exp.startDate}
+                    endDate={exp.endDate}
+                    isCurrent={exp.isCurrent}
+                    achievements={exp.achievements}
+                  />
+                </AnimatedSection>
               ))}
             </div>
-          </CardContent>
-        </Card>
-      )}
+          </div>
+        )}
 
-      {/* Experience Section */}
-      {resume.experience && resume.experience.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Work Experience</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {resume.experience.map((exp, index) => (
-              <div
-                key={index}
-                className="border-l-2 border-stone-300 pl-4 dark:border-stone-600"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                    {exp.position}
-                  </h3>
-                  <span className="text-sm text-stone-500 dark:text-stone-400">
-                    {exp.startDate}
-                    {exp.isCurrent
-                      ? " - Present"
-                      : exp.endDate
-                        ? ` - ${exp.endDate}`
-                        : ""}
-                  </span>
-                </div>
-                <p className="text-stone-700 dark:text-stone-300">
-                  {exp.company}
-                  {exp.location && ` • ${exp.location}`}
-                  {exp.employmentType && ` • ${exp.employmentType}`}
-                </p>
-                {exp.achievements && exp.achievements.length > 0 && (
-                  <ul className="mt-2 list-disc list-inside space-y-1 text-stone-600 dark:text-stone-400">
-                    {exp.achievements.map((achievement, achIndex) => (
-                      <li key={achIndex}>{achievement}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
+        {resume.education && (
+          <div>
+            <AnimatedSection>
+              <SectionHeading icon={GraduationCap} title="Education" />
+            </AnimatedSection>
+            <AnimatedSection delay={0.1}>
+              <ResumeEducation
+                school={resume.education.school}
+                degree={resume.education.degree}
+                field={resume.education.field}
+                graduationYear={resume.education.graduationYear}
+                grade={resume.education.grade}
+              />
+            </AnimatedSection>
+          </div>
+        )}
 
-      {/* Education Section */}
-      {resume.education && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Education</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="border-l-2 border-stone-300 pl-4 dark:border-stone-600">
-              <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                {resume.education.school}
-              </h3>
-              <p className="text-stone-700 dark:text-stone-300">
-                {resume.education.degree}
-                {resume.education.field && ` in ${resume.education.field}`}
-              </p>
-              <div className="flex flex-wrap gap-4 text-sm text-stone-500 dark:text-stone-400">
-                {resume.education.graduationYear && (
-                  <span>Graduated: {resume.education.graduationYear}</span>
-                )}
-                {resume.education.grade && (
-                  <span>Grade: {resume.education.grade}</span>
-                )}
-              </div>
+        {resume.volunteerExperience && resume.volunteerExperience.length > 0 && (
+          <div>
+            <AnimatedSection>
+              <SectionHeading icon={Heart} title="Volunteer Experience" />
+            </AnimatedSection>
+            <div className="space-y-4">
+              {resume.volunteerExperience.map((vol, index) => (
+                <AnimatedSection key={index} delay={0.05 * index}>
+                  <ResumeVolunteer
+                    organization={vol.organization}
+                    role={vol.role}
+                    startDate={vol.startDate}
+                    endDate={vol.endDate}
+                    description={vol.description}
+                  />
+                </AnimatedSection>
+              ))}
             </div>
-          </CardContent>
-        </Card>
-      )}
+          </div>
+        )}
 
-      {/* Volunteer Experience Section */}
-      {resume.volunteerExperience && resume.volunteerExperience.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Volunteer Experience</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {resume.volunteerExperience.map((vol, index) => (
-              <div
-                key={index}
-                className="border-l-2 border-stone-300 pl-4 dark:border-stone-600"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                    {vol.role}
-                  </h3>
-                  {(vol.startDate || vol.endDate) && (
-                    <span className="text-sm text-stone-500 dark:text-stone-400">
-                      {vol.startDate} - {vol.endDate || "Present"}
-                    </span>
-                  )}
-                </div>
-                <p className="text-stone-700 dark:text-stone-300">
-                  {vol.organization}
-                </p>
-                {vol.description && (
-                  <p className="mt-2 text-stone-600 dark:text-stone-400">
-                    {vol.description}
-                  </p>
-                )}
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Projects Section */}
-      {resume.projects && resume.projects.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Projects</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {resume.projects.map((project, index) => (
-              <div
-                key={index}
-                className="border-l-2 border-stone-300 pl-4 dark:border-stone-600"
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                    {project.name}
-                  </h3>
-                  {(project.startDate || project.endDate) && (
-                    <span className="text-sm text-stone-500 dark:text-stone-400">
-                      {project.startDate} - {project.endDate || "Present"}
-                    </span>
-                  )}
-                </div>
-                {project.description && (
-                  <p className="mt-2 text-stone-600 dark:text-stone-400">
-                    {project.description}
-                  </p>
-                )}
-                {project.technologies && project.technologies.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="inline-flex items-center rounded-md bg-stone-100 px-2 py-1 text-xs font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 inline-block text-blue-600 hover:underline dark:text-blue-400"
-                  >
-                    View Project
-                  </a>
-                )}
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-    </section>
+        {resume.projects && resume.projects.length > 0 && (
+          <div>
+            <AnimatedSection>
+              <SectionHeading icon={FolderOpen} title="Projects" />
+            </AnimatedSection>
+            <div className="space-y-4">
+              {resume.projects.map((project, index) => (
+                <AnimatedSection key={index} delay={0.05 * index}>
+                  <ResumeProject
+                    name={project.name}
+                    description={project.description}
+                    url={project.url}
+                    technologies={project.technologies}
+                    startDate={project.startDate}
+                    endDate={project.endDate}
+                  />
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    </PageTransition>
   );
 }
