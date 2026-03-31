@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  /* Custom color palette */
+  --color-dark-600: #5e4f3f;
+  --color-dark-700: #524435;
+  --color-dark-800: #463a2b;
+  --color-dark-900: #3d3224;
+  --color-dark-950: #342b1d;
+
+  --color-light-50: #faf9f8;
+  --color-light-100: #f5f3f0;
+  --color-light-200: #eee9e3;
+  --color-light-300: #e5e0da;
+  --color-light-400: #9c9590;
+  --color-light-500: #6b6560;
+
+  --color-accent-primary: #d4a574;
+  --color-accent-secondary: #e8c9a8;
+  --color-accent-muted: #a67c52;
+}
+
 :root {
   font-family: "Manrope", "Segoe UI", sans-serif;
 }
