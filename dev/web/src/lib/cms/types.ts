@@ -92,6 +92,30 @@ export type Resume = {
   projects?: Project[];
 };
 
+export type ShowcaseProject = {
+  title: string;
+  slug: string;
+  slogan?: string;
+  description?: string;
+  thumbnailUrl?: string;
+  url?: string;
+  tags?: string[];
+  featured?: boolean;
+  order?: number;
+};
+
+export type SanityShowcaseProject = {
+  title: string;
+  slug: string;
+  slogan?: string;
+  description?: string;
+  thumbnail?: { asset: { _ref: string }; hotspot?: Record<string, unknown>; crop?: Record<string, unknown> };
+  url?: string;
+  tags?: string[];
+  featured?: boolean;
+  order?: number;
+};
+
 // Raw Sanity API response type for resume
 export type SanityResume = {
   title?: string | null;

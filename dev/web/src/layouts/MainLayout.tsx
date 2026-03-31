@@ -24,6 +24,7 @@ import {
   Home,
   User,
   FileText,
+  FolderKanban,
   BookOpen,
   Music,
   Mail,
@@ -46,6 +47,7 @@ const links = [
   { to: "/", label: "Home", icon: Home },
   { to: "/about", label: "About", icon: User },
   { to: "/resume", label: "Resume", icon: FileText },
+  { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/blog", label: "Blog", icon: BookOpen },
   { to: "/music", label: "Music", icon: Music },
 ];

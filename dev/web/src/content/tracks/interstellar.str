@@ -1,0 +1,118 @@
+---
+id: interstellar
+title: Interstellar
+description: Spacey, dreamy, ambient. Just some fun with strudel
+description: Bam bim bomm
+cps: 1.1
+tags:
+  - ambient
+  - dreamy
+  - slow
+---
+
+setCps(165/60/4);
+
+
+const sIntro = sequence(`
+  <[a4 e5@2]!7 [a4 e5 b4]>
+`);
+
+const sIntro2 = sequence(`
+  <a5 a5 b5 b5 c6 c6 d6 d6>
+`);
+
+const sIntro3 = sequence(`<
+  [a4 e5@2]!2
+  [b4 e5@2]!2
+  [c5 e5@2]!2
+  [d5 e5@2] [d5 e5 b4]
+>`);
+
+const sChords1 = sequence(`<
+  [f2, f4]@2
+  [g2, g4]@2
+  [a2, a4]@2
+  [g2, g4]@2
+>`);
+
+const sChords2 = sequence(`<
+  [f2, c3, f4]@2
+  [g2, d3, g4]@2
+  [a2, e3, a4]@2
+  [g2, d3, g4]@2
+>`);
+
+const sSingleE = sequence(`<[e4@2 ~]>`);
+const sTripleE = sequence(`<[~ ~ e4]>`);
+// const sEs = sequence(`<[~ e5 e5 e5 ~ e5]>`);
+const sE5s = sequence(`<[~ e5 e5 e5 ~ e5]>`);
+const sE6s = sequence(`<[~ e6 e6 e6 ~ e6]>`);
+
+// -----------------------------
+// ----- Patterns
+
+
+const pSingleE = note(sSingleE)
+  .sound("piano")
+  .room(.7)
+  .gain(.2);
+
+const pTripleE = note(sTripleE)
+  .sound("piano")
+  .room(.7)
+  .gain(.2);
+
+const pE5s = note(sE5s)
+  .sound("piano")
+  .room(.4)
+  .gain(`<[0 .15 .25 .25 0 .15]>`);
+
+const pE6s = note(sE6s)
+  .sound("piano")
+  .room(.4)
+  .gain(`<[0 .05 .05 .1 0 .07]>`);
+
+const pIntro = note(sIntro)
+  .sound("piano")
+  .room(.9)
+  .gain(.7);
+
+const pTop = note(sIntro2)
+  .sound("piano")
+  .room(.9)
+  .gain(.9);
+
+const pHigh = note(sIntro3)
+  .sound("piano")
+  .room(`<1>`)
+  .gain(`[.2 .3]!2`);
+
+const pChords = note(sChords2)
+  .sound("piano")
+  .room(1);
+
+const pChordsSimple = note(sChords1)
+  .sound("piano")
+  .room(.7);
+
+const kiki = s("<[hh hh hh]*2>").gain(saw.range(.3, .9).fast(4)).room(.3).postgain(.3).lpf(5000);
+const kiki2 = s("<[bd ~ ~ rim ~ ~] [bd ~ ~ rim ~ ~]>").room(.04).postgain(.6);
+// const kiki2 = s("<[bd ~ rim rim ~ bd] [bd rim ~ bd bd ~]>").room(.04);
+
+const mainStack = stack(
+  pIntro,
+  pChordsSimple,
+  pE5s,
+  pE6s,
+  pSingleE,
+  pTripleE,
+  pHigh,
+  pTop,
+  pChords,
+  // kiki,
+  // kiki2,
+);
+
+arrange(
+  [16, mainStack]
+);

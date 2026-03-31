@@ -2,7 +2,7 @@
 id: manieczki
 title: WiP Equa...nieczki
 description: Fun with detuned saws
-cpm: 2.2
+bpm: 2.2
 tags:
   - bass
   - techno
@@ -40,7 +40,7 @@ _md_oh: s("<[~ yamaharx21_oh]>").gain(.07).attack(.04).decay(.2).release(.1).duc
 hh: s("<[~ rolandjd990_oh ~]>").orbit(5).gain(tri.range(.1, .2).fast(1)).attack(.1).room(".5").roomsize("3").postgain(.4)
 _plates: s("[kr55_cr*4]").gain("[~ ~ .3 ~ .4 ~ .3 ~]").attack(.015).decay(.25).room(.1).roomsize(1).postgain(.35)
 
-// // bas - add layer to pianos
+// bas - add layer to pianos
 basses: stack(
   n("<[~ -8 -6]!4 [~ -5 -5]!4 [~ -6 -2]!4 [~ -5 -7]!4>").scale("C:major").s("tri, sine:1:.7, square:1:.7").decay(".15").gain("[~ .6 .7]").orbit(6).room(".8").roomsize(".9").delay(".01"),
   n("<-8@3 -8 -5@4 -2@4 -5@2 -6 -7>").scale("C:major").s("triangle:0:.9").gain(".2")
@@ -79,18 +79,6 @@ _synthArpLead: n("<[21 23 15]!4 [21 23 16]!4 [21 23 19]!4 [21 23 17]!4>").scale(
   .gain(sine.range(.25, .5).slow(2))
   .orbit(12).clip(tri.fast(2).range(0.6, 0.8)).decay(8).room(1).roomsize(2).postgain(.3)
 
-
-
-
 _ta: n("<[28 ~ ~]!2 [26 ~ ~]!2 [27 ~ ~] [29 ~ ~] [23 ~]@2>/3").scale("C:major").s("square").postgain(.5)
 _tb: n("<[21 23 15]!4 [21 23 16]!4 [21 23 19]!4 [21 23 17]!4>").scale("C:major").s("sawtooth").postgain(.4)
 _tc: n("<-6@4 -5@4 -2@4 -4@4>").scale("C:major").s("sawtooth")
-
-
-// Rhythmic
-// noise: s("pink").distort("2:1").orbit(4) // used rhythmically with 0.3 onset below
-// hhat: s("hh*16").orbit(7)
-// ducker: s("bd*4").bank("tr909").duckorbit("4:7").duckonset("0.3:0.003").duckattack(0.25)
-
-
-// sound: freq("250.2388").s("saw")

@@ -10,13 +10,6 @@ tags:
   - downtempo
 ---
 
-/*
-  @title Slou'fa
-  @by jac pie
-  @license CC BY-NC-SA
-  @details Playing, playing, tadadam
-*/
-
 // Import samples from GitHub repository
 samples('github:eddyflux/crate');
 samples('github:yaxu/clean-breaks');
