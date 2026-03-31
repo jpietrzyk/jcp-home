@@ -1,6 +1,7 @@
-import type { ContentPage, PostDetails, PostSummary, Resume, SanityPost, SanityPage, SanityResume } from './types';
-import { pageBySlugQuery, postBySlugQuery, postsQuery, resumeQuery } from './queries';
+import type { ContentPage, PostDetails, PostSummary, Resume, SanityPost, SanityPage, SanityResume, ShowcaseProject, SanityShowcaseProject } from './types';
+import { pageBySlugQuery, postBySlugQuery, postsQuery, resumeQuery, showcaseProjectsQuery } from './queries';
 import { sanityClient } from './sanity.client';
+import { sanityImageUrl } from './sanityImage';
 
 const fallbackPosts: PostSummary[] = [
   {
@@ -87,4 +88,44 @@ export async function getResume(): Promise<Resume | null> {
     volunteerExperience: resume.volunteerExperience ?? [],
     projects: resume.projects ?? []
   };
+}
+
+const fallbackProjects: ShowcaseProject[] = [
+  {
+    title: 'Sample Project',
+    slug: 'sample-project',
+    slogan: 'A sample showcase project',
+    description: 'This is fallback content. Add showcase projects in Sanity Studio to replace this.',
+    url: 'https://example.com',
+    tags: ['React', 'TypeScript'],
+    featured: true,
+    order: 0,
+  },
+];
+
+export async function getShowcaseProjects(): Promise<ShowcaseProject[]> {
+  if (!sanityClient) return fallbackProjects;
+
+  try {
+    const projects = await sanityClient.fetch<SanityShowcaseProject[]>(showcaseProjectsQuery);
+    if (!projects) return [];
+
+    return projects.map((p) => ({
+      title: p.title,
+      slug: p.slug,
+      slogan: p.slogan,
+      description: p.description,
+      thumbnailUrl: p.thumbnail
+        ? sanityImageUrl(p.thumbnail)?.width(600).height(400).fit('crop').url()
+        : undefined,
+      url: p.url,
+      tags: p.tags,
+      featured: p.featured,
+      order: p.order,
+    }));
+  } catch {
+    // On fetch/network/CMS errors, return sample fallback projects so the UI
+    // actually shows fallback content instead of an empty list.
+    return fallbackProjects;
+  }
 }

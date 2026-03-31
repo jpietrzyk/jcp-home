@@ -1,14 +1,12 @@
 ---
-id: funeral
-title: Funefuneral
-description: Joke #8
+id: stranger
+title: Strange Thing
+description: Some weird music for a funeral, but it's a fun funeral, so it's not sad.
 bpm: 140
 tags:
   - funny
   - dead
 ---
-
-// deds to Syciu
 
 setcpm(140/4)
 
@@ -27,13 +25,3 @@ _$: n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 17 14] [~ ~ 13 ~] [~ 14 17 13] 
   .postgain(".2")
 
 $: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine, sawtooth").attack(".5").clip("1").postgain(".2")
-
-// Clicks
-_sound: freq("63.2388").s("sine").orbit(2).gain(4)
-duckerWithClick: s("bd*4").duckorbit(2).duckattack(0.3).duckonset(0).postgain(0)
-
-
-// Rhythmic
-// noise: s("pink").distort("2:1").orbit(4) // used rhythmically with 0.3 onset below
-// hhat: s("hh*16").orbit(7)
-// ducker: s("bd*4").bank("tr909").duckorbit("4:7").duckonset("0.3:0.003").duckattack(0.25)

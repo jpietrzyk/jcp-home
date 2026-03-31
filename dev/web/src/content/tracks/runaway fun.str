@@ -1,0 +1,90 @@
+---
+id: runaway
+title: Runaway brim brim
+description: Bam bim bomm lalal
+cps: 1.1
+tags:
+  - piano
+  - remix
+  - slow
+---
+
+// Import samples from GitHub repository
+samples('github:eddyflux/crate');
+
+/*
+  --- ### Track tempo ### ---
+  In BPM (beats per minute && 4 beats per cycle)
+ */
+const bpm = 53;
+
+setCps(bpm/40/4);
+
+// slou beat
+$: s("bd ~ sd ~")
+  .lpf("500 800").lpq(5)
+  .room(".05 .3")
+  .delay(".1 .2");
+
+// slou hatz muted
+$: s("hh*4").bank("crate")
+  .gain(.8)
+  .lpf(1300).lpq(2)
+  .room(.5)
+  .delay(.3)
+  .postgain(.15);
+
+$: s("oh hh").lpf(800).room(.1).delay(".2 .3").postgain(".3 .5");
+
+// # Guitars
+// ### slou guitar with reverb
+$: n("<0 0 5 [4 2]>*2").scale("C:minor").clip(2).s("gm_electric_guitar_clean")
+  .gain(.3)
+  .room(.5)
+  .delay(.5)
+  .hpf(300)
+  .postgain(.8);
+
+// ### muted guitar
+$: n("<[0!4 2!2 1 2] [0!4 2!2 1!2] [4!4 4!2 7 5] [2!4 1!4]>")
+  .scale("C:minor").clip(2).s("gm_electric_guitar_muted")
+  .adsr("0:.3:0:0")
+  .gain("<[.3 .5] [.3 .5] [.3 .7] [.5 .3]>")
+  .bpf("< [500] [500] [800] [500 300] >")
+  .delay(.3)
+  .postgain(1)
+
+$: n("<[0!8]>").scale("C:minor").s("gm_electric_guitar_muted").decay(.4).lpf(500).lpq(5).room(.3).postgain(.3)
+
+// # Keys
+// ### Electric Piano arp
+$: n("<[[4 0 7 0] [4 0 7 2]]*2 [[5 0 7 5]!2 [5 0 7 4] [5 0 9 6]]>").scale("C:minor").clip(2).s("gm_epiano1")
+  .lpf(slider(450, 200, 800, 50)).lpq(5)
+  .postgain(.5)
+
+// ### lo piano
+$: n("<14 [19 18]>").scale("C:minor").s("piano")
+  .lpf("<500 [1300 800]>").lpq("<1 [3 2]>")
+  .room(.3).delay("<.5 [.3 .1]>")
+  .postgain(.5);
+
+// ### hi piano
+$: n("<21 [21 20] 21 [26 [25 25 25 25]]>").scale("C:minor").s("piano:0:.5")
+  .room(.8)
+  .postgain("<.5 [.3 [.2 .2 .3 .7]]>");
+
+// # Pads
+$: n("<7, 0,-3 [-2@2],  4 [5 3]>").scale("C:minor").s("gm_pad_halo:5").bpf(800).postgain(.2)
+
+
+// # Basses
+// ### sub kick bass
+$: note("<21 [26 25]>")
+  .s("sine, sine:0:.7")
+  .adsr(".5:.5:.05:.0")
+  .vib("<1:4 [3:2 5:8]>")
+  .room("<.3, .7>")
+  .postgain("<1 [1 .7]>");
+
+// ### ?
+_$: n("<0 [5 4]>").scale("C:minor").s("sawtooth").lpq(8).lpf(300).lpa(.2).lpenv(4).room(.4).bpf(800).postgain(.3)

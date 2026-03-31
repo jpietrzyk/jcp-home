@@ -21,6 +21,18 @@ export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{
   body
 }`;
 
+export const showcaseProjectsQuery = `*[_type == "showcaseProject" && (!defined(isDraft) || isDraft == false)] | order(featured desc, order asc, _createdAt desc){
+  title,
+  "slug": slug.current,
+  slogan,
+  description,
+  thumbnail,
+  url,
+  tags,
+  featured,
+  order
+}`;
+
 export const resumeQuery = `*[_type == "resume"] | order(_createdAt desc)[0]{
   title,
   "slug": slug.current,
