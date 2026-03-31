@@ -1,6 +1,46 @@
-@import "tailwindcss/base";
-@tailwind utilities;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Custom color palette */
+  --color-dark-600: #5e4f3f;
+  --color-dark-700: #524435;
+  --color-dark-800: #463a2b;
+  --color-dark-900: #3d3224;
+  --color-dark-950: #342b1d;
+
+  --color-light-50: #faf9f8;
+  --color-light-100: #f5f3f0;
+  --color-light-200: #eee9e3;
+  --color-light-300: #e5e0da;
+  --color-light-400: #9c9590;
+  --color-light-500: #6b6560;
+
+  --color-accent-primary: #d4a574;
+  --color-accent-secondary: #e8c9a8;
+  --color-accent-muted: #a67c52;
+
+  /* Sidebar color tokens */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* shadcn/ui theme tokens */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-ring: hsl(var(--ring));
+  --color-input: hsl(var(--input));
+}
 
 :root {
   font-family: "Manrope", "Segoe UI", sans-serif;
@@ -95,4 +135,47 @@ html {
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #5e4f3f; /* Hover borders - dark mode */
+}
+
+@layer base {
+  :root {
+    --background: 30 15% 98%;
+    --foreground: 30 10% 20%;
+    --popover: 30 15% 98%;
+    --popover-foreground: 30 10% 20%;
+    --muted: 30 10% 92%;
+    --muted-foreground: 30 5% 42%;
+    --secondary: 30 10% 92%;
+    --secondary-foreground: 30 10% 20%;
+    --ring: 30 40% 60%;
+    --input: 30 8% 88%;
+    --sidebar-background: 30 15% 96.1%;
+    --sidebar-foreground: 30 10% 20%;
+    --sidebar-primary: 30 15% 15%;
+    --sidebar-primary-foreground: 30 15% 96.1%;
+    --sidebar-accent: 30 10% 92%;
+    --sidebar-accent-foreground: 30 10% 20%;
+    --sidebar-border: 30 8% 88%;
+    --sidebar-ring: 30 40% 60%;
+  }
+  .dark {
+    --background: 30 24% 12%;
+    --foreground: 30 10% 92%;
+    --popover: 30 24% 12%;
+    --popover-foreground: 30 10% 92%;
+    --muted: 30 18% 24%;
+    --muted-foreground: 30 5% 58%;
+    --secondary: 30 18% 24%;
+    --secondary-foreground: 30 10% 92%;
+    --ring: 30 40% 60%;
+    --input: 30 15% 25%;
+    --sidebar-background: 30 24% 19%;
+    --sidebar-foreground: 30 10% 92%;
+    --sidebar-primary: 30 15% 40%;
+    --sidebar-primary-foreground: 30 15% 96.1%;
+    --sidebar-accent: 30 18% 24%;
+    --sidebar-accent-foreground: 30 10% 92%;
+    --sidebar-border: 30 15% 25%;
+    --sidebar-ring: 30 40% 60%;
+  }
 }
