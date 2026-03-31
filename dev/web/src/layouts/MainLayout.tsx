@@ -81,7 +81,7 @@ export function MainLayout() {
 
   return (
     <SidebarProvider>
-      <Sidebar className="border-r border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-800/30 dark:bg-[#141414]/80">
+      <Sidebar className="border-r border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
         <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30">
           <Link
             to="/"
@@ -149,16 +149,16 @@ export function MainLayout() {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-800/30 dark:bg-[#141414]/80 px-4">
+        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30 px-4">
           <SidebarTrigger className="-ml-1 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100" />
           <div className="flex-1" />
         </header>
         <div className="flex-1 overflow-auto">
-          <div className="mx-auto max-w-6xl px-4 py-10 min-h-[80vh]">
+          <div className="mx-auto max-w-6xl px-4 py-10 min-h-[80dvh]">
             <Outlet />
           </div>
         </div>
-        <footer className="border-t border-stone-200/50 bg-light-100/80 backdrop-blur-sm dark:border-stone-800/30 dark:bg-[#141414]/80">
+        <footer className="border-t border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
           <div className="mx-auto max-w-6xl px-4 py-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {/* Brand and Copyright */}
