@@ -106,20 +106,26 @@ const fallbackProjects: ShowcaseProject[] = [
 export async function getShowcaseProjects(): Promise<ShowcaseProject[]> {
   if (!sanityClient) return fallbackProjects;
 
-  const projects = await sanityClient.fetch<SanityShowcaseProject[]>(showcaseProjectsQuery);
-  if (!projects) return [];
+  try {
+    const projects = await sanityClient.fetch<SanityShowcaseProject[]>(showcaseProjectsQuery);
+    if (!projects) return [];
 
-  return projects.map((p) => ({
-    title: p.title,
-    slug: p.slug,
-    slogan: p.slogan,
-    description: p.description,
-    thumbnailUrl: p.thumbnail
-      ? sanityImageUrl(p.thumbnail)?.width(600).height(400).fit('crop').url()
-      : undefined,
-    url: p.url,
-    tags: p.tags,
-    featured: p.featured,
-    order: p.order,
-  }));
+    return projects.map((p) => ({
+      title: p.title,
+      slug: p.slug,
+      slogan: p.slogan,
+      description: p.description,
+      thumbnailUrl: p.thumbnail
+        ? sanityImageUrl(p.thumbnail)?.width(600).height(400).fit('crop').url()
+        : undefined,
+      url: p.url,
+      tags: p.tags,
+      featured: p.featured,
+      order: p.order,
+    }));
+  } catch {
+    // On fetch/network/CMS errors, return sample fallback projects so the UI
+    // actually shows fallback content instead of an empty list.
+    return fallbackProjects;
+  }
 }
