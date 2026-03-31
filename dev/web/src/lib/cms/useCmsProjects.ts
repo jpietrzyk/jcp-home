@@ -5,6 +5,7 @@ import { useCmsResource } from './useCmsResource';
 export function useCmsProjects() {
   const { data: projects, isLoading, error } = useCmsResource<ShowcaseProject[]>({
     initialData: [],
+    fallbackData: [],
     fetcher: getShowcaseProjects,
     deps: [],
   });
