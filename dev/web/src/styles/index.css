@@ -74,9 +74,7 @@
     color: #3d3833; /* Warm dark brown - light mode */
   }
 
-  .dark p,
-  .dark span,
-  .dark div {
+  :where(.dark) :is(p, span, div) {
     color: #e8e4e0; /* Warm light */
   }
 
