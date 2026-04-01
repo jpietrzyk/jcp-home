@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { HomeHeroSection } from "../../components/HomeHeroSection";
+import { HomeHeroSection } from "../../components/home/HomeHeroSection";
 import { useCmsPage } from "../../lib/cms/useCmsPage";
 
 vi.mock("../../lib/cms/useCmsPage", () => ({
@@ -29,7 +29,17 @@ vi.mock("../../content/profile", () => ({
 
 describe("HomeHeroSection", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    vi.mocked(useCmsPage).mockReturnValue({
+      page: {
+        title: "Test Home",
+        slug: "home",
+        subtitle: "Test subtitle",
+        eyebrow: "Test eyebrow",
+        bodyPlainText: "Test body content",
+      },
+      isLoading: false,
+      error: null,
+    });
   });
 
   it("renders page title", () => {
@@ -98,23 +108,29 @@ describe("HomeHeroSection", () => {
     expect(githubLink).toHaveAttribute("href", "https://github.com/test");
   });
 
-  it("renders About Me button linking to /about", () => {
+  it("renders navigation buttons", () => {
     render(
       <MemoryRouter>
         <HomeHeroSection />
       </MemoryRouter>,
     );
-    const aboutLink = screen.getByText("About Me").closest("a");
-    expect(aboutLink).toHaveAttribute("href", "/about");
+    expect(screen.getByText("View Resume")).toBeInTheDocument();
+    expect(screen.getByText("About Me")).toBeInTheDocument();
+    expect(screen.getByText("Read Blog")).toBeInTheDocument();
   });
 
-  it("renders Read Blog button linking to /blog", () => {
+  it("renders navigation links with correct hrefs", () => {
     render(
       <MemoryRouter>
         <HomeHeroSection />
       </MemoryRouter>,
     );
+    const resumeLink = screen.getByText("View Resume").closest("a");
+    const aboutLink = screen.getByText("About Me").closest("a");
     const blogLink = screen.getByText("Read Blog").closest("a");
+
+    expect(resumeLink).toHaveAttribute("href", "/about");
+    expect(aboutLink).toHaveAttribute("href", "/about");
     expect(blogLink).toHaveAttribute("href", "/blog");
   });
 

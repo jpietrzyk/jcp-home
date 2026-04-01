@@ -18,7 +18,7 @@ export function HomeMusicSection() {
         {latestTracks.map((track, index) => (
           <AnimatedSection key={track.id} delay={0.1 * index}>
             <Link to="/music">
-              <Card className="overflow-hidden h-full hover:shadow-md transition-shadow duration-300">
+              <Card className="group overflow-hidden h-full hover:shadow-md transition-shadow duration-300">
                 <CardContent className="p-5 md:p-6 space-y-2">
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 group-hover:underline">
                     {track.title}

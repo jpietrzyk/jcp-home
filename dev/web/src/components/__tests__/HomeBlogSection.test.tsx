@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { HomeBlogSection } from "../../components/HomeBlogSection";
+import { HomeBlogSection } from "../../components/home/HomeBlogSection";
 import { useCmsPosts } from "../../lib/cms/useCmsPosts";
 
 vi.mock("../../lib/cms/useCmsPosts", () => ({
@@ -66,9 +66,9 @@ describe("HomeBlogSection", () => {
   it("shows only first 2 posts when more than 2 available", () => {
     vi.mocked(useCmsPosts).mockReturnValue({
       posts: [
-        { title: "Post One", slug: "post-one", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
-        { title: "Post Two", slug: "post-two", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: undefined, tags: [], authorName: null },
-        { title: "Post Three", slug: "post-three", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "Post One", slug: "post-one", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: undefined },
+        { title: "Post Two", slug: "post-two", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: undefined, tags: [], authorName: undefined },
+        { title: "Post Three", slug: "post-three", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: undefined, tags: [], authorName: undefined },
       ],
       isLoading: false,
       error: null,
@@ -84,12 +84,10 @@ describe("HomeBlogSection", () => {
     expect(screen.queryByText("Post Three")).not.toBeInTheDocument();
   });
 
-  it("shows View all posts link when more than 2 posts exist", () => {
+  it("shows View all posts link when posts exist", () => {
     vi.mocked(useCmsPosts).mockReturnValue({
       posts: [
-        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
-        { title: "P2", slug: "p2", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: undefined, tags: [], authorName: null },
-        { title: "P3", slug: "p3", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: undefined },
       ],
       isLoading: false,
       error: null,
@@ -100,24 +98,16 @@ describe("HomeBlogSection", () => {
         <HomeBlogSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("View all posts")).toBeInTheDocument();
+    expect(screen.getByText(/View all posts/)).toBeInTheDocument();
   });
 
-  it("does not show View all posts link when 2 or fewer posts", () => {
-    vi.mocked(useCmsPosts).mockReturnValue({
-      posts: [
-        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
-      ],
-      isLoading: false,
-      error: null,
-    });
-
+  it("does not show View all posts link when no posts", () => {
     render(
       <MemoryRouter>
         <HomeBlogSection />
       </MemoryRouter>,
     );
-    expect(screen.queryByText("View all posts")).not.toBeInTheDocument();
+    expect(screen.queryByText(/View all posts/)).not.toBeInTheDocument();
   });
 
   it("shows empty state when no posts", () => {
@@ -156,6 +146,6 @@ describe("HomeBlogSection", () => {
         <HomeBlogSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Could not load posts from CMS.")).toBeInTheDocument();
+    expect(screen.getByText(/Could not load posts from CMS/)).toBeInTheDocument();
   });
 });

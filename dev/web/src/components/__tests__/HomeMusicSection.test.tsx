@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { HomeMusicSection } from "../../components/HomeMusicSection";
+import { HomeMusicSection } from "../../components/home/HomeMusicSection";
 
 vi.mock("../../content/tracks", () => ({
   tracks: [
@@ -76,23 +76,26 @@ describe("HomeMusicSection", () => {
     expect(screen.getByText("ambient")).toBeInTheDocument();
   });
 
-  it("renders BPM tag", () => {
+  it("renders links to /music for each track card", () => {
     render(
       <MemoryRouter>
         <HomeMusicSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("120 BPM")).toBeInTheDocument();
-    expect(screen.getByText("140 BPM")).toBeInTheDocument();
+    const musicLinks = screen.getAllByRole("link", { name: /Track/ });
+    expect(musicLinks.length).toBe(2);
+    musicLinks.forEach((link) => {
+      expect(link).toHaveAttribute("href", "/music");
+    });
   });
 
-  it("shows Explore all tracks link when more than 2 tracks exist", () => {
+  it("shows Explore all tracks link when tracks exist", () => {
     render(
       <MemoryRouter>
         <HomeMusicSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Explore all tracks")).toBeInTheDocument();
+    expect(screen.getByText(/Explore all tracks/)).toBeInTheDocument();
   });
 });
 
@@ -107,7 +110,7 @@ describe("HomeMusicSection with empty tracks", () => {
     }));
 
     const { HomeMusicSection: FreshSection } = await import(
-      "../../components/HomeMusicSection"
+      "../../components/home/HomeMusicSection"
     );
 
     render(

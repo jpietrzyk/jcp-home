@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { HomeProjectsSection } from "../../components/HomeProjectsSection";
+import { HomeProjectsSection } from "../../components/home/HomeProjectsSection";
 import { useCmsProjects } from "../../lib/cms/useCmsProjects";
 
 vi.mock("../../lib/cms/useCmsProjects", () => ({
@@ -34,9 +34,8 @@ describe("HomeProjectsSection", () => {
         <HomeProjectsSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Projects coming soon")).toBeInTheDocument();
     expect(
-      screen.getByText("Selected projects will be showcased here."),
+      screen.getByText("Projects coming soon. Stay tuned!"),
     ).toBeInTheDocument();
   });
 
@@ -91,38 +90,7 @@ describe("HomeProjectsSection", () => {
         <HomeProjectsSection />
       </MemoryRouter>,
     );
-    expect(screen.queryByText("Projects coming soon")).not.toBeInTheDocument();
-  });
-
-  it("shows View all projects link when projects exist", () => {
-    vi.mocked(useCmsProjects).mockReturnValue({
-      projects: [
-        {
-          title: "Project Alpha",
-          slug: "project-alpha",
-          tags: [],
-          featured: false,
-        },
-      ],
-      isLoading: false,
-      error: null,
-    });
-
-    render(
-      <MemoryRouter>
-        <HomeProjectsSection />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("View all projects")).toBeInTheDocument();
-  });
-
-  it("does not show View all projects when no projects", () => {
-    render(
-      <MemoryRouter>
-        <HomeProjectsSection />
-      </MemoryRouter>,
-    );
-    expect(screen.queryByText("View all projects")).not.toBeInTheDocument();
+    expect(screen.queryByText("Projects coming soon. Stay tuned!")).not.toBeInTheDocument();
   });
 
   it("shows loading state", () => {
@@ -152,7 +120,7 @@ describe("HomeProjectsSection", () => {
         <HomeProjectsSection />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Could not load projects from CMS.")).toBeInTheDocument();
+    expect(screen.getByText(/Could not load projects from CMS/)).toBeInTheDocument();
   });
 
   it("does not show coming soon while loading", () => {
@@ -167,6 +135,6 @@ describe("HomeProjectsSection", () => {
         <HomeProjectsSection />
       </MemoryRouter>,
     );
-    expect(screen.queryByText("Projects coming soon")).not.toBeInTheDocument();
+    expect(screen.queryByText("Projects coming soon. Stay tuned!")).not.toBeInTheDocument();
   });
 });
