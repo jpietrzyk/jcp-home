@@ -198,31 +198,23 @@ export function MainLayout() {
                   Connect
                 </h3>
                 <div className="flex items-center gap-3">
-                  <a
-                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                    href={`mailto:${profile.email}`}
-                    aria-label="Email"
-                  >
-                    <Mail className="h-4 w-4" />
-                  </a>
-                  <a
-                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                    href={profile.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                  >
-                    <LinkedInIcon className="h-4 w-4" />
-                  </a>
-                  <a
-                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                    href={profile.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                  >
-                    <GitHubIcon className="h-4 w-4" />
-                  </a>
+                  {socialLinks.map((link) => {
+                    const Icon = link.icon;
+                    const isExternal = link.external;
+                    return (
+                      <a
+                        key={link.label}
+                        className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
+                        href={link.href}
+                        aria-label={link.label}
+                        {...(isExternal
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
+                      >
+                        <Icon className="h-4 w-4" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
