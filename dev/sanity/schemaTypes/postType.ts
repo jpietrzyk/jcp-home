@@ -20,7 +20,7 @@ export const postType = defineType({
     }),
     defineField({ name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3 }),
     defineField({ name: 'coverImage', title: 'Cover image', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'publishedAt', title: 'Published at', type: 'datetime' }),
+    defineField({ name: 'publishedAt', title: 'Published at', type: 'datetime', initialValue: () => new Date().toISOString() }),
     defineField({ name: 'updatedAt', title: 'Updated at', type: 'datetime' }),
     defineField({ name: 'author', title: 'Author', type: 'reference', to: [{ type: 'author' }] }),
     defineField({

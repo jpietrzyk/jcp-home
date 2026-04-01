@@ -8,7 +8,8 @@ const fallbackPosts: PostSummary[] = [
     title: 'Welcome to the Blog',
     slug: 'welcome-to-the-blog',
     excerpt: 'First sample post. Replace this with CMS content.',
-    publishedAt: '2026-03-09'
+    publishedAt: '2026-03-09',
+    coverImageUrl: undefined,
   }
 ];
 
@@ -23,8 +24,23 @@ function toPlainText(value: unknown): string {
 
 export async function getPosts(): Promise<PostSummary[]> {
   if (!sanityClient) return fallbackPosts;
-  const posts = await sanityClient.fetch<PostSummary[]>(postsQuery);
-  return posts ?? [];
+  try {
+    const posts = await sanityClient.fetch<SanityPost[]>(postsQuery);
+    if (!posts) return [];
+    return posts.map((p) => ({
+      title: p.title,
+      slug: p.slug,
+      excerpt: p.excerpt,
+      publishedAt: p.publishedAt ?? null,
+      coverImageUrl: p.coverImage
+        ? sanityImageUrl(p.coverImage)?.width(600).height(400).fit('crop').url()
+        : undefined,
+      tags: p.tags?.filter((t): t is string => typeof t === 'string'),
+      authorName: p.author ?? null,
+    }));
+  } catch {
+    return fallbackPosts;
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<PostDetails | null> {

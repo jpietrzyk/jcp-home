@@ -2,7 +2,10 @@ export const postsQuery = `*[_type == "post" && (!defined(isDraft) || isDraft ==
   title,
   "slug": slug.current,
   excerpt,
-  publishedAt
+  publishedAt,
+  coverImage,
+  "tags": tags[]->name,
+  "author": author->name
 }`;
 
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
