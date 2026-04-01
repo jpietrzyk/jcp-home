@@ -3,8 +3,9 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { HomePage } from "../HomePage";
 import { useCmsPage } from "../../lib/cms/useCmsPage";
+import { useCmsPosts } from "../../lib/cms/useCmsPosts";
+import { useCmsProjects } from "../../lib/cms/useCmsProjects";
 
-// Mock the useCmsPage hook
 vi.mock("../../lib/cms/useCmsPage", () => ({
   useCmsPage: vi.fn(() => ({
     page: {
@@ -19,7 +20,22 @@ vi.mock("../../lib/cms/useCmsPage", () => ({
   })),
 }));
 
-// Mock the profile content
+vi.mock("../../lib/cms/useCmsPosts", () => ({
+  useCmsPosts: vi.fn(() => ({
+    posts: [],
+    isLoading: false,
+    error: null,
+  })),
+}));
+
+vi.mock("../../lib/cms/useCmsProjects", () => ({
+  useCmsProjects: vi.fn(() => ({
+    projects: [],
+    isLoading: false,
+    error: null,
+  })),
+}));
+
 vi.mock("../../content/profile", () => ({
   profile: {
     location: "Test Location",
@@ -29,12 +45,16 @@ vi.mock("../../content/profile", () => ({
   },
 }));
 
+vi.mock("../../content/tracks", () => ({
+  tracks: [],
+}));
+
 describe("HomePage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it("renders page title", () => {
+  it("renders the hero section with page title", () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -43,7 +63,7 @@ describe("HomePage", () => {
     expect(screen.getByText("Test Home")).toBeInTheDocument();
   });
 
-  it("renders page subtitle", () => {
+  it("renders the hero section with subtitle", () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -52,90 +72,56 @@ describe("HomePage", () => {
     expect(screen.getByText("Test subtitle")).toBeInTheDocument();
   });
 
-  it("renders eyebrow text", () => {
+  it("renders the Latest Posts section heading", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Test eyebrow")).toBeInTheDocument();
+    expect(screen.getByText("Latest Posts")).toBeInTheDocument();
   });
 
-  it("renders profile location", () => {
+  it("renders the Music section heading", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Test Location")).toBeInTheDocument();
+    expect(screen.getByText("Music")).toBeInTheDocument();
   });
 
-  it("renders profile email", () => {
+  it("renders the Selected Projects section heading", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("test@example.com")).toBeInTheDocument();
+    expect(screen.getByText("Selected Projects")).toBeInTheDocument();
   });
 
-  it("renders LinkedIn link", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-    const linkedinLink = screen.getByText("LinkedIn");
-    expect(linkedinLink).toHaveAttribute("href", "https://linkedin.com/test");
-  });
-
-  it("renders GitHub link", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-    const githubLink = screen.getByText("GitHub");
-    expect(githubLink).toHaveAttribute("href", "https://github.com/test");
-  });
-
-  it("renders navigation buttons", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("View Resume")).toBeInTheDocument();
-    expect(screen.getByText("About Me")).toBeInTheDocument();
-    expect(screen.getByText("Read Blog")).toBeInTheDocument();
-  });
-
-  it("renders navigation links with correct hrefs", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-    const resumeLink = screen.getByText("View Resume").closest("a");
-    const aboutLink = screen.getByText("About Me").closest("a");
-    const blogLink = screen.getByText("Read Blog").closest("a");
-
-    expect(resumeLink).toHaveAttribute("href", "/about");
-    expect(aboutLink).toHaveAttribute("href", "/about");
-    expect(blogLink).toHaveAttribute("href", "/blog");
-  });
-
-  it("renders loading state", () => {
-    vi.mocked(useCmsPage).mockReturnValue({
-      page: {
-        title: "Home",
-        slug: "home",
-        subtitle: "Create home content in Sanity",
-        eyebrow: "CMS-driven content",
-        bodyPlainText:
-          "Add a Page document with slug 'home' in Sanity to manage this section.",
-      },
-      isLoading: true,
+  it("renders blog posts when available", () => {
+    vi.mocked(useCmsPosts).mockReturnValue({
+      posts: [
+        {
+          title: "Post One",
+          slug: "post-one",
+          excerpt: "First post",
+          publishedAt: "2024-01-01",
+          coverImageUrl: null,
+          tags: [],
+          authorName: "Author",
+        },
+        {
+          title: "Post Two",
+          slug: "post-two",
+          excerpt: "Second post",
+          publishedAt: "2024-01-02",
+          coverImageUrl: null,
+          tags: [],
+          authorName: "Author",
+        },
+      ],
+      isLoading: false,
       error: null,
     });
 
@@ -144,21 +130,23 @@ describe("HomePage", () => {
         <HomePage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Loading content...")).toBeInTheDocument();
+    expect(screen.getByText("Post One")).toBeInTheDocument();
+    expect(screen.getByText("Post Two")).toBeInTheDocument();
   });
 
-  it("renders error state", () => {
-    vi.mocked(useCmsPage).mockReturnValue({
-      page: {
-        title: "Home",
-        slug: "home",
-        subtitle: "Create home content in Sanity",
-        eyebrow: "CMS-driven content",
-        bodyPlainText:
-          "Add a Page document with slug 'home' in Sanity to manage this section.",
-      },
+  it("renders projects when available", () => {
+    vi.mocked(useCmsProjects).mockReturnValue({
+      projects: [
+        {
+          title: "Project A",
+          slug: "project-a",
+          slogan: "Slogan A",
+          tags: [],
+          featured: false,
+        },
+      ],
       isLoading: false,
-      error: new Error("Failed to fetch"),
+      error: null,
     });
 
     render(
@@ -166,8 +154,16 @@ describe("HomePage", () => {
         <HomePage />
       </MemoryRouter>,
     );
-    expect(
-      screen.getByText("Could not load CMS content. Showing fallback text."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Project A")).toBeInTheDocument();
+  });
+
+  it("renders navigation buttons in hero", () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("About Me")).toBeInTheDocument();
+    expect(screen.getByText("Read Blog")).toBeInTheDocument();
   });
 });
