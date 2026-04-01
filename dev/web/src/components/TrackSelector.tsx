@@ -1,6 +1,5 @@
 import { StrudelTrack } from "../content/tracks";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
+import { Card, CardContent } from "./ui/card";
 
 interface TrackSelectorProps {
   tracks: StrudelTrack[];
@@ -20,7 +19,7 @@ export function TrackSelector({
         {tracks.map((track) => (
           <Card
             key={track.id}
-            className={`cursor-pointer flex flex-col transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
+            className={`cursor-pointer transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-600 ${
               track.id === selectedTrackId
                 ? "border-stone-400 bg-light-200 dark:border-stone-400 dark:bg-dark-800/50"
                 : "border-stone-200/50 bg-light-100 dark:border-stone-700/30 dark:bg-dark-900/50"
@@ -31,7 +30,6 @@ export function TrackSelector({
                 e.preventDefault();
                 onSelect?.(track);
               } else if (e.key === " ") {
-                // Prevent page from scrolling, activation occurs on keyup to match native button behavior
                 e.preventDefault();
               }
             }}
@@ -45,35 +43,11 @@ export function TrackSelector({
             tabIndex={0}
             aria-pressed={track.id === selectedTrackId}
           >
-            <CardHeader className="pb-2">
-              <CardTitle className="text-[1rem]">{track.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-1 flex-col pb-0">
-              <div className="flex-1 space-y-2">
-                <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {track.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {track.tags?.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {track.bpm && (
-                    <span className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400">
-                      {track.bpm} BPM
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-center p-4">
-                <Button
-                  variant="default"
-                  size="sm"
-                  className="h-10 w-10 rounded-full p-0"
+            <CardContent className="p-3 space-y-1.5">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  className="flex-shrink-0 flex items-center justify-center h-7 w-7 rounded-full bg-amber-500 text-white hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     onPlay?.(track);
@@ -84,7 +58,7 @@ export function TrackSelector({
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="h-5 w-5"
+                    className="h-4 w-4"
                   >
                     <path
                       fillRule="evenodd"
@@ -92,8 +66,31 @@ export function TrackSelector({
                       clipRule="evenodd"
                     />
                   </svg>
-                </Button>
+                </button>
+                <span className="font-medium text-stone-900 dark:text-stone-100 truncate">
+                  {track.title}
+                </span>
               </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {track.tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {track.bpm && (
+                  <span className="rounded-full bg-stone-200/50 px-2 py-0.5 text-xs text-stone-600 dark:bg-dark-800/50 dark:text-stone-400">
+                    {track.bpm} BPM
+                  </span>
+                )}
+              </div>
+
+              <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2">
+                {track.description}
+              </p>
             </CardContent>
           </Card>
         ))}
