@@ -31,8 +31,8 @@ export type SanityPost = {
   excerpt: string;
   publishedAt: string | null;
   coverImage?: { asset: { _ref: string }; hotspot?: Record<string, unknown>; crop?: Record<string, unknown> };
-  tags?: { name: string }[];
-  author?: { name: string } | null;
+  tags?: string[];
+  author?: string | null;
   body?: TypedObject[];
 };
 
