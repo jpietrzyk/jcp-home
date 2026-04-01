@@ -67,7 +67,7 @@ describe("ResumeHeader", () => {
     );
     expect(screen.getByText("+48 123 456 789")).toBeInTheDocument();
     const link = screen.getByText("+48 123 456 789").closest("a");
-    expect(link).toHaveAttribute("href", "tel:+48 123 456 789");
+    expect(link).toHaveAttribute("href", "tel:+48123456789");
   });
 
   it("does not render phone when not provided", () => {

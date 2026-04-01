@@ -76,7 +76,7 @@ export function ResumeHeader({
             )}
             {contactData?.phone && (
               <a
-                href={`tel:${contactData.phone}`}
+                href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
                 className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
               >
                 <Phone className="w-4 h-4 text-stone-400 dark:text-stone-500" />
