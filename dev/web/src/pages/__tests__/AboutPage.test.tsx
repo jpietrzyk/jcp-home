@@ -123,7 +123,7 @@ describe("AboutPage", () => {
         slug: "about",
         subtitle: null,
         eyebrow: null,
-        body: null,
+        body: undefined,
         bodyPlainText: "Fallback text",
       },
       isLoading: false,
