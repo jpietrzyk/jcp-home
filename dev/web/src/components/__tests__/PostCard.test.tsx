@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import type { ReactElement } from "react";
 import { PostCard } from "../PostCard";
 
 const basePost = {
@@ -13,7 +14,7 @@ const basePost = {
   tags: ["React", "TypeScript"],
 };
 
-function renderWithRouter(ui: React.ReactElement) {
+function renderWithRouter(ui: ReactElement) {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 }
 

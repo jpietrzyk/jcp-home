@@ -24,19 +24,23 @@ function toPlainText(value: unknown): string {
 
 export async function getPosts(): Promise<PostSummary[]> {
   if (!sanityClient) return fallbackPosts;
-  const posts = await sanityClient.fetch<SanityPost[]>(postsQuery);
-  if (!posts) return [];
-  return posts.map((p) => ({
-    title: p.title,
-    slug: p.slug,
-    excerpt: p.excerpt,
-    publishedAt: p.publishedAt ?? null,
-    coverImageUrl: p.coverImage
-      ? sanityImageUrl(p.coverImage)?.width(600).height(400).fit('crop').url()
-      : undefined,
-    tags: p.tags?.filter(Boolean),
-    authorName: p.author ?? null,
-  }));
+  try {
+    const posts = await sanityClient.fetch<SanityPost[]>(postsQuery);
+    if (!posts) return [];
+    return posts.map((p) => ({
+      title: p.title,
+      slug: p.slug,
+      excerpt: p.excerpt,
+      publishedAt: p.publishedAt ?? null,
+      coverImageUrl: p.coverImage
+        ? sanityImageUrl(p.coverImage)?.width(600).height(400).fit('crop').url()
+        : undefined,
+      tags: p.tags?.filter((t): t is string => typeof t === 'string'),
+      authorName: p.author ?? null,
+    }));
+  } catch {
+    return fallbackPosts;
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<PostDetails | null> {

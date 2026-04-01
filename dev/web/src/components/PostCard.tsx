@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
+import { cn } from "@/lib/utils";
 import type { PostSummary } from "@/lib/cms/types";
 
 function formatDate(iso: string | null): string | null {
@@ -8,6 +9,7 @@ function formatDate(iso: string | null): string | null {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   });
 }
 
@@ -28,7 +30,7 @@ export function PostCard({
   const date = formatDate(publishedAt);
 
   return (
-    <Card className={`overflow-hidden h-full ${className ?? ""}`}>
+    <Card className={cn("overflow-hidden h-full", className)}>
       <Link to={`/blog/${slug}`} className="block group">
         {coverImageUrl ? (
           <div className="aspect-[3/2] w-full overflow-hidden">
