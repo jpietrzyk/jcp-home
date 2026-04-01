@@ -5,6 +5,9 @@ export type PostSummary = {
   slug: string;
   excerpt: string;
   publishedAt: string | null;
+  coverImageUrl?: string;
+  tags?: string[];
+  authorName?: string | null;
 };
 
 export type PostDetails = PostSummary & {
@@ -22,7 +25,14 @@ export type ContentPage = {
 };
 
 // Raw Sanity API response types (before transformation)
-export type SanityPost = PostSummary & {
+export type SanityPost = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  publishedAt: string | null;
+  coverImage?: { asset: { _ref: string }; hotspot?: Record<string, unknown>; crop?: Record<string, unknown> };
+  tags?: { name: string }[];
+  author?: { name: string } | null;
   body?: TypedObject[];
 };
 
