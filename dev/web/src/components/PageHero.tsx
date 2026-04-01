@@ -23,7 +23,7 @@ export function PageHero({ title, subtitle, children, className }: PageHeroProps
               </p>
             )}
           </div>
-          {children}
+          <div className="text-lg md:text-xl space-y-4">{children}</div>
         </div>
       </CardContent>
     </Card>
