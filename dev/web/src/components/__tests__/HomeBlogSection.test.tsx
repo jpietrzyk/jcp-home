@@ -36,7 +36,7 @@ describe("HomeBlogSection", () => {
           slug: "post-one",
           excerpt: "First post",
           publishedAt: "2024-01-01",
-          coverImageUrl: null,
+          coverImageUrl: undefined,
           tags: ["React"],
           authorName: "Author",
         },
@@ -45,7 +45,7 @@ describe("HomeBlogSection", () => {
           slug: "post-two",
           excerpt: "Second post",
           publishedAt: "2024-01-02",
-          coverImageUrl: null,
+          coverImageUrl: undefined,
           tags: [],
           authorName: "Author",
         },
@@ -66,9 +66,9 @@ describe("HomeBlogSection", () => {
   it("shows only first 2 posts when more than 2 available", () => {
     vi.mocked(useCmsPosts).mockReturnValue({
       posts: [
-        { title: "Post One", slug: "post-one", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: null, tags: [], authorName: null },
-        { title: "Post Two", slug: "post-two", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: null, tags: [], authorName: null },
-        { title: "Post Three", slug: "post-three", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: null, tags: [], authorName: null },
+        { title: "Post One", slug: "post-one", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "Post Two", slug: "post-two", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "Post Three", slug: "post-three", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: undefined, tags: [], authorName: null },
       ],
       isLoading: false,
       error: null,
@@ -87,9 +87,9 @@ describe("HomeBlogSection", () => {
   it("shows View all posts link when more than 2 posts exist", () => {
     vi.mocked(useCmsPosts).mockReturnValue({
       posts: [
-        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: null, tags: [], authorName: null },
-        { title: "P2", slug: "p2", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: null, tags: [], authorName: null },
-        { title: "P3", slug: "p3", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: null, tags: [], authorName: null },
+        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "P2", slug: "p2", excerpt: "", publishedAt: "2024-01-02", coverImageUrl: undefined, tags: [], authorName: null },
+        { title: "P3", slug: "p3", excerpt: "", publishedAt: "2024-01-03", coverImageUrl: undefined, tags: [], authorName: null },
       ],
       isLoading: false,
       error: null,
@@ -106,7 +106,7 @@ describe("HomeBlogSection", () => {
   it("does not show View all posts link when 2 or fewer posts", () => {
     vi.mocked(useCmsPosts).mockReturnValue({
       posts: [
-        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: null, tags: [], authorName: null },
+        { title: "P1", slug: "p1", excerpt: "", publishedAt: "2024-01-01", coverImageUrl: undefined, tags: [], authorName: null },
       ],
       isLoading: false,
       error: null,
