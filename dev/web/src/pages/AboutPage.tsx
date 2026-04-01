@@ -2,11 +2,8 @@ import { Briefcase, GraduationCap, Heart, FolderOpen } from "lucide-react";
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
 } from "../components/ui/card";
 import { AnimatedSection } from "../components/AnimatedSection";
-import { CmsPageContent } from "../components/CmsPageContent";
 import { PageTransition } from "../components/PageTransition";
 import { SectionHeading } from "../components/resume/SectionHeading";
 import { ResumeHeader } from "../components/resume/ResumeHeader";
@@ -20,7 +17,7 @@ import { useResume } from "../lib/cms/useResume";
 import { profile } from "../content/profile";
 
 export function AboutPage() {
-  const { page, isLoading, error } = useCmsPage("about", {
+  const { page } = useCmsPage("about", {
     fallback: {
       title: "About",
       slug: "about",
@@ -34,72 +31,13 @@ export function AboutPage() {
   return (
     <PageTransition>
       <section className="space-y-10">
-        <AnimatedSection>
-          <div className="space-y-6">
-            {page.eyebrow ? (
-              <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                {page.eyebrow}
-              </p>
-            ) : null}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl">{page.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CmsPageContent
-                  error={error}
-                  isLoading={isLoading}
-                  body={page.body}
-                  bodyPlainText={page.bodyPlainText}
-                  richTextClassName="prose prose-stone text-stone-800 dark:prose-invert"
-                  hideFirstHeadingMatching={page.title}
-                />
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Contact</CardTitle>
-              </CardHeader>
-              <CardContent className="grid gap-2 text-stone-700 dark:text-stone-300">
-                <p>
-                  <strong>Email:</strong>{" "}
-                  <a className="hover:underline" href={`mailto:${profile.email}`}>
-                    {profile.email}
-                  </a>
-                </p>
-                <p>
-                  <strong>LinkedIn:</strong>{" "}
-                  <a
-                    className="hover:underline"
-                    href={profile.linkedin}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {profile.linkedin}
-                  </a>
-                </p>
-                <p>
-                  <strong>GitHub:</strong>{" "}
-                  <a
-                    className="hover:underline"
-                    href={profile.github}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {profile.github}
-                  </a>
-                </p>
-                <p>
-                  <strong>Phone:</strong> {profile.phone}
-                </p>
-                <p>
-                  <strong>Location:</strong> {profile.location}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </AnimatedSection>
+        {page.eyebrow ? (
+          <AnimatedSection>
+            <p className="text-sm uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              {page.eyebrow}
+            </p>
+          </AnimatedSection>
+        ) : null}
 
         {isResumeLoading ? (
           <AnimatedSection delay={0.1}>

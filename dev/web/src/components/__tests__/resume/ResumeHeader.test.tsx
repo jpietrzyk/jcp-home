@@ -57,6 +57,26 @@ describe("ResumeHeader", () => {
     expect(screen.queryByText("LinkedIn")).not.toBeInTheDocument();
   });
 
+  it("renders phone as tel link", () => {
+    render(
+      <ResumeHeader
+        name="John Doe"
+        title="Dev"
+        contactData={{ ...contactData, phone: "+48 123 456 789" }}
+      />,
+    );
+    expect(screen.getByText("+48 123 456 789")).toBeInTheDocument();
+    const link = screen.getByText("+48 123 456 789").closest("a");
+    expect(link).toHaveAttribute("href", "tel:+48123456789");
+  });
+
+  it("does not render phone when not provided", () => {
+    render(
+      <ResumeHeader name="John Doe" title="Dev" contactData={contactData} />,
+    );
+    expect(screen.queryByText("+48 123 456 789")).not.toBeInTheDocument();
+  });
+
   it("does not render CV section when cvLinks is empty", () => {
     render(<ResumeHeader name="John Doe" title="Dev" cvLinks={[]} />);
     expect(screen.queryByText("CV")).not.toBeInTheDocument();

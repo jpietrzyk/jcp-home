@@ -12,7 +12,7 @@ vi.mock("../../lib/cms/useCmsPage", () => ({
       slug: "about",
       subtitle: null,
       eyebrow: "Get to know me",
-      body: null,
+      body: undefined,
       bodyPlainText: "Test about content",
     },
     isLoading: false,
@@ -98,15 +98,6 @@ describe("AboutPage", () => {
     vi.clearAllMocks();
   });
 
-  it("renders page title", () => {
-    render(
-      <MemoryRouter>
-        <AboutPage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("About")).toBeInTheDocument();
-  });
-
   it("renders eyebrow when present", () => {
     render(
       <MemoryRouter>
@@ -138,16 +129,27 @@ describe("AboutPage", () => {
     expect(screen.queryByText("Get to know me")).not.toBeInTheDocument();
   });
 
-  it("renders contact information", () => {
+  it("renders resume header with name, title, and contact data", () => {
     render(
       <MemoryRouter>
         <AboutPage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Contact")).toBeInTheDocument();
-    expect(screen.getAllByText("test@example.com").length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText("Test User")).toBeInTheDocument();
+    expect(screen.getByText("Test Title")).toBeInTheDocument();
+    expect(screen.getByText("test@example.com")).toBeInTheDocument();
     expect(screen.getByText("+48 123 456 789")).toBeInTheDocument();
-    expect(screen.getAllByText("Test City").length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText("Test City")).toBeInTheDocument();
+  });
+
+  it("renders CV download links", () => {
+    render(
+      <MemoryRouter>
+        <AboutPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("CV (EN)")).toBeInTheDocument();
+    expect(screen.getByText("CV (PL)")).toBeInTheDocument();
   });
 
   it("renders resume bio and skills on happy path", () => {

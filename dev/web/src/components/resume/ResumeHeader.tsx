@@ -1,4 +1,4 @@
-import { Mail, MapPin, Download, FileText } from "lucide-react";
+import { Mail, MapPin, Download, FileText, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { ContactData } from "@/lib/cms/types";
@@ -72,6 +72,15 @@ export function ResumeHeader({
               >
                 <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500" />
                 {contactData.email}
+              </a>
+            )}
+            {contactData?.phone && (
+              <a
+                href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
+                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                {contactData.phone}
               </a>
             )}
             {contactData?.linkedin && (
