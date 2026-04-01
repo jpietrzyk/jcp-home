@@ -153,9 +153,9 @@ export function MainLayout() {
           </div>
         </div>
         <footer className="border-t border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
-          <div className="mx-auto max-w-6xl px-4 py-6">
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-              <div className="flex items-center gap-4">
+          <div className="mx-auto max-w-6xl px-4 py-8 md:py-10">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-12">
+              <div className="flex flex-col justify-between">
                 <Link
                   to="/"
                   aria-label="JCP Home"
@@ -163,23 +163,24 @@ export function MainLayout() {
                 >
                   <JcpLogo className="h-6 w-auto" aria-hidden="true" />
                 </Link>
-                <span className="text-sm text-stone-600 dark:text-stone-400">
+                <span className="mt-4 text-sm text-stone-600 dark:text-stone-400">
                   © {new Date().getFullYear()} {profile.name}
                 </span>
               </div>
 
-              <nav className="flex items-center gap-4 text-sm">
-                {["About", "Blog", "Music"].map((label) => {
-                  const link = links.find((l) => l.label === label);
-                  if (!link) return null;
-                  return (
+              <div>
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                  Pages
+                </h3>
+                <nav className="flex flex-col gap-2">
+                  {links.map((link) => (
                     <NavLink
                       key={link.to}
                       to={link.to}
                       end={link.to === "/"}
                       className={({ isActive }) =>
                         cn(
-                          "transition-colors duration-300",
+                          "text-sm transition-colors duration-300",
                           isActive
                             ? "text-stone-900 dark:text-stone-100"
                             : "text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-300",
@@ -188,36 +189,41 @@ export function MainLayout() {
                     >
                       {link.label}
                     </NavLink>
-                  );
-                })}
-              </nav>
+                  ))}
+                </nav>
+              </div>
 
-              <div className="flex items-center gap-3">
-                <a
-                  className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                  href={`mailto:${profile.email}`}
-                  aria-label="Email"
-                >
-                  <Mail className="h-4 w-4" />
-                </a>
-                <a
-                  className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <LinkedInIcon className="h-4 w-4" />
-                </a>
-                <a
-                  className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
-                  href={profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <GitHubIcon className="h-4 w-4" />
-                </a>
+              <div>
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                  Connect
+                </h3>
+                <div className="flex items-center gap-3">
+                  <a
+                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
+                    href={`mailto:${profile.email}`}
+                    aria-label="Email"
+                  >
+                    <Mail className="h-4 w-4" />
+                  </a>
+                  <a
+                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
+                    href={profile.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedInIcon className="h-4 w-4" />
+                  </a>
+                  <a
+                    className="text-stone-600 hover:text-stone-900 transition-colors duration-300 dark:text-stone-400 dark:hover:text-stone-300"
+                    href={profile.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <GitHubIcon className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
