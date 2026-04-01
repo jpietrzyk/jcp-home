@@ -80,7 +80,7 @@ export function MainLayout() {
           <Link
             to="/"
             aria-label="JCP Home"
-            className="inline-flex items-center px-1.5 py-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
+            className="inline-flex items-center px-1.5 py-3 rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
           >
             <JcpLogo className="h-12 w-auto" aria-hidden="true" />
           </Link>
