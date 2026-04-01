@@ -71,7 +71,17 @@ describe("MusicPage", () => {
     expect(eyebrowParagraph).not.toBeInTheDocument();
   });
 
-  it("renders CMS body content via CmsPageContent", () => {
+  it("renders page title and subtitle via PageHero", () => {
+    render(
+      <MemoryRouter>
+        <MusicPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Music")).toBeInTheDocument();
+    expect(screen.getByText("Test subtitle")).toBeInTheDocument();
+  });
+
+  it("renders CMS body content in hero", () => {
     render(
       <MemoryRouter>
         <MusicPage />

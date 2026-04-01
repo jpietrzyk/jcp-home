@@ -1,8 +1,7 @@
 import { Mail, MapPin, Download, FileText, Phone } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import type { ContactData } from "@/lib/cms/types";
-import { cn } from "@/lib/utils";
 
 interface ResumeHeaderProps {
   name: string;
@@ -46,82 +45,69 @@ export function ResumeHeader({
   className,
 }: ResumeHeaderProps) {
   return (
-    <Card className={cn("overflow-hidden", className)}>
-      <CardContent className="p-6 md:p-8">
-        <div className="flex flex-col gap-4">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
-              {name}
-            </h1>
-            <p className="mt-2 text-lg md:text-xl text-amber-700 dark:text-amber-400 font-medium">
-              {title}
-            </p>
-          </div>
+    <PageHero title={name} subtitle={title} className={className}>
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-600 dark:text-stone-400">
+        {contactData?.location && (
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            {contactData.location}
+          </span>
+        )}
+        {contactData?.email && (
+          <a
+            href={`mailto:${contactData.email}`}
+            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+          >
+            <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            {contactData.email}
+          </a>
+        )}
+        {contactData?.phone && (
+          <a
+            href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
+            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+          >
+            <Phone className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            {contactData.phone}
+          </a>
+        )}
+        {contactData?.linkedin && (
+          <a
+            href={contactData.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+          >
+            <LinkedInIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            LinkedIn
+          </a>
+        )}
+        {contactData?.github && (
+          <a
+            href={contactData.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+          >
+            <GitHubIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+            GitHub
+          </a>
+        )}
+      </div>
 
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-600 dark:text-stone-400">
-            {contactData?.location && (
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-                {contactData.location}
-              </span>
-            )}
-            {contactData?.email && (
-              <a
-                href={`mailto:${contactData.email}`}
-                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-              >
-                <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-                {contactData.email}
+      {cvLinks && cvLinks.length > 0 && (
+        <div className="flex flex-wrap gap-3 mt-1">
+          {cvLinks.map((link) => (
+            <Button key={link.href} asChild size="sm">
+              <a href={link.href} rel="noopener noreferrer" target="_blank">
+                <FileText className="w-4 h-4 mr-1.5" />
+                {link.label}
+                <Download className="w-3.5 h-3.5 ml-1.5 opacity-70" />
               </a>
-            )}
-            {contactData?.phone && (
-              <a
-                href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
-                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-              >
-                <Phone className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-                {contactData.phone}
-              </a>
-            )}
-            {contactData?.linkedin && (
-              <a
-                href={contactData.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-              >
-                <LinkedInIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-                LinkedIn
-              </a>
-            )}
-            {contactData?.github && (
-              <a
-                href={contactData.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-              >
-                <GitHubIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-                GitHub
-              </a>
-            )}
-          </div>
-
-          {cvLinks && cvLinks.length > 0 && (
-            <div className="flex flex-wrap gap-3 mt-1">
-              {cvLinks.map((link) => (
-                <Button key={link.href} asChild size="sm">
-                  <a href={link.href} rel="noopener noreferrer" target="_blank">
-                    <FileText className="w-4 h-4 mr-1.5" />
-                    {link.label}
-                    <Download className="w-3.5 h-3.5 ml-1.5 opacity-70" />
-                  </a>
-                </Button>
-              ))}
-            </div>
-          )}
+            </Button>
+          ))}
         </div>
-      </CardContent>
-    </Card>
+      )}
+    </PageHero>
   );
 }
