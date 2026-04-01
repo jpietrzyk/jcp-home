@@ -4,6 +4,7 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { PageTransition } from "../components/PageTransition";
 import { SectionHeading } from "../components/resume/SectionHeading";
 import { PageHero } from "../components/PageHero";
+import { CmsPageContent } from "../components/CmsPageContent";
 import { StrudelPlayer } from "../components/StrudelPlayer";
 import { TrackSelector } from "../components/TrackSelector";
 import {
@@ -14,7 +15,7 @@ import { tracks, StrudelTrack } from "../content/tracks";
 import { useCmsPage } from "../lib/cms/useCmsPage";
 
 export function MusicPage() {
-  const { page } = useCmsPage("music", {
+  const { page, isLoading, error } = useCmsPage("music", {
     fallback: {
       title: "Music",
       slug: "music",
@@ -53,7 +54,18 @@ export function MusicPage() {
         ) : null}
 
         <AnimatedSection delay={0.1}>
-          <PageHero title={page.title} subtitle={page.subtitle} />
+          <PageHero title={page.title} subtitle={page.subtitle}>
+            <CmsPageContent
+              error={error}
+              isLoading={isLoading}
+              body={page.body}
+              bodyPlainText={page.bodyPlainText}
+              richTextClassName="prose prose-stone text-stone-600 dark:prose-invert"
+              hideFirstHeadingMatching={page.title}
+              errorClassName="text-amber-600 dark:text-amber-500"
+              loadingClassName="text-stone-500 dark:text-stone-500"
+            />
+          </PageHero>
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>

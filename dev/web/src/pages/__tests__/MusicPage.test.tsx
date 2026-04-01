@@ -81,6 +81,15 @@ describe("MusicPage", () => {
     expect(screen.getByText("Test subtitle")).toBeInTheDocument();
   });
 
+  it("renders CMS body content in hero", () => {
+    render(
+      <MemoryRouter>
+        <MusicPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Test body content")).toBeInTheDocument();
+  });
+
   it("renders Tracks section heading", () => {
     render(
       <MemoryRouter>
