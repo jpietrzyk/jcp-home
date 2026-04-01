@@ -1,22 +1,12 @@
-import { Link } from "react-router-dom";
 import { Newspaper } from "lucide-react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { PageTransition } from "../components/PageTransition";
 import { PageHero } from "../components/PageHero";
 import { CmsPageContent } from "../components/CmsPageContent";
 import { SectionHeading } from "../components/resume/SectionHeading";
-import { Card, CardContent } from "../components/ui/card";
+import { PostCard } from "../components/PostCard";
 import { useCmsPosts } from "../lib/cms/useCmsPosts";
 import { useCmsPage } from "../lib/cms/useCmsPage";
-
-function formatDate(iso: string | null): string | null {
-  if (!iso) return null;
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 export function BlogListPage() {
   const { page, isLoading: isPageLoading, error: pageError } = useCmsPage("blog", {
@@ -72,55 +62,11 @@ export function BlogListPage() {
           ) : null}
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {posts.map((post, index) => {
-              const date = formatDate(post.publishedAt);
-              return (
-                <AnimatedSection key={post.slug} delay={0.1 * index}>
-                  <Card className="overflow-hidden h-full">
-                    <Link to={`/blog/${post.slug}`} className="block group">
-                      {post.coverImageUrl ? (
-                        <div className="aspect-[3/2] w-full overflow-hidden">
-                          <img
-                            src={post.coverImageUrl}
-                            alt={post.title}
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : null}
-                      <CardContent className="p-5 md:p-6 space-y-2">
-                        <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 group-hover:underline">
-                          {post.title}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-stone-500 dark:text-stone-400">
-                          {date ? <span>{date}</span> : null}
-                          {post.authorName ? (
-                            <span>by {post.authorName}</span>
-                          ) : null}
-                        </div>
-                        {post.excerpt ? (
-                          <p className="text-sm text-stone-600 dark:text-stone-400 line-clamp-3">
-                            {post.excerpt}
-                          </p>
-                        ) : null}
-                        {post.tags && post.tags.length > 0 ? (
-                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                            {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="inline-flex items-center rounded-md bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        ) : null}
-                      </CardContent>
-                    </Link>
-                  </Card>
-                </AnimatedSection>
-              );
-            })}
+            {posts.map((post, index) => (
+              <AnimatedSection key={post.slug} delay={0.1 * index}>
+                <PostCard {...post} />
+              </AnimatedSection>
+            ))}
           </div>
 
           {posts.length === 0 && !isPostsLoading ? (
