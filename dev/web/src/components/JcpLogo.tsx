@@ -7,7 +7,7 @@ export function JcpLogo({ className, ...rest }: JcpLogoProps) {
   return (
   <svg
     className={className}
-    viewBox="0 0 240 48"
+    viewBox="0 0 200 48"
     fill="none"
     role="img"
     aria-hidden={hasLabel ? undefined : (rest["aria-hidden"] as boolean | undefined) ?? true}

@@ -43,7 +43,7 @@ export function StrudelPlayer({ code, bpm }: StrudelPlayerProps) {
         <a
           href={strudelUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="ml-auto text-sm text-stone-600 hover:text-stone-900 hover:underline dark:text-stone-400 dark:hover:text-stone-200"
         >
           Open in Strudel.cc →

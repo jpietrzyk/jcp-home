@@ -120,7 +120,7 @@ describe("HomePage", () => {
     const aboutLink = screen.getByText("About Me").closest("a");
     const blogLink = screen.getByText("Read Blog").closest("a");
 
-    expect(resumeLink).toHaveAttribute("href", "/resume");
+    expect(resumeLink).toHaveAttribute("href", "/about");
     expect(aboutLink).toHaveAttribute("href", "/about");
     expect(blogLink).toHaveAttribute("href", "/blog");
   });

@@ -65,7 +65,7 @@ export function HomePage() {
                 <a
                   className="hover:text-stone-900 hover:underline transition-all duration-300 dark:hover:text-stone-200"
                   href={profile.linkedin}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   LinkedIn
@@ -73,7 +73,7 @@ export function HomePage() {
                 <a
                   className="hover:text-stone-900 hover:underline transition-all duration-300 dark:hover:text-stone-200"
                   href={profile.github}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   GitHub
@@ -82,7 +82,7 @@ export function HomePage() {
             </AnimatedSection>
             <AnimatedSection delay={0.5}>
               <div className="flex flex-wrap gap-3">
-                <Link to="/resume">
+                <Link to="/about">
                   <Button>View Resume</Button>
                 </Link>
                 <Link to="/about">
