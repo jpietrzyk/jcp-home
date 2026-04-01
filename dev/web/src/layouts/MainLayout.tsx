@@ -55,18 +55,21 @@ const socialLinks = [
     label: "LinkedIn",
     icon: LinkedInIcon,
     ariaLabel: "LinkedIn Profile",
+    external: true,
   },
   {
     href: profile.github,
     label: "GitHub",
     icon: GitHubIcon,
     ariaLabel: "GitHub Profile",
+    external: true,
   },
   {
     href: `mailto:${profile.email}`,
     label: "Email",
     icon: Mail,
     ariaLabel: "Send Email",
+    external: false,
   },
 ];
 
