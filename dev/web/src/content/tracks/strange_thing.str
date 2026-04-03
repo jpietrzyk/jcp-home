@@ -1,0 +1,36 @@
+---
+id: stranger
+title: Strange Thing
+description: Some weird music for a funeral, but it's a fun funeral, so it's not sad.
+cpm: 35
+tags:
+  - funny
+  - dead
+---
+
+setcpm(140/4)
+
+_pianos: stack(
+  n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").gain(square.range(.4, .8).slow(4)).room(".5").roomsize("1.5"),
+  n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(sine.range(.6, .3).slow(2))
+    .room(.8).roomsize(1.5).delay(.1),
+  n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").attack(.03).gain(sine.range(.3, .6).slow(2))
+    .room(1).roomsize(2)
+)
+
+_bgPianos: stack(
+  n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").attack(.09).gain("<.5@2 .7@2 .5@2 .6@2>"),
+  n("<-4@2 -5@2 2@2 3@2>").scale("C:minor").s("piano").attack(.01).gain("<.5@2 .7@2 .5@2 .6@2>").room(1).roomsize(1.5)
+)
+
+poly: stack(
+  n("<10 [11 12] [13] 13 11 [12 9] 10 11>"),
+  n("<-4 -4 -5 -5 -5 -5 -4 -4>!8")
+).scale("C:minor").s("gm_pad_poly").orbit(1).clip(1).room(1).roomsize(.5).delay(.1).postgain(.4)
+
+background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine, sawtooth").attack(.5).clip(1.1).postgain(.2)
+
+_lead: n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 17 14] [~ ~ 13 ~] [~ 14 17 13] [~ ~ 11 ~] [~ 14@2 12]>").scale("C:minor").s("supersaw:2, sawtooth:2, sine:3, triangle:0:.3")
+  .orbit(2).room("1").roomsize(".5").clip(sine.range(.5, 1)).delay(".5")
+  // .jux(rev)
+  .postgain(".3")

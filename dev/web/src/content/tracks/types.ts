@@ -4,5 +4,6 @@ export interface StrudelTrack {
   description: string;
   code: string;
   bpm?: number;
+  cpm?: number;
   tags?: string[];
 }
