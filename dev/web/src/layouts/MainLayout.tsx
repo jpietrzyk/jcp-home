@@ -175,7 +175,7 @@ export function MainLayout() {
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   Pages
                 </h3>
-                <nav className="flex flex-col gap-2">
+                <nav className="grid grid-cols-2 gap-x-6 gap-y-2">
                   {links.map((link) => (
                     <NavLink
                       key={link.to}
