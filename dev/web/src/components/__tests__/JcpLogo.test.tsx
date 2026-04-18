@@ -3,60 +3,48 @@ import { render } from "@testing-library/react";
 import { JcpLogo } from "../JcpLogo";
 
 describe("JcpLogo", () => {
-  it("renders an SVG with role img", () => {
+  it("renders an img with the logo src", () => {
     const { container } = render(<JcpLogo />);
-    const svg = container.querySelector("svg");
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute("role", "img");
+    const img = container.querySelector("img");
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src");
   });
 
   it("defaults to aria-hidden when no label provided", () => {
     const { container } = render(<JcpLogo />);
-    const svg = container.querySelector("svg");
-    expect(svg).toHaveAttribute("aria-hidden", "true");
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("aria-hidden", "true");
   });
 
   it("sets aria-hidden to undefined when aria-label is provided", () => {
     const { container } = render(<JcpLogo aria-label="jcp.home" />);
-    const svg = container.querySelector("svg");
-    expect(svg).toHaveAttribute("aria-label", "jcp.home");
-    expect(svg).not.toHaveAttribute("aria-hidden");
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("aria-label", "jcp.home");
+    expect(img).not.toHaveAttribute("aria-hidden");
   });
 
   it("sets aria-hidden to undefined when aria-labelledby is provided", () => {
     const { container } = render(<JcpLogo aria-labelledby="logo-title" />);
-    const svg = container.querySelector("svg");
-    expect(svg).toHaveAttribute("aria-labelledby", "logo-title");
-    expect(svg).not.toHaveAttribute("aria-hidden");
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("aria-labelledby", "logo-title");
+    expect(img).not.toHaveAttribute("aria-hidden");
   });
 
   it("applies custom className", () => {
     const { container } = render(<JcpLogo className="h-8 w-auto" />);
-    const svg = container.querySelector("svg");
-    expect(svg).toHaveClass("h-8", "w-auto");
+    const img = container.querySelector("img");
+    expect(img).toHaveClass("h-8", "w-auto");
   });
 
-  it("renders text elements with correct content", () => {
+  it("has an empty alt attribute by default", () => {
     const { container } = render(<JcpLogo />);
-    const texts = container.querySelectorAll("text");
-    expect(texts).toHaveLength(3);
-    expect(texts[0].textContent).toBe("jcp");
-    expect(texts[1].textContent).toBe("-");
-    expect(texts[2].textContent).toBe("haven");
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("alt", "");
   });
 
-  it("renders decorative elements (path and circle)", () => {
-    const { container } = render(<JcpLogo />);
-    expect(container.querySelector("path")).toBeInTheDocument();
-    expect(container.querySelector("circle")).toBeInTheDocument();
-  });
-
-  it("applies light and dark fill classes to text elements", () => {
-    const { container } = render(<JcpLogo />);
-    const texts = container.querySelectorAll("text");
-    expect(texts[0].className.baseVal).toContain("fill-logo-ink");
-    expect(texts[0].className.baseVal).toContain("dark:fill-logo-ink-dark");
-    expect(texts[1].className.baseVal).toContain("fill-logo-accent");
-    expect(texts[1].className.baseVal).toContain("dark:fill-logo-accent-dark");
+  it("allows overriding the alt attribute", () => {
+    const { container } = render(<JcpLogo alt="JCP Home logo" />);
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("alt", "JCP Home logo");
   });
 });
