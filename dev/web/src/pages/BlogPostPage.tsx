@@ -53,7 +53,7 @@ export function BlogPostPage() {
           <CmsRichText
             body={post.body}
             bodyPlainText={post.bodyPlainText}
-            className="prose prose-stone text-stone-800 dark:prose-invert"
+            className="prose prose-stone dark:prose-invert"
             hideFirstHeadingMatching={post.title}
           />
         </CardContent>
