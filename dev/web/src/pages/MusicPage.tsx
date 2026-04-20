@@ -60,7 +60,7 @@ export function MusicPage() {
               isLoading={isLoading}
               body={page.body}
               bodyPlainText={page.bodyPlainText}
-              richTextClassName="prose prose-stone text-stone-600 dark:prose-invert"
+              richTextClassName="prose prose-stone dark:prose-invert"
               hideFirstHeadingMatching={page.title}
               errorClassName="text-amber-600 dark:text-amber-500"
               loadingClassName="text-stone-500 dark:text-stone-500"
