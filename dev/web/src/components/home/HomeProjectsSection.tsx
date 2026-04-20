@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Briefcase } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 import { SectionHeading } from "../resume/SectionHeading";
@@ -32,7 +33,20 @@ export function HomeProjectsSection() {
             </AnimatedSection>
           ))}
         </div>
-      ) : !isLoading ? (
+      ) : null}
+
+      {projects.length > 0 && (
+        <AnimatedSection delay={0.3}>
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-1.5 text-sm text-amber-700 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300 transition-colors mt-4"
+          >
+            Explore all projects &rarr;
+          </Link>
+        </AnimatedSection>
+      )}
+
+      {projects.length === 0 && !isLoading ? (
         <AnimatedSection>
           <Card>
             <CardContent className="p-6 text-center">
