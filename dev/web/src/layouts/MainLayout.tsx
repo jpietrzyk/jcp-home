@@ -79,13 +79,13 @@ export function MainLayout() {
   return (
     <SidebarProvider>
       <Sidebar className="border-r border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
-        <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30">
+        <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30 flex items-center justify-center px-4 pt-8 pb-4">
           <Link
             to="/"
             aria-label="JCP Home"
-            className="inline-flex items-center px-1.5 py-3 rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
+            className="w-3/4 inline-flex items-center justify-center rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
           >
-            <JcpLogo className="h-12 w-auto" aria-hidden="true" />
+            <JcpLogo variant="tertiary" className="h-auto w-full" aria-hidden="true" />
           </Link>
         </SidebarHeader>
         <SidebarContent>
@@ -159,12 +159,15 @@ export function MainLayout() {
           <div className="mx-auto max-w-6xl px-4 py-8 md:py-10">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-12">
               <div className="flex flex-col justify-between">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                  jcp-haven.cc
+                </h3>
                 <Link
                   to="/"
                   aria-label="JCP Home"
                   className="inline-flex items-center px-1.5 py-1 rounded-md hover:bg-stone-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:hover:bg-stone-800/60 dark:focus-visible:ring-offset-dark-900"
                 >
-                  <JcpLogo variant="tertiary" className="h-6 w-auto" aria-hidden="true" />
+                  <JcpLogo variant="tertiary" className="h-8 w-auto" aria-hidden="true" />
                 </Link>
                 <span className="mt-4 text-sm text-stone-600 dark:text-stone-400">
                   © {new Date().getFullYear()} {profile.name}
