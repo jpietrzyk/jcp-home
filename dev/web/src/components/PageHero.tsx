@@ -11,8 +11,8 @@ interface PageHeroProps {
 export function PageHero({ title, subtitle, children, className }: PageHeroProps) {
   return (
     <Card className={cn("overflow-hidden", className)}>
-      <CardContent className="p-6 md:p-8">
-        <div className="flex flex-col gap-4">
+      <CardContent className="p-8 md:p-10">
+        <div className="flex flex-col gap-8">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
               {title}
@@ -23,7 +23,7 @@ export function PageHero({ title, subtitle, children, className }: PageHeroProps
               </p>
             )}
           </div>
-          <div className="text-lg md:text-xl space-y-4">{children}</div>
+          <div className="text-lg md:text-xl leading-relaxed space-y-8">{children}</div>
         </div>
       </CardContent>
     </Card>

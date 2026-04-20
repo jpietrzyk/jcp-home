@@ -1,7 +1,7 @@
 {
-  "name": "jcp-home",
+  "name": "jcp-haven",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "Personal website with Sanity CMS integration",
   "scripts": {
     "dev": "npm run dev:web",
