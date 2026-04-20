@@ -5,6 +5,7 @@ import { BlogListPage } from "./pages/BlogListPage";
 import { BlogPostPage } from "./pages/BlogPostPage";
 import { HomePage } from "./pages/HomePage";
 import { MusicPage } from "./pages/MusicPage";
+import { ContactPage } from "./pages/ContactPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 export const router = createBrowserRouter([
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "blog", element: <BlogListPage /> },
       { path: "blog/:slug", element: <BlogPostPage /> },
       { path: "music", element: <MusicPage /> },
+      { path: "contact", element: <ContactPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

@@ -47,6 +47,7 @@ const links = [
   { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/blog", label: "Blog", icon: BookOpen },
   { to: "/music", label: "Music", icon: Music },
+  { to: "/contact", label: "Contact", icon: Mail },
 ];
 
 const socialLinks = [
