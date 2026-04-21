@@ -39,7 +39,7 @@ export function HomeAboutSection() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <p className="text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl">
+        <p className="text-stone-600 dark:text-stone-400 leading-relaxed">
           {profile.about}
         </p>
       </AnimatedSection>

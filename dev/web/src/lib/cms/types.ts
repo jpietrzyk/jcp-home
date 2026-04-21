@@ -44,6 +44,23 @@ export type SanityPage = {
   body?: TypedObject[];
 };
 
+export type ProjectsPageData = {
+  title: string;
+  slug: string;
+  subtitle?: string | null;
+  eyebrow?: string | null;
+  bodyPlainText: string;
+  body?: TypedObject[];
+};
+
+export type SanityProjectsPage = {
+  title: string;
+  slug: string;
+  subtitle?: string | null;
+  eyebrow?: string | null;
+  body?: TypedObject[];
+};
+
 // Resume types
 export type Experience = {
   company: string;

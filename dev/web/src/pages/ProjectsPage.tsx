@@ -6,15 +6,15 @@ import { CmsPageContent } from "../components/CmsPageContent";
 import { SectionHeading } from "../components/resume/SectionHeading";
 import { ProjectCard } from "../components/ProjectCard";
 import { useCmsProjects } from "../lib/cms/useCmsProjects";
-import { useCmsPage } from "../lib/cms/useCmsPage";
+import { useCmsProjectsPage } from "../lib/cms/useCmsProjectsPage";
 
 export function ProjectsPage() {
-  const { page, isLoading: isPageLoading, error: pageError } = useCmsPage("projects", {
+  const { page, isLoading: isPageLoading, error: pageError } = useCmsProjectsPage({
     fallback: {
       title: "Projects",
       slug: "projects",
       subtitle: "A selection of projects I've worked on.",
-      eyebrow: null,
+      eyebrow: "Portfolio",
       bodyPlainText: "",
     },
   });

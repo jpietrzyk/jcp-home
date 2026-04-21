@@ -1,5 +1,5 @@
-import type { ContentPage, PostDetails, PostSummary, Resume, SanityPost, SanityPage, SanityResume, ShowcaseProject, SanityShowcaseProject } from './types';
-import { pageBySlugQuery, postBySlugQuery, postsQuery, resumeQuery, showcaseProjectsQuery } from './queries';
+import type { ContentPage, PostDetails, PostSummary, ProjectsPageData, Resume, SanityPost, SanityPage, SanityProjectsPage, SanityResume, ShowcaseProject, SanityShowcaseProject } from './types';
+import { pageBySlugQuery, postBySlugQuery, postsQuery, projectsPageQuery, resumeQuery, showcaseProjectsQuery } from './queries';
 import { sanityClient } from './sanity.client';
 import { sanityImageUrl } from './sanityImage';
 
@@ -70,6 +70,24 @@ export async function getPageBySlug(slug: string): Promise<ContentPage | null> {
   }
 
   const page = await sanityClient.fetch<SanityPage | null>(pageBySlugQuery, { slug });
+  if (!page) return null;
+
+  return {
+    title: page.title,
+    slug: page.slug,
+    subtitle: page.subtitle ?? null,
+    eyebrow: page.eyebrow ?? null,
+    bodyPlainText: toPlainText(page.body),
+    body: Array.isArray(page.body) ? page.body : []
+  };
+}
+
+export async function getProjectsPage(): Promise<ProjectsPageData | null> {
+  if (!sanityClient) {
+    return null;
+  }
+
+  const page = await sanityClient.fetch<SanityProjectsPage | null>(projectsPageQuery);
   if (!page) return null;
 
   return {
