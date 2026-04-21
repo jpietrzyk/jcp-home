@@ -41,9 +41,9 @@ export function ResumeJobExperience({
         className,
       )}
     >
-      <CardContent className="p-5 md:p-6 space-y-3">
+      <CardContent className="p-5 md:p-6 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
-          <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+          <h3 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
             {position}
           </h3>
           <span className="inline-flex items-center gap-1.5 text-sm text-stone-500 dark:text-stone-400 shrink-0">
@@ -71,13 +71,13 @@ export function ResumeJobExperience({
         </div>
 
         {achievements && achievements.length > 0 && (
-          <ul className="space-y-1.5 pt-1">
+          <ul className="space-y-2 pt-2">
             {achievements.map((achievement, index) => (
               <li
                 key={index}
-                className="flex items-start gap-2 text-sm text-stone-600 dark:text-stone-400"
+                className="flex items-start gap-2 text-base text-stone-600 dark:text-stone-400"
               >
-                <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0 text-amber-600 dark:text-amber-500" />
+                <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0 text-amber-600 dark:text-amber-500" />
                 <span>{achievement}</span>
               </li>
             ))}

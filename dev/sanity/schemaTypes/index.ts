@@ -4,6 +4,7 @@ import { educationType } from './educationType';
 import { experienceType } from './experienceType';
 import { pageType } from './pageType';
 import { postType } from './postType';
+import { projectsPageType } from './projectsPageType';
 import { projectType } from './projectType';
 import { resumeType } from './resumeType';
 import { showcaseProjectType } from './showcaseProjectType';
@@ -22,6 +23,7 @@ export const schemaTypes = [
   educationType,
   volunteerExperienceType,
   projectType,
+  projectsPageType,
   showcaseProjectType,
   contactDataType
 ];

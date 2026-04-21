@@ -84,7 +84,7 @@ export function AboutPage() {
                 <AnimatedSection>
                   <SectionHeading icon={Briefcase} title="Work Experience" />
                 </AnimatedSection>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {resume.experience.map((exp, index) => (
                     <AnimatedSection key={index} delay={0.05 * index}>
                       <ResumeJobExperience
