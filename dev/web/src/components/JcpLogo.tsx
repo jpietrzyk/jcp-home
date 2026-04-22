@@ -1,16 +1,14 @@
 import * as React from "react";
-import logo1Url from "@/assets/logo-1.svg";
-import logo2Url from "@/assets/jcp-logo-2.svg";
-import logo3Url from "@/assets/jcp-logo3.svg";
+import logoUrl from "@/assets/jcp-logo.svg";
 
 type JcpLogoProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   variant?: "default" | "secondary" | "tertiary";
 };
 
 const variantSrc = {
-  default: logo1Url,
-  secondary: logo2Url,
-  tertiary: logo3Url,
+  default: logoUrl,
+  secondary: logoUrl,
+  tertiary: logoUrl,
 };
 
 export function JcpLogo({ className, variant = "default", ...rest }: JcpLogoProps) {
