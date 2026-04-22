@@ -53,13 +53,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       });
     }
     return (
-      <motion.button
+      <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...(props as React.ComponentPropsWithoutRef<typeof motion.button>)}
+        {...props}
       >
         {children}
-      </motion.button>
+      </button>
     );
   },
 );
