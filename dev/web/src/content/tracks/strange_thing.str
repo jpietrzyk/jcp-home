@@ -10,31 +10,36 @@ tags:
 
 setcpm(35)
 
-pianos: stack(
+_pianos: stack(
   n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").gain(square.range(.4, .8).slow(4)).room(".5").roomsize("1.5"),
   n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(sine.range(.6, .3).slow(2))
     .room(.8).roomsize(1.5).delay(.1),
   n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").attack(.03).gain(sine.range(.3, .6).slow(2))
     .room(1).roomsize(2)
-).hpf(sine.range(500, 700).slow(4)).hpq(7).postgain(.5)
+).hpf(sine.range(100, 300).slow(4)).hpq(1).postgain(.7)
 
-bgPianos: stack(
-  n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").attack(.09).gain("<.5@2 .7@2 .5@2 .6@2>"),
-  n("<-4@2 -5@2 2@2 3@2>").scale("C:minor").s("piano").attack(.01).gain("<.5@2 .7@2 .5@2 .6@2>").room(1).roomsize(1.5)
-).lpf(1500).lpq(5).postgain(.7)
+_bgPianos: stack(
+  n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").attack(.09).gain("<.5@2 .4@2 .5@2 .6@2>"),
+  n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("piano").attack(.01).gain("<.5@2 .6@2 .4@2 .4@2>").room(1).roomsize(1.5)
+).lpf(2000).lpq(5).postgain(.7)
 
-poly: stack(
+_poly: stack(
   n("<10 [11 12] [13] 13 11 [12 9] 10 11>").gain(sine.range(.5, .8).slow(4)),
   n("<-4 -4 -5 -5 -5 -5 -4 -4>").struct("{<[1*8]>}").gain(rand.range(.7, 1))
 ).scale("C:minor").s("gm_pad_poly").orbit(1).clip(1).room(1).roomsize(.5).delay(.1)
-  .postgain(.5)
+  .postgain(.7)
 
-background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine:1, sawtooth, supersaw:1").attack(.5)
-  .lpf(2000).clip(1.1)
-  .postgain(.4)
+background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine, supersaw:1, sawtooth:0, square:1:.5").attack(1)
+  .lpf(2300).clip(1.2).decay(8.2).room(1).roomsize(4).delay(.3)
+  .postgain(.35)
 
-lead: n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 17 14] [~ ~ 13 ~] [~ 14 17 13] [~ ~ 11 ~] [~ 14@2 12]>").scale("C:minor").s("supersaw:2, sawtooth:2, sine:3, triangle:0:.3")
-  // .struct("{[1 1 1 1 1 [1 1] 1 [0 1]]}")
-  // .orbit(2).room("1").roomsize(".5").clip(sine.range(.5, 1)).delay(".5")
-  // .jux(rev)
-  .postgain(".5")
+_lead: n("<[~ 14] [~ ~ 17 14] [~ 14] [~ ~ 17 14] [~ 13] [~ ~ 17 13] [~ 11] [~ ~ 14 12]>").scale("C:minor").s("supersaw:2, sawtooth:2, sine:3, triangle:0:.3")
+  .struct("{<[1 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] >}%2")
+  // .struct("{[0 0 [0 1] [0 1] [1 1] [0 1] [1 0] [1 1]]}/2")
+  .orbit(2).pan(rand.fast(4)).clip(rand.range(.4, .7)).decay(8).room("1").roomsize(".5").delay(".5")
+  .lpf(sine.range(3500, 6500).fast(2)).lpq(1)
+  .jux(rev)
+  .postgain(".3")
+
+_kicks: s("<[bd:8 ~ bd:8 ~] [~ ~ bd:8 ~] [bd:8 ~ bd:8 bd:8] [~ bd:8 ~ bd:8]>*2").gain(.5)
+_snares: s("<[~ akaimpc60_sd]>").gain(rand.range(.15, .25)).delay(".2:.2:.2").room(.4).roomsize(.5)
