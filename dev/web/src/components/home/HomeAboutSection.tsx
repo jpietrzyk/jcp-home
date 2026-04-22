@@ -3,6 +3,7 @@ import { Mail, MapPin, User } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 import { SectionHeading } from "../resume/SectionHeading";
 import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
 import { profile } from "../../content/profile";
 
 function LinkedInIcon({ className }: { className?: string }) {
@@ -39,54 +40,54 @@ export function HomeAboutSection() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <p className="text-stone-600 dark:text-stone-400 leading-relaxed">
-          {profile.about}
-        </p>
-      </AnimatedSection>
+        <Card>
+          <CardContent className="p-5 md:p-6 space-y-2">
+            <p className="text-stone-600 dark:text-stone-400 leading-relaxed">
+              {profile.about}
+            </p>
 
-      <AnimatedSection delay={0.2}>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-600 dark:text-stone-400 mt-4">
-          <span className="inline-flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            {profile.location}
-          </span>
-          <a
-            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-            href={`mailto:${profile.email}`}
-          >
-            <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            {profile.email}
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-            href={profile.linkedin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <LinkedInIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            LinkedIn
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-            href={profile.github}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <GitHubIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
-            GitHub
-          </a>
-        </div>
-      </AnimatedSection>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-600 dark:text-stone-400 pt-2">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                {profile.location}
+              </span>
+              <a
+                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+                href={`mailto:${profile.email}`}
+              >
+                <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                {profile.email}
+              </a>
+              <a
+                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+                href={profile.linkedin}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <LinkedInIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                LinkedIn
+              </a>
+              <a
+                className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+                href={profile.github}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <GitHubIcon className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                GitHub
+              </a>
+            </div>
 
-      <AnimatedSection delay={0.3}>
-        <div className="flex flex-wrap gap-3 mt-6">
-          <Link to="/about">
-            <Button>View Resume</Button>
-          </Link>
-          <Link to="/about">
-            <Button variant="secondary">About Me</Button>
-          </Link>
-        </div>
+            <div className="flex flex-wrap gap-3 pt-4">
+              <Link to="/about">
+                <Button>View Resume</Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="secondary">About Me</Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
       </AnimatedSection>
     </div>
   );
