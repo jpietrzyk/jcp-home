@@ -36,9 +36,9 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, ...props }, ref) => {
-    if (asChild && React.isValidElement(props.children)) {
-      const child = props.children as React.ReactElement<{
+  ({ className, variant, size, asChild, children, ...props }, ref) => {
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<{
         className?: string;
       }>;
       // Exclude children from props to avoid nesting
@@ -57,7 +57,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...(props as React.ComponentPropsWithoutRef<typeof motion.button>)}
-      />
+      >
+        {children}
+      </motion.button>
     );
   },
 );

@@ -16,6 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
@@ -80,13 +81,14 @@ export function MainLayout() {
   return (
     <SidebarProvider>
       <Sidebar className="border-r border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
-        <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30 flex items-center justify-center px-4 pt-8 pb-4">
+        <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30 flex items-center justify-center px-4 pt-8 pb-4 group-data-[collapsible=icon]:pt-4 group-data-[collapsible=icon]:px-2">
           <Link
             to="/"
             aria-label="JCP Home"
-            className="w-3/4 inline-flex items-center justify-center rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
+            className="w-3/4 inline-flex items-center justify-center rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900 group-data-[collapsible=icon]:w-auto"
           >
-            <JcpLogo variant="tertiary" className="h-auto w-full" aria-hidden="true" />
+            <JcpLogo variant="tertiary" className="h-auto w-full group-data-[collapsible=icon]:hidden" aria-hidden="true" />
+            <JcpLogo variant="square" className="hidden group-data-[collapsible=icon]:block h-8 w-8" aria-hidden="true" />
           </Link>
         </SidebarHeader>
         <SidebarContent>
@@ -99,6 +101,7 @@ export function MainLayout() {
                       asChild
                       isActive={link.to === location.pathname || (link.to !== "/" && location.pathname.startsWith(link.to))}
                       className="transition-colors duration-300 h-12 text-base"
+                      tooltip={link.label}
                     >
                       <NavLink
                         to={link.to}
@@ -125,6 +128,7 @@ export function MainLayout() {
                     <SidebarMenuButton
                       asChild
                       className="h-12 text-base"
+                      tooltip={link.label}
                     >
                       <a
                         href={link.href}
@@ -145,10 +149,11 @@ export function MainLayout() {
         <SidebarFooter className="border-t border-stone-200/50 dark:border-stone-800/30">
           <ThemeToggle />
         </SidebarFooter>
+        <SidebarRail />
       </Sidebar>
       <SidebarInset>
         <header className="sticky top-0 z-10 flex h-10 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30 px-3">
-          <SidebarTrigger className="-ml-1 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100" />
+          <SidebarTrigger className="-ml-1 h-8 w-8 text-stone-700 hover:text-stone-900 hover:bg-stone-200/50 dark:text-stone-300 dark:hover:text-stone-100 dark:hover:bg-stone-700/50" />
           <div className="flex-1" />
         </header>
         <div className="flex-1 overflow-auto">
