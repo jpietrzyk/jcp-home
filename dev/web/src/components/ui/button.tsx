@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
@@ -41,9 +40,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       const child = children as React.ReactElement<{
         className?: string;
       }>;
-      // Exclude children from props to avoid nesting
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { children: _, ...restProps } = props;
+      // Exclude children from props to avoid nesting — already destructured above
+      const restProps = props;
       return React.cloneElement(child, {
         className: cn(
           buttonVariants({ variant, size, className }),
