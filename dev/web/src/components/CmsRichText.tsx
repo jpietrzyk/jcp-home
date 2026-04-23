@@ -9,11 +9,11 @@ type CmsRichTextProps = {
   hideFirstHeadingMatching?: string;
 };
 
-function normalizeText(value: string) {
+export function normalizeText(value: string) {
   return value.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-function getBlockText(block: TypedObject) {
+export function getBlockText(block: TypedObject) {
   if (!("children" in block) || !Array.isArray(block.children)) return "";
 
   return block.children
@@ -28,7 +28,7 @@ function getBlockText(block: TypedObject) {
     .trim();
 }
 
-function getVisibleBody(
+export function getVisibleBody(
   body: TypedObject[] | undefined,
   hideFirstHeadingMatching?: string,
 ) {

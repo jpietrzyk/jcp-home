@@ -8,7 +8,7 @@ const trackModules = import.meta.glob('./*.str', {
 });
 
 // Simple browser-compatible frontmatter parser
-function parseFrontmatter(content: string): { data: Record<string, unknown>; content: string } {
+export function parseFrontmatter(content: string): { data: Record<string, unknown>; content: string } {
   const lines = content.split('\n');
   const data: Record<string, unknown> = {};
   let inFrontmatter = false;
@@ -77,7 +77,7 @@ function parseFrontmatter(content: string): { data: Record<string, unknown>; con
   return { data, content: codeContent };
 }
 
-function parseTrackFile(content: string, filename: string): StrudelTrack {
+export function parseTrackFile(content: string, filename: string): StrudelTrack {
   const { data, content: code } = parseFrontmatter(content);
 
   return {

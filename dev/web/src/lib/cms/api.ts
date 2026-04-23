@@ -13,7 +13,7 @@ const fallbackPosts: PostSummary[] = [
   }
 ];
 
-function toPlainText(value: unknown): string {
+export function toPlainText(value: unknown): string {
   if (!Array.isArray(value)) return '';
   return value
     .flatMap((block) => (typeof block === 'object' && block && 'children' in block ? (block as { children: unknown[] }).children : []))
