@@ -1,3 +1,15 @@
+---
+id: StrangeThing
+title: Strange Thing
+description: A little bit strange but think
+cpm: 35
+tags:
+  - fast
+  - breakbeat
+  - slow
+  - downtempo
+---
+
 setcpm(35)
 
 pianos: stack(
