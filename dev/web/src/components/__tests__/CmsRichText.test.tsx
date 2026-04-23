@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import type { TypedObject } from "@portabletext/types";
 import {
   normalizeText,
   getBlockText,
@@ -42,12 +43,12 @@ describe("getBlockText", () => {
         { _type: "span", text: "Hello " },
         { _type: "span", text: "World" },
       ],
-    } as any;
+    } as TypedObject;
     expect(getBlockText(block)).toBe("Hello World");
   });
 
   it("returns empty string when block has no children", () => {
-    const block = { _type: "block", style: "normal" } as any;
+    const block = { _type: "block", style: "normal" } as TypedObject;
     expect(getBlockText(block)).toBe("");
   });
 
@@ -55,7 +56,7 @@ describe("getBlockText", () => {
     const block = {
       _type: "block",
       children: "not array",
-    } as any;
+    } as TypedObject;
     expect(getBlockText(block)).toBe("");
   });
 
@@ -68,7 +69,7 @@ describe("getBlockText", () => {
         null,
         42,
       ],
-    } as any;
+    } as TypedObject;
     expect(getBlockText(block)).toBe("Only");
   });
 
@@ -76,14 +77,14 @@ describe("getBlockText", () => {
     const block = {
       _type: "block",
       children: [{ _type: "span", text: 123 }, { _type: "span", text: true }],
-    } as any;
+    } as TypedObject;
     expect(getBlockText(block)).toBe("");
   });
 });
 
 describe("getVisibleBody", () => {
   it("returns body as-is when hideFirstHeadingMatching is undefined", () => {
-    const body = [
+    const body: TypedObject[] = [
       { _type: "block", style: "h2", children: [{ text: "Title" }] },
     ];
     expect(getVisibleBody(body, undefined)).toBe(body);
@@ -98,14 +99,14 @@ describe("getVisibleBody", () => {
   });
 
   it("returns body as-is when first block is not a heading", () => {
-    const body = [
+    const body: TypedObject[] = [
       { _type: "block", style: "normal", children: [{ text: "Paragraph" }] },
-    ] as any;
+    ];
     expect(getVisibleBody(body, "Paragraph")).toBe(body);
   });
 
   it("removes first heading when it matches hideFirstHeadingMatching", () => {
-    const body = [
+    const body: TypedObject[] = [
       {
         _type: "block",
         style: "h2",
@@ -116,54 +117,54 @@ describe("getVisibleBody", () => {
         style: "normal",
         children: [{ _type: "span", text: "Content" }],
       },
-    ] as any;
+    ];
     const result = getVisibleBody(body, "My Title");
     expect(result).toHaveLength(1);
-    expect((result as any[])[0].style).toBe("normal");
+    expect((result as TypedObject[])[0]).toHaveProperty("style", "normal");
   });
 
   it("removes first heading ignoring case and whitespace", () => {
-    const body = [
+    const body: TypedObject[] = [
       {
         _type: "block",
         style: "h1",
         children: [{ _type: "span", text: "  Hello   World  " }],
       },
-    ] as any;
+    ];
     const result = getVisibleBody(body, "hello world");
     expect(result).toHaveLength(0);
   });
 
   it("returns body when first heading does not match", () => {
-    const body = [
+    const body: TypedObject[] = [
       {
         _type: "block",
         style: "h2",
         children: [{ _type: "span", text: "Different Title" }],
       },
-    ] as any;
+    ];
     expect(getVisibleBody(body, "Expected Title")).toBe(body);
   });
 
   it("handles h1, h2, h3, h4 styles", () => {
     for (const style of ["h1", "h2", "h3", "h4"]) {
-      const body = [
+      const body: TypedObject[] = [
         { _type: "block", style, children: [{ text: "Title" }] },
-      ] as any;
+      ];
       const result = getVisibleBody(body, "Title");
       expect(result).toHaveLength(0);
     }
   });
 
   it("returns body when first block style is not a heading type", () => {
-    const body = [
+    const body: TypedObject[] = [
       { _type: "block", style: "normal", children: [{ text: "Title" }] },
-    ] as any;
+    ];
     expect(getVisibleBody(body, "Title")).toBe(body);
   });
 
   it("returns body when first block has no style property", () => {
-    const body = [{ _type: "block", children: [{ text: "Title" }] }] as any;
+    const body: TypedObject[] = [{ _type: "block", children: [{ text: "Title" }] }];
     expect(getVisibleBody(body, "Title")).toBe(body);
   });
 });
@@ -184,7 +185,7 @@ describe("CmsRichText component", () => {
   });
 
   it("renders rich text content when body is provided", () => {
-    const body = [
+    const body: TypedObject[] = [
       {
         _type: "block",
         style: "normal",
@@ -192,7 +193,7 @@ describe("CmsRichText component", () => {
         markDefs: [],
       },
     ];
-    render(<CmsRichText body={body as any} bodyPlainText="" />);
+    render(<CmsRichText body={body} bodyPlainText="" />);
     expect(screen.getByText("Rich text content")).toBeInTheDocument();
   });
 

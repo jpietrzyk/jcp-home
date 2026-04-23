@@ -20,16 +20,18 @@ describe("ResumeJobExperience", () => {
     expect(screen.getByText("Acme Corp")).toBeInTheDocument();
   });
 
-  it("renders date range with end date", () => {
+  it("renders start and end date separately", () => {
     render(<ResumeJobExperience {...defaultProps} />);
-    expect(screen.getByText(/Jan 2020 — Dec 2023/)).toBeInTheDocument();
+    expect(screen.getByText("Jan 2020")).toBeInTheDocument();
+    expect(screen.getByText("Dec 2023")).toBeInTheDocument();
   });
 
-  it("renders date range with isCurrent", () => {
+  it("renders start date and Present when isCurrent", () => {
     render(
       <ResumeJobExperience {...defaultProps} endDate={null} isCurrent />,
     );
-    expect(screen.getByText(/Jan 2020 — Present/)).toBeInTheDocument();
+    expect(screen.getByText("Jan 2020")).toBeInTheDocument();
+    expect(screen.getByText("Present")).toBeInTheDocument();
   });
 
   it("renders achievements with checkmarks", () => {
