@@ -10,13 +10,13 @@ tags:
   - downtempo
 ---
 
-setcpm(35)
+ssetcpm(35)
 
 pianos: stack(
-  n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").gain(square.range(.4, .8).slow(4)).room(".5").roomsize("1.5"),
-  n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(sine.range(.5, .25).slow(2))
-    .room(.8).roomsize(1.5).delay(.1),
-  n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").attack(.03).gain(sine.range(.25, .5).slow(2))
+  n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").gain(square.range(.3, .6).slow(4)).room(".8").roomsize("4"),
+  n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(sine.range(.45, .2).slow(2))
+    .room(.8).roomsize(4).delay(.1),
+  n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").attack(.03).gain(sine.range(.25, .4).slow(2))
     .room(1).roomsize(2)
 ).hpf(sine.range(100, 300).slow(4)).hpq(1).postgain(.7)
 
@@ -31,13 +31,12 @@ poly: stack(
 ).scale("C:minor").s("gm_pad_poly").orbit(1).clip(1).room(1).roomsize(.5).delay(.1)
   .postgain(.8)
 
-background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine:0:.8, sine:1:.8, supersaw:1:1").attack(1)
+_background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine:0:.8, sine:1:.8, supersaw:1:1").attack(1)
   .lpf(1500).clip(1.2).decay(8.2).room(1).roomsize(4).delay(.3).vib("8:.5")
   .postgain(.35)
 
 lead: n("<[~ 14] [~ ~ 17 14] [~ 14] [~ ~ 17 14] [~ 13] [~ ~ 17 13] [~ 11] [~ ~ 14 12]>").scale("C:minor").s("supersaw:2, sawtooth:2, sine:3, triangle:0:.3")
   .struct("{<[1 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] >}%2")
-  // .struct("{[0 0 [0 1] [0 1] [1 1] [0 1] [1 0] [1 1]]}/2")
   .orbit(2).pan(rand.fast(4)).clip(rand.range(.4, .7)).decay(8).room("1").roomsize(".5").delay(".5")
   .lpf(sine.range(3500, 6500).fast(2)).lpq(1)
   .jux(rev)
@@ -45,6 +44,6 @@ lead: n("<[~ 14] [~ ~ 17 14] [~ 14] [~ ~ 17 14] [~ 13] [~ ~ 17 13] [~ 11] [~ ~ 1
 
 percs: stack(
   s("<[bd:8 ~ bd:8 ~] [~ ~ bd:8 ~] [bd:8 ~ bd:8 bd:8] [~ bd:8 ~ bd:8] [bd:8 ~ ~ ~] [~ bd:8 ~ bd:8] [~ bd:8 bd:8 ~] [~ ~ ~ bd:8]>*2").orbit(10).gain(.6).room(.4).roomsize(.5).delay(".04:.1:.1"),
-  s("<[~ akaimpc60_sd]>").gain(rand.range(.2, .3)).delay(".2:.2:.2").room(.4).roomsize(.5),
-  s("[hh:0*8]").orbit(11).gain(sine.range(.4, .6).fast(2)).room(.3).roomsize(.5).delay(".1:5:.5")
+  s("<[~ akaimpc60_sd]>").gain(rand.range(.15, .2)).delay(".2:.2:.2").room(.4).roomsize(.5),
+  s("[hh:0*8]").orbit(11).gain(sine.range(.3, .55).fast(2)).room(.3).roomsize(.5).delay(".1:5:.5")
 )
