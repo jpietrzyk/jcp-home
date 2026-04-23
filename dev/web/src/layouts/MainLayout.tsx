@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -77,6 +78,10 @@ const socialLinks = [
 
 export function MainLayout() {
   const location = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <SidebarProvider>
