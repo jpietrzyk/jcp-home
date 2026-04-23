@@ -8,13 +8,6 @@ import {
   CmsRichText,
 } from "../CmsRichText";
 
-type BlockLike = {
-  _type: string;
-  style?: string;
-  children?: unknown[];
-  markDefs?: unknown[];
-};
-
 function asBody(blocks: Record<string, unknown>[]): TypedObject[] {
   return blocks as unknown as TypedObject[];
 }
