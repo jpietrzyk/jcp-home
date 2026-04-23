@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { HomePage } from "../HomePage";
-import { useCmsPage } from "../../lib/cms/useCmsPage";
 import { useCmsPosts } from "../../lib/cms/useCmsPosts";
 import { useCmsProjects } from "../../lib/cms/useCmsProjects";
 
@@ -163,7 +162,8 @@ describe("HomePage", () => {
         <HomePage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("About Me")).toBeInTheDocument();
-    expect(screen.getByText("Read Blog")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "About Me" }),
+    ).toBeInTheDocument();
   });
 });

@@ -2,34 +2,37 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ProjectsPage } from "../ProjectsPage";
-import { useCmsPage } from "../../lib/cms/useCmsPage";
+import { useCmsProjectsPage } from "../../lib/cms/useCmsProjectsPage";
 import { useCmsProjects } from "../../lib/cms/useCmsProjects";
 
-vi.mock("../../lib/cms/useCmsPage", () => ({
-  useCmsPage: vi.fn(() => ({
-    page: {
-      title: "Projects",
-      slug: "projects",
-      subtitle: "A selection of projects.",
-      eyebrow: "My Work",
-      bodyPlainText: "",
-    },
-    isLoading: false,
-    error: null,
-  })),
+vi.mock("../../lib/cms/useCmsProjectsPage", () => ({
+  useCmsProjectsPage: vi.fn(),
 }));
 
 vi.mock("../../lib/cms/useCmsProjects", () => ({
-  useCmsProjects: vi.fn(() => ({
-    projects: [],
-    isLoading: false,
-    error: null,
-  })),
+  useCmsProjects: vi.fn(),
 }));
+
+const defaultPage = {
+  page: {
+    title: "Projects",
+    slug: "projects",
+    subtitle: "A selection of projects.",
+    eyebrow: "My Work",
+    bodyPlainText: "",
+  },
+  isLoading: false,
+  error: null,
+};
 
 describe("ProjectsPage", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    vi.mocked(useCmsProjectsPage).mockReturnValue(defaultPage);
+    vi.mocked(useCmsProjects).mockReturnValue({
+      projects: [],
+      isLoading: false,
+      error: null,
+    });
   });
 
   it("renders page header with eyebrow and title", () => {
@@ -128,16 +131,13 @@ describe("ProjectsPage", () => {
   });
 
   it("does not show eyebrow when null", () => {
-    vi.mocked(useCmsPage).mockReturnValue({
+    vi.mocked(useCmsProjectsPage).mockReturnValue({
+      ...defaultPage,
       page: {
-        title: "Projects",
-        slug: "projects",
+        ...defaultPage.page,
         subtitle: null,
         eyebrow: null,
-        bodyPlainText: "",
       },
-      isLoading: false,
-      error: null,
     });
 
     render(

@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  web-build:
-    name: Web Build
+  web-checks:
+    name: Web Lint / Typecheck / Test / Build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,6 +31,12 @@ jobs:
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
 
       - name: Test
         run: pnpm run test:run

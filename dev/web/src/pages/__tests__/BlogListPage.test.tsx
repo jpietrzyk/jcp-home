@@ -20,7 +20,7 @@ const defaultPage = {
     subtitle: "My thoughts",
     eyebrow: "Writing",
     bodyPlainText: "Read my posts",
-    body: undefined as any,
+    body: undefined as unknown as import("@portabletext/types").TypedObject[],
   },
   isLoading: false,
   error: null,

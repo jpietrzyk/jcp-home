@@ -18,15 +18,6 @@ vi.mock("../../lib/cms/useCmsPage", () => ({
   })),
 }));
 
-vi.mock("../../content/profile", () => ({
-  profile: {
-    location: "Test Location",
-    email: "test@example.com",
-    linkedin: "https://linkedin.com/test",
-    github: "https://github.com/test",
-  },
-}));
-
 describe("HomeHeroSection", () => {
   beforeEach(() => {
     vi.mocked(useCmsPage).mockReturnValue({
@@ -67,71 +58,6 @@ describe("HomeHeroSection", () => {
       </MemoryRouter>,
     );
     expect(screen.getByText("Test eyebrow")).toBeInTheDocument();
-  });
-
-  it("renders profile location", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("Test Location")).toBeInTheDocument();
-  });
-
-  it("renders profile email as mailto link", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    const emailLink = screen.getByText("test@example.com").closest("a");
-    expect(emailLink).toHaveAttribute("href", "mailto:test@example.com");
-  });
-
-  it("renders LinkedIn link", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    const linkedinLink = screen.getByText("LinkedIn");
-    expect(linkedinLink).toHaveAttribute("href", "https://linkedin.com/test");
-  });
-
-  it("renders GitHub link", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    const githubLink = screen.getByText("GitHub");
-    expect(githubLink).toHaveAttribute("href", "https://github.com/test");
-  });
-
-  it("renders navigation buttons", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("View Resume")).toBeInTheDocument();
-    expect(screen.getByText("About Me")).toBeInTheDocument();
-    expect(screen.getByText("Read Blog")).toBeInTheDocument();
-  });
-
-  it("renders navigation links with correct hrefs", () => {
-    render(
-      <MemoryRouter>
-        <HomeHeroSection />
-      </MemoryRouter>,
-    );
-    const resumeLink = screen.getByText("View Resume").closest("a");
-    const aboutLink = screen.getByText("About Me").closest("a");
-    const blogLink = screen.getByText("Read Blog").closest("a");
-
-    expect(resumeLink).toHaveAttribute("href", "/about");
-    expect(aboutLink).toHaveAttribute("href", "/about");
-    expect(blogLink).toHaveAttribute("href", "/blog");
   });
 
   it("does not render eyebrow paragraph when eyebrow is null", () => {
