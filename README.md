@@ -50,6 +50,24 @@ npm run test:run       # Run tests once
 npm run test:coverage  # Tests with coverage
 ```
 
+## Sanity Studio
+
+Sanity Studio is the content editor for blog posts, pages, and site settings. It lives in `dev/sanity/`.
+
+```bash
+cd dev/sanity
+pnpm sanity dev          # Start Studio on http://localhost:3333
+pnpm sanity deploy       # Deploy Studio to Sanity hosting
+```
+
+Once running, open `http://localhost:3333` in your browser to create and edit content. Blog posts, pages, authors, tags, and site settings are all managed there.
+
+To run both the frontend and Studio together:
+
+```bash
+npm run dev:all
+```
+
 ## Environment Variables
 
 Required for Sanity integration:
