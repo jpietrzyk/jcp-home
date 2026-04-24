@@ -25,7 +25,8 @@ Personal homepage and portfolio — [jcp-haven.cc](https://jcp-haven.cc)
 | Hosting | Netlify (static SPA) |
 | Testing | Vitest, Testing Library |
 
-**Runtime:** Node >= 20.19.0, npm >= 9.0.0
+**Runtime:** Node >= 20.19.0
+**Package manager:** [pnpm](https://pnpm.io)
 
 ## Project Structure
 
@@ -39,15 +40,15 @@ netlify.toml  # Netlify build config
 ## Development
 
 ```bash
-npm run install:all    # Install all dependencies (root + web + sanity)
-npm run dev            # Start web dev server
-npm run dev:all        # Start web + sanity dev servers concurrently
-npm run build          # Production build
-npm run lint           # Lint (ESLint)
-npm run typecheck      # Typecheck web + sanity
-npm run test           # Run tests (vitest watch mode)
-npm run test:run       # Run tests once
-npm run test:coverage  # Tests with coverage
+pnpm install:all        # Install all dependencies (root + web + sanity)
+pnpm dev                # Start web dev server
+pnpm dev:all            # Start web + sanity dev servers concurrently
+pnpm build              # Production build
+pnpm lint               # Lint (ESLint)
+pnpm typecheck          # Typecheck web + sanity
+pnpm test               # Run tests (vitest watch mode)
+pnpm test:run           # Run tests once
+pnpm test:coverage      # Tests with coverage
 ```
 
 ## Sanity Studio
@@ -65,7 +66,7 @@ Once running, open `http://localhost:3333` in your browser to create and edit co
 To run both the frontend and Studio together:
 
 ```bash
-npm run dev:all
+pnpm dev:all
 ```
 
 ## Environment Variables
