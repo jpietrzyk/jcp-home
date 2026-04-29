@@ -10,49 +10,50 @@ tags:
   - downtempo
 ---
 
-setcpm(35)
+setcpm(38)
 
-_pianos: stack(
-  n("<10 13 10 13 7 12 7 [7 11]>").scale("C:minor").s("piano").orbit(20).gain(sine.range(.2, .6).slow(4)).room(".8").roomsize("4"),
-  //n("<[~ ~ 14 ~] [~ 14 17 14] [~ ~ 14 ~] [~ 14 13 12]>").scale("C:minor").s("piano").gain(sine.range(.45, .2).slow(2))
-  //   .room(.8).roomsize(4).delay(.1),
-  // n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").orbit(21).attack(.03).gain(sine.range(.15, .4).slow(2))
-  //   .room(1).roomsize(2)
-).hpf(sine.range(0, 20).slow(4)).hpq(1).postgain(.8)
+pianos: stack(
+  n("<~ 12 ~ 13 14 12 ~ [7 11]>").scale("C:minor").s("piano").orbit(20).gain(sine.range(.25, .6).slow(3)).room(".8").roomsize(4),
+  n("<[~ ~ 14@2] [~ ~ 17 14] [~ ~ 14 ~] [19 ~ ~ 18] [~ ~ 17 ~] [~ ~ 18 ~] [~ ~ 17 ~] [19 ~ 20 ~]>").scale("C:minor").s("piano").orbit(22).gain(sine.range(.2, .7).fast(3))
+    .room(.8).roomsize(4).delay(.1),
+  n("<[21 21@2 21] [21@2 21 24] [21 21@2 21] [21@2 21 23]>*2").scale("C:minor").s("piano").orbit(21).attack(.03).gain(sine.range(.25, .7).slow(3))
+    .room(.8).roomsize(3)
+).pan(rand.fast(2)).hpf(sine.range(100, 400).slow(3)).hpq(1).postgain(.7)
 
 bgPianos: stack(
-  n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").attack(.09).gain("<.5@2 .4@2 .5@2 .6@2>"),
-  n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("piano").attack(.01).gain("<.5@2 .6@2 .4@2 .4@2>").room(1).roomsize(1.5)
-).lpf(4000).lpq(5).postgain(.8)
+  n("<3@2 2@2 4@2 0@2>").scale("C:minor").s("piano:1").orbit(23).attack(.09).gain("<.5@2 .4@2 .5@2 .6@2>"),
+  n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("piano").orbit(24).attack(.01).gain("<.5@2 .6@2 .4@2 .4@2>").room(1).roomsize(1.5)
+).lpf(3000).lpq(5)
 
-_poly: stack(
-  // n("<10 [11 12] [13] 13 11 [12 9] 10 11>").gain(sine.range(.5, .7).slow(4)),
-  n("<-4 -4 -5 -5 -5 -5 -4 -4>").struct("{<[1*8]>}").gain(square.range(.8, 1).fast(4))
+poly: stack(
+  // n("<10 [11 12] 13 13 11 [12 9] 10 11>").gain(sine.range(.4, .7).slow(3)),
+  n("<-4 -4 -5 -5 -5 -5 -4 -4>").struct("{<[1*8]>}").gain(saw.range(1, .4).fast(3)).lpf(sine.range(5500, 3500).slow(3)).lpq(2)
 ).scale("C:minor").s("gm_pad_poly").orbit(1).clip(1).room(1).roomsize(.5).delay(.1)
-  .postgain(.65)
+  .postgain(.6)
 
-_background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine:0:.8, sine:1:.8, supersaw:1:1").orbit(15).attack(1)
+background: n("<-4@2 -5@2 -5@2 -4@2>").scale("C:minor").s("sine:0:.8, sine:1:.8, supersaw:1:1").orbit(15).attack(1)
   .lpf(2200).clip(1.2).decay(8.2).room(1).roomsize(4).delay(.3).vib("8:.5").hpf(200)
-  .postgain(.25)
+  .postgain(.3)
 
 _lead: n("<[~ 14] [~ ~ 17 14] [~ 14] [~ ~ 17 14] [~ 13] [~ ~ 17 13] [~ 11] [~ ~ 14 12]>").scale("C:minor").s("supersaw:2, sawtooth:2, sine:3, triangle:0:.3")
-  // .struct("{<[1 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] >}%2")
+  .struct("{<[1 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] [[1 1] 1 [0 1] 1] >}%2")
   .orbit(2).pan(rand.fast(4)).clip(rand.range(.4, .7)).decay(8).room("1").roomsize(".5").delay(".5")
-  .lpf(sine.range(3500, 6500).fast(2)).lpq(1)
-  // .jux(rev)
-  .postgain(".4")
+  .lpf(sine.range(3500, 7500).slow(6)).lpq(1)
+  .jux(rev)
+  .postgain(".35")
 
-_percs: stack(
+percs: stack(
   // można jeszcze jednego kicka dodać, jako bank albo osobno dla akcentu
-  // s("<[bd ~ bd ~] [~ ~ bd ~] [bd ~ bd bd] [~ bd ~ bd] [bd ~ ~ ~] [~ bd ~ bd] [~ bd bd ~] [~ ~ ~ bd]>*2").bank("dmx").n("3").duckorbit(10).duckattack(.1).duckonset(.025)
-  // .gain(.8).decay(.4).clip(.3).hpf("100").room(.2).roomsize(.2).delay(".01:.1:.1"),
+  s("<[bd ~ bd ~] [~ ~ bd ~] [bd ~ bd bd] [~ bd ~ bd] [bd ~ ~ ~] [~ bd ~ bd] [~ bd bd ~] [~ ~ ~ bd]>*2").bank("dmx").n("3").duckorbit(10).duckattack(.1).duckonset(.025)
+    .gain(.8).decay(.4).clip(.3).hpf("100").room(.2).roomsize(.2).delay(".01:.1:.1"),
   s("<[~ akaimpc60_sd]!7 [[~ akaimpc60_sd] [~ akaimpc60_sd] [~ akaimpc60_sd] [akaimpc60_sd ~]]>").gain("<.25!7 [0 .2 0 .15]>").delay(".2:.2:.2").room(.4).roomsize(.5).postgain(.9),
   s("<[hh*8] [hh*4 hh*2] [hh*8] [hh*4 hh*8]>").orbit(11).gain(sine.range(.3, .5).fast(3)).room(.3).roomsize(.5).delay(".1:5:.5"),
-  // s("<[~ ~ oh:0 ~]*2>").gain(.5).lpf("<[2500 2700] [3000 2900]>").lpq(8)
+  s("<[~ ~ oh:0 ~]*2>").gain(.5).lpf("<[2500 2700] [3000 2900]>").lpq(8)
 )
 
-_subbass: n(`<[-11 ~ -11@2] [~ ~ -11 ~] [-10 ~ -10@2] [~ -9 ~ -9] [-8@3 ~] [~ -9 ~ -9] [~ -9 -9 ~] [~ ~ ~ -8]
-         [-10 ~ -10@2] [~ ~ -10 ~] [-9 ~ -9@2] [~ -12 ~ -12] [-11@3 ~] [~ -11 ~ -11] [~ -10 -10 ~] [~ ~ ~ -10]>*2`).scale("C:minor").s("sine, sine:1:.7, tri, square:1:.6").orbit(10).gain(.45)
-  .clip(0.95).decay(1.4).sustain(.3).release(.3).lpf(1500).lpq(8)
-  // .vib("2:2:.1")
-  // .room(.3).roomsize(1)
+_subbass: n(`<[-11 ~ -11@2] [~ ~ -11 ~] [-10 ~ -10@2] [~ -11 ~ -11] [-12@3 ~] [~ -9 ~ -9] [~ ~ -10 ~] [~ ~ ~ -8]
+         [-10 ~ -10@2] [~ ~ -10 ~] [-9 ~ -9@2] [~ -12 ~ -12] [-11@3 ~] [~ -11 ~ -11] [~ ~ -10 ~] [~ ~ ~ -10]>*2`).scale("C:minor").s("sine, tri, square:1, sawtooth:2").orbit(10).gain(.8)
+  .clip(1).decay(rand.range(.8, 1.2)).sustain(.3).release(.3).dist(.8).lpf(1500)
+  // .vib(4).vibmod(7)
+  // .room(.2).roomsize(2)
+  .postgain(.3)

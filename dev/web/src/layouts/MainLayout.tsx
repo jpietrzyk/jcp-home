@@ -20,6 +20,7 @@ import {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Home,
@@ -76,6 +77,30 @@ const socialLinks = [
   },
 ];
 
+function TopBarLogo() {
+  const { state } = useSidebar();
+  return (
+    <Link
+      to="/"
+      aria-label="JCP Home"
+      className="fixed top-1 z-20 flex flex-col rounded-md px-2 py-1 transition-[left] duration-200 ease-linear hover:bg-stone-100 dark:hover:bg-stone-800/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
+      style={{
+        left:
+          state === "collapsed"
+            ? "calc(var(--sidebar-width-icon) + 0.5rem)"
+            : "calc(var(--sidebar-width) + 0.5rem)",
+      }}
+    >
+      <span className="text-lg font-bold tracking-tight leading-tight text-stone-800 dark:text-stone-200">
+        jcp<span className="text-accent-primary">.</span>haven
+      </span>
+      <span className="hidden sm:inline text-[10px] font-medium leading-tight text-stone-400 dark:text-stone-500 italic">
+        Bits, Beats, and Being
+      </span>
+    </Link>
+  );
+}
+
 export function MainLayout() {
   const location = useLocation();
 
@@ -86,15 +111,8 @@ export function MainLayout() {
   return (
     <SidebarProvider>
       <Sidebar className="border-r border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30">
-        <SidebarHeader className="border-b border-stone-200/50 dark:border-stone-800/30 flex items-center justify-center px-4 pt-8 pb-4 group-data-[collapsible=icon]:pt-4 group-data-[collapsible=icon]:px-2">
-          <Link
-            to="/"
-            aria-label="JCP Home"
-            className="w-3/4 inline-flex items-center justify-center rounded-md hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900 group-data-[collapsible=icon]:w-auto"
-          >
-            <JcpLogo variant="tertiary" className="h-auto w-full group-data-[collapsible=icon]:hidden" aria-hidden="true" />
-            <JcpLogo variant="square" className="hidden group-data-[collapsible=icon]:block h-8 w-8" aria-hidden="true" />
-          </Link>
+        <SidebarHeader className="px-2 pt-2 pb-0">
+          <SidebarTrigger className="h-8 w-8 text-stone-700 hover:text-stone-900 hover:bg-stone-200/50 dark:text-stone-300 dark:hover:text-stone-100 dark:hover:bg-stone-700/50" />
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
@@ -157,8 +175,8 @@ export function MainLayout() {
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-10 shrink-0 items-center gap-2 border-b border-stone-200/50 bg-sidebar/80 backdrop-blur-sm dark:border-stone-800/30 px-3">
-          <SidebarTrigger className="-ml-1 h-8 w-8 text-stone-700 hover:text-stone-900 hover:bg-stone-200/50 dark:text-stone-300 dark:hover:text-stone-100 dark:hover:bg-stone-700/50" />
+        <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 px-3">
+          <TopBarLogo />
           <div className="flex-1" />
         </header>
         <div className="flex-1 overflow-auto">
