@@ -78,23 +78,17 @@ const socialLinks = [
 ];
 
 function TopBarLogo() {
-  const { state } = useSidebar();
+  const { isMobile } = useSidebar();
   return (
     <Link
       to="/"
       aria-label="JCP Home"
-      className="fixed top-1 z-20 flex flex-col rounded-md px-2 py-1 transition-[left] duration-200 ease-linear hover:bg-stone-100 dark:hover:bg-stone-800/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-light-100 dark:focus-visible:ring-offset-dark-900"
-      style={{
-        left:
-          state === "collapsed"
-            ? "calc(var(--sidebar-width-icon) + 0.5rem)"
-            : "calc(var(--sidebar-width) + 0.5rem)",
-      }}
+      className="flex flex-col rounded-md px-2 py-1 hover:bg-stone-100 dark:hover:bg-stone-800/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 max-[600px]:hidden"
     >
       <span className="text-lg font-bold tracking-tight leading-tight text-stone-800 dark:text-stone-200">
         jcp<span className="text-accent-primary">.</span>haven
       </span>
-      <span className="hidden sm:inline text-[10px] font-medium leading-tight text-stone-400 dark:text-stone-500 italic">
+      <span className="text-[10px] font-medium leading-tight text-stone-400 dark:text-stone-500 italic">
         Bits, Beats, and Being
       </span>
     </Link>
@@ -175,7 +169,10 @@ export function MainLayout() {
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 px-3">
+        <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 px-3 bg-background">
+          <div className="hidden max-[960px]:block">
+            <SidebarTrigger className="h-8 w-8 text-stone-700 hover:text-stone-900 hover:bg-stone-200/50 dark:text-stone-300 dark:hover:text-stone-100 dark:hover:bg-stone-700/50" />
+          </div>
           <TopBarLogo />
           <div className="flex-1" />
         </header>
